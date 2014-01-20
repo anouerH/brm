@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>{% block title %}STAR ANNONCES annonces gratuites en Tunisie{% endblock %}</title>
+
+    {% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
+    {% endblock %}
+    {% block javascripts %}
+    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+  {% endblock %}
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="header" class="hero-unit">
+        <div class="logo">
+          <a href="/"><img src="{{ asset('img/logo.png') }}" width="265" height="100"></a>
+        </div>
+
+        <!--<h1>Mon Projet Symfony2</h1>
+        <p>Ce projet est propulsé par Symfony2, et construit grâce au tutoriel du siteduzero.</p>
+        <p><a class="btn btn-primary btn-large" href="http://www.siteduzero.com/informatique/tutoriels/developpez-votre-site-web-avec-le-framework-symfony2">
+          Lire le tutoriel »
+        </a></p>-->
+        <div class="menu_nav">
+          <ul>
+            <li class="active" style="width: 115px"><a href="#">Acceuil </a></li>
+            <li style="width: 207px"><a href="#">Déposer une annonce </a></li>
+            <li style="width: 131px"><a href="#">Recherche</a></li>
+            <li style="width: 166px"><a href="#">Connexion</a></li>
+            <li style="width: 99px"><a href="#">Aide</a></li>
+            <li style="width: 167px"><a href="#">Inscription</a></li>
+            <li style="width: 95px"><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class='addannonce'>
+          <a href="#"></a>
+        </div>
+      </div>
+      
+
+      <div class="row">
+        <div id="menu" class="span3">
+          <h3>Le blog</h3>
+          <ul class="nav nav-pills nav-stacked">
+            <li><a href="">Accueil du blog</a></li>
+            <li><a href="">Ajouter un article</a></li>
+          </ul>
+                    
+          {{ render(controller("StarAnnoncesBundle:Default:menu"))  }}
+        </div>
+        <div id="content" class="span9">
+          {% block body %}
+          {% endblock %}
+        </div>
+      </div>
+
+      <hr>
+
+      
+    </div>
+
+
+    <!-- footer-->
+    <div class="footer">
+      <div class="FBG">
+        <div class="FBG_resize">
+          <div class="click_blog">
+            <p>petites annonces gratuites en tunisie, tunisie immobilier, tunisie
+              annonces, passer annonce gratuite, annonces algeriennes, petites
+              annonces, passer une annonce, annonces immobilier, location, vente ,
+              achat, maison, appartement, louer, vendre, acheter, location, immobilier, maison, locations de
+              vacances en tunisie,</p>
+
+              <div class="rss">
+                <img src="{{ asset('img/twiter.gif') }}" width="16" height="16" class="floated"> 
+                <img src="{{ asset('img/fbicon.gif') }}" width="16" class="floated" height="16"> 
+                <img src="{{ asset('img/rss.gif') }}" width="16" height="16" class="floated">
+              </div>
+
+              <div class="clr"></div>
+              <div class="blog"></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end footer-->
+  
+    <footer>
+      <p>The sky's the limit © 2012 and beyond.</p>
+    </footer>
+
+    {% javascripts
+      '@StarAnnoncesBundle/Resources/public/js/underscore-min.js'
+      '@StarAnnoncesBundle/Resources/public/js/jquery-ui-1.8.22.custom.min.js'
+      '@PunkAveFileUploaderBundle/Resources/public/js/jquery.fileupload.js'
+      '@PunkAveFileUploaderBundle/Resources/public/js/jquery.iframe-transport.js'
+      '@PunkAveFileUploaderBundle/Resources/public/js/FileUploader.js' %}
+      <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+
+  </body>
+</html>

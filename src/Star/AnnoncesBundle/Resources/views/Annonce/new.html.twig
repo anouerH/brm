@@ -1,0 +1,59 @@
+{% extends "::layout.html.twig" %}
+
+
+
+{% block title %}
+  Déposer votre annonce gratuitement - {{ parent() }}
+{% endblock %}
+
+{% block body -%}
+{# Underscore templates for the uploader #}
+{% include "PunkAveFileUploaderBundle:Default:templates.html.twig" %}
+    <h1>Annonce creation</h1>
+
+    {#{ form(form) }#}
+
+
+
+
+    <form class="edit-form" action="{{ path('annonce_create', { editId: entity.imgDirId }) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    {# Hydrated by javascript #}
+    <div class="file-uploader"></div>
+
+    <button class="btn btn-primary" type="submit">{{  "Save New Listing" }}</button>
+    
+    
+
+</form>
+
+<script type="text/javascript">
+
+// Enable the file uploader
+
+$(function() {
+    new PunkAveFileUploader({
+        'uploadUrl': {{ path('annonce_upload', { id: entity.imgDirId }) | json_encode | raw }},
+        'viewUrl': {{ ('/uploads/tmp/attachments/' ~ entity.imgDirId)  | json_encode | raw }},
+        'el': '.file-uploader',
+        'existingFiles': {{ punkave_get_files('tmp/attachments/' ~ entity.imgDirId) | json_encode | raw }},
+        'delaySubmitWhileUploading': '.edit-form'
+    });
+});
+</script>
+
+    
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('annonce') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+
+
+{% endblock %}
+
+

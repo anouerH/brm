@@ -1,0 +1,60 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body -%}
+{# Underscore templates for the uploader #}
+{% include "PunkAveFileUploaderBundle:Default:templates.html.twig" %}
+
+    <h1>Annonce edit</h1>
+   {% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice">
+        {{ flashMessage }}
+    </div>
+    {% endfor %}
+    --{{ form_widget(edit_form._token) }}--
+    <form class="edit-form" action="{{ path('annonce_update', { id: entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+
+
+        {{ form_widget(edit_form) }}
+
+        {# Hydrated by javascript #}
+        <div class="file-uploader"></div>
+
+        <button class="btn btn-primary" type="submit">{{  "Save New Listing" }}</button>
+    
+    
+
+    </form>
+    
+
+    
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('annonce') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+
+<script type="text/javascript">
+
+// Enable the file uploader
+
+$(function() {
+    new PunkAveFileUploader({
+        'uploadUrl': {{ path('annonce_upload', { id: entity.imgDirId }) | json_encode | raw }},
+        'viewUrl': {{ ('/uploads/tmp/attachments/' ~ entity.imgDirId)  | json_encode | raw }},
+        'el': '.file-uploader',
+        'existingFiles': {{ punkave_get_files('tmp/attachments/' ~ entity.imgDirId) | json_encode | raw }},
+        'delaySubmitWhileUploading': '.edit-form'
+    });
+});
+</script>
+
+
+{% endblock %}

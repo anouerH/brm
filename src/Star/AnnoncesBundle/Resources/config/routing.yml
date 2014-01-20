@@ -1,0 +1,38 @@
+star_annonces_homepage:
+    pattern:  /
+    defaults: { _controller: StarAnnoncesBundle:Default:index }
+
+annonce:
+    pattern:  /list
+    defaults: { _controller:StarAnnoncesBundle:Annonce:index}
+
+annonce_new:
+    pattern:  /new
+    defaults: { _controller:StarAnnoncesBundle:Annonce:new}
+
+annonce_create:
+    pattern:  /create
+    defaults: { _controller:StarAnnoncesBundle:Annonce:create}
+
+annonce_show:
+    pattern: /{id}
+    defaults: { _controller:StarAnnoncesBundle:Annonce:show}
+    requirements:
+        id:  \d+
+
+annonce_edit:
+    pattern: /{slug}/edit
+    defaults: { _controller:StarAnnoncesBundle:Annonce:edit}
+
+annonce_update:
+    pattern: /{id}/update
+    defaults: { _controller:StarAnnoncesBundle:Annonce:update}
+
+annonce_upload:
+    pattern: /{id}/upload
+    defaults: { _controller:StarAnnoncesBundle:Annonce:upload}
+
+
+annonce_delete:
+    pattern: /{id}/delete
+    defaults: { _controller:StarAnnoncesBundle:Annonce:delete}
