@@ -534,7 +534,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -629,12 +629,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "58958e596541cc34d8a26050ca4fe69470c2722b"
+                "reference": "da9a97314884275c77a741205bda9f86afe23ffd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/58958e596541cc34d8a26050ca4fe69470c2722b",
-                "reference": "58958e596541cc34d8a26050ca4fe69470c2722b",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/da9a97314884275c77a741205bda9f86afe23ffd",
+                "reference": "da9a97314884275c77a741205bda9f86afe23ffd",
                 "shasum": ""
             },
             "require": {
@@ -689,7 +689,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-01-19 03:58:20"
+            "time": "2014-01-22 08:58:14"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -1380,12 +1380,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "7edddb7497814c3251f0fb60e44c6ee1c3e3c2e1"
+                "reference": "5e8c2ce9116cde7ccaa4220d60f38f1d53209d73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/7edddb7497814c3251f0fb60e44c6ee1c3e3c2e1",
-                "reference": "7edddb7497814c3251f0fb60e44c6ee1c3e3c2e1",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/5e8c2ce9116cde7ccaa4220d60f38f1d53209d73",
+                "reference": "5e8c2ce9116cde7ccaa4220d60f38f1d53209d73",
                 "shasum": ""
             },
             "require": {
@@ -1452,7 +1452,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2014-01-16 13:06:00"
+            "time": "2014-01-21 09:04:46"
         },
         {
             "name": "sonata-project/block-bundle",
