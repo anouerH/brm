@@ -5,3 +5,20 @@ services:
 #    star_annonces.example:
 #        class: %star_annonces.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    star.annonces.admin.gouv:
+        class: Star\AnnoncesBundle\Admin\GouvAdmin
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: Les régions, label: Les gouvernorats }
+        arguments: [null, Star\AnnoncesBundle\Entity\Gouv, StarAnnoncesBundle:GouvAdmin]
+
+    star.annonces.admin.deleg:
+        class: Star\AnnoncesBundle\Admin\DelegAdmin
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: Les régions, label: Les délégations }
+        arguments: [null, Star\AnnoncesBundle\Entity\Deleg, StarAnnoncesBundle:DelegAdmin]
+
+    star.annonces.admin.locality:
+        class: Star\AnnoncesBundle\Admin\LocalityAdmin
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: Les régions, label: Les localités }
+        arguments: [null, Star\AnnoncesBundle\Entity\Locality, StarAnnoncesBundle:LocalityAdmin]
