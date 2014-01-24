@@ -8,7 +8,9 @@
 
     {% block stylesheets %}
       <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
+      <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" />
     {% endblock %}
+    
     {% block javascripts %}
     {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -58,6 +60,9 @@
         <div id="content" class="span9">
           {% block body %}
           {% endblock %}
+        </div>
+        <div id="menu" class="span3">
+        <img src="{{ asset('img/pub.jpg') }}" >
         </div>
       </div>
 

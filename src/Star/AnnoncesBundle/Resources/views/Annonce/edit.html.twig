@@ -14,7 +14,7 @@
         {{ flashMessage }}
     </div>
     {% endfor %}
-    --{{ form_widget(edit_form._token) }}--
+    
     <form class="edit-form" action="{{ path('annonce_update', { id: entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
 
 

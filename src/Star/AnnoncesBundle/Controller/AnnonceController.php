@@ -192,13 +192,9 @@ class AnnonceController extends Controller
         
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
+        var_dump($editForm->getData());
         $editForm->handleRequest($request);
-        // var_dump($entity->getSlug(), $entity->getImgDirId(),$editForm->getErrorsAsString(),$editForm->isValid());
-        // die($editForm->isValid());
-        var_dump($entity->getSlug());
-        //die();
-        // if ($editForm->isValid()) {
-        if (($editForm->isValid() || true) && sizeof($editForm->getErrors()) == 0) { 
+        if ($editForm->isValid()) {
             $em->flush();
             // On définit un message flash
             $this->get('session')->getFlashBag()->add('notice', 'Annonce bien modifiée');
@@ -210,6 +206,9 @@ class AnnonceController extends Controller
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
+
+
+
     }
     /**
      * Deletes a Annonce entity.

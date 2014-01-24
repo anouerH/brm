@@ -9,24 +9,102 @@
 {% block body -%}
 {# Underscore templates for the uploader #}
 {% include "PunkAveFileUploaderBundle:Default:templates.html.twig" %}
-    <h1>Annonce creation</h1>
+    <h3>Déposer une annonce</h3>
 
     {#{ form(form) }#}
 
 
 
 
-    <form class="edit-form" action="{{ path('annonce_create', { editId: entity.imgDirId }) }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+    <form class="form-horizontal " action="{{ path('annonce_create', { editId: entity.imgDirId }) }}" method="post" {{ form_enctype(form) }}>
+    {#{ form_widget(form) }#}
+
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-4">Type de l'annonce</label>
+            <div class="col-sm-5">
+            <label class="radio-inline">
+              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Offre
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Demande
+            </label>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-4">Type de la demande</label>
+            <div class="col-sm-8">
+            <label class="radio-inline">
+              <input type="radio" name="optionsRadiosDem" id="optionsRadiosDem1" value="option1" checked> Vente
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="optionsRadiosDem" id="optionsRadiosDem2" value="option2">Location
+            </label>
+            </div>
+        </div>
+
+
+        <!--<div class="form-group">
+            <div class="row">
+                <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder=".col-xs-2">
+                </div>
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" placeholder=".col-xs-3">
+                </div>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" placeholder=".col-xs-4">
+                </div>
+            </div>
+        </div>-->
+
+
+
+        
+        <div class="form-group">
+             {{ form_label(form.title, 'Titre', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+            <div class="col-sm-10">
+                
+                {{ form_widget(form.title, {'attr': {'class': 'form-control','placeholder': 'Titre'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group ">
+            {{ form_label(form.description, 'Description', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+            <div class="col-sm-10">
+            {{ form_widget(form.description, {'attr': {'class': 'form-control','placeholder': 'Description','rows':'5'}}) }}
+            </div>
+        </div>
+
+
+        
+
+        
+        <div class="form-group">
+            {{ form_label(form.price, 'Prix', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+            <div class="input-group col-sm-3">
+                <span class="input-group-addon">DT</span>
+                <input type="text" class="form-control">
+                <span class="input-group-addon">.00</span>
+            </div>
+        </div>
+
 
     {# Hydrated by javascript #}
-    <div class="file-uploader"></div>
+    <div class="file-uploader">
+
+    </div>
 
     <button class="btn btn-primary" type="submit">{{  "Save New Listing" }}</button>
     
     
 
+    
+
 </form>
+
+
 
 <script type="text/javascript">
 
