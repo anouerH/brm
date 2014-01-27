@@ -191,14 +191,30 @@ class AnnonceController extends Controller
         }
         
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        var_dump($editForm->getData());
+        //$editForm = $this->createEditForm($entity);
+        /*var_dump($editForm->getData(), $editForm->isValid(), $editForm->getErrorsAsString());
         $editForm->handleRequest($request);
         if ($editForm->isValid()) {
             $em->flush();
             // On définit un message flash
             $this->get('session')->getFlashBag()->add('notice', 'Annonce bien modifiée');
             return $this->redirect($this->generateUrl('annonce_edit', array('slug' => $entity->getSlug())));
+        }*/
+
+        $editForm = $this->createEditForm($entity);
+
+        if ($request->isMethod('POST')) {
+            $editForm->bind($request);
+
+            if ($editForm->isValid()) {
+                // the validation passed, do something with the $author object
+                $em->flush();
+                //die("updated ...");
+                //return $this->redirect($this->generateUrl(...));
+                // On définit un message flash
+                $this->get('session')->getFlashBag()->add('notice', 'Annonce bien modifiée');
+                return $this->redirect($this->generateUrl('annonce'));
+            }
         }
 
         return array(

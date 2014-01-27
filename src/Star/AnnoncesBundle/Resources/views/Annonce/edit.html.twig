@@ -8,21 +8,76 @@
 {# Underscore templates for the uploader #}
 {% include "PunkAveFileUploaderBundle:Default:templates.html.twig" %}
 
-    <h1>Annonce edit</h1>
+    <h3>Mettre à jour une annonce</h3>
    {% for flashMessage in app.session.flashbag.get('notice') %}
     <div class="flash-notice">
         {{ flashMessage }}
     </div>
     {% endfor %}
     
-    <form class="edit-form" action="{{ path('annonce_update', { id: entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <form class="edit-form form-horizontal" action="{{ path('annonce_update', { id: entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
 
 
-        {{ form_widget(edit_form) }}
+        {#{ form_widget(edit_form) }#}
+
+        <div class="form-group">
+
+            {{ form_label(edit_form.gouv, 'Région', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+            <div class="col-sm-3">
+                
+                {{ form_widget(edit_form.gouv, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            {{ form_label(edit_form.deleg, 'Ville', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+            <div class="col-sm-3">
+                
+                {{ form_widget(edit_form.deleg, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            {{ form_label(edit_form.locality, 'Localité', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+            <div class="col-sm-3">
+                
+                {{ form_widget(edit_form.locality, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+
+             {{ form_label(edit_form.title, 'Titre', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+            <div class="col-sm-10">
+                
+                {{ form_widget(edit_form.title, {'attr': {'class': 'form-control','placeholder': 'Titre'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group ">
+            {{ form_label(edit_form.description, 'Description', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+            <div class="col-sm-10">
+            {{ form_widget(edit_form.description, {'attr': {'class': 'form-control','placeholder': 'Description','rows':'5'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(edit_form.price, 'Prix', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+            <div class="input-group col-sm-3">
+                <span class="input-group-addon">DT</span>
+                {{ form_widget(edit_form.price, {'attr': {'class': 'form-control','placeholder': 'Prix'}}) }}
+                <span class="input-group-addon">.00</span>
+            </div>
+        </div>
+
+
+
 
         {# Hydrated by javascript #}
         <div class="file-uploader"></div>
-
+        {{ form_rest(edit_form) }}
         <button class="btn btn-primary" type="submit">{{  "Save New Listing" }}</button>
     
     

@@ -15,9 +15,13 @@ class AnnonceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('gouv', 'entity', array('class' => 'StarAnnoncesBundle:Gouv','empty_value' => ''))
+            ->add('deleg', 'entity', array('class' => 'StarAnnoncesBundle:Deleg','empty_value' => ''))
+            ->add('locality', 'entity', array('class' => 'StarAnnoncesBundle:Locality','empty_value' => ''))
             ->add('title')
             ->add('description')
             ->add('price')
+            
             // ->add('createdAt')
             //->add('updatedAt')
         ;

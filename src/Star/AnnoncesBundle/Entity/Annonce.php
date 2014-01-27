@@ -56,6 +56,24 @@ class Annonce
     private $slug;
 
     /**
+    * @ORM\ManyToOne(targetEntity="Star\AnnoncesBundle\Entity\Gouv")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $gouv;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Star\AnnoncesBundle\Entity\Deleg")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $deleg;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Star\AnnoncesBundle\Entity\Locality")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $locality;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -244,5 +262,74 @@ class Annonce
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set gouv
+     *
+     * @param \Star\AnnoncesBundle\Entity\Gouv $gouv
+     * @return Annonce
+     */
+    public function setGouv(\Star\AnnoncesBundle\Entity\Gouv $gouv)
+    {
+        $this->gouv = $gouv;
+
+        return $this;
+    }
+
+    /**
+     * Get gouv
+     *
+     * @return \Star\AnnoncesBundle\Entity\Gouv 
+     */
+    public function getGouv()
+    {
+        return $this->gouv;
+    }
+
+    /**
+     * Set deleg
+     *
+     * @param \Star\AnnoncesBundle\Entity\Deleg $deleg
+     * @return Annonce
+     */
+    public function setDeleg(\Star\AnnoncesBundle\Entity\Deleg $deleg)
+    {
+        $this->deleg = $deleg;
+
+        return $this;
+    }
+
+    /**
+     * Get deleg
+     *
+     * @return \Star\AnnoncesBundle\Entity\Deleg 
+     */
+    public function getDeleg()
+    {
+        return $this->deleg;
+    }
+
+    /**
+     * Set locality
+     *
+     * @param \Star\AnnoncesBundle\Entity\Locality $locality
+     * @return Annonce
+     */
+    public function setLocality(\Star\AnnoncesBundle\Entity\Locality $locality)
+    {
+        $this->locality = $locality;
+
+        return $this;
+    }
+
+    /**
+     * Get locality
+     *
+     * @return \Star\AnnoncesBundle\Entity\Locality 
+     */
+    public function getLocality()
+    {
+        return $this->locality;
     }
 }

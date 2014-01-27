@@ -154,4 +154,9 @@ class Locality
     {
         return $this->deleg;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

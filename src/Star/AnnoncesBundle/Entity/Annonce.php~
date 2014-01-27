@@ -56,6 +56,24 @@ class Annonce
     private $slug;
 
     /**
+    * @ORM\ManyToOne(targetEntity="Star\AnnoncesBundle\Entity\Gouv")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $gouv;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Star\AnnoncesBundle\Entity\Deleg")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $deleg;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Star\AnnoncesBundle\Entity\Locality")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $locality;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -221,5 +239,74 @@ class Annonce
     public function getImgDirId()
     {
         return $this->imgDirId;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Annonce
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set gouv
+     *
+     * @param \Star\AnnoncesBundle\Entity\Gouv $gouv
+     * @return Annonce
+     */
+    public function setGouv(\Star\AnnoncesBundle\Entity\Gouv $gouv)
+    {
+        $this->gouv = $gouv;
+
+        return $this;
+    }
+
+    /**
+     * Get gouv
+     *
+     * @return \Star\AnnoncesBundle\Entity\Gouv 
+     */
+    public function getGouv()
+    {
+        return $this->gouv;
+    }
+
+    /**
+     * Set deleg
+     *
+     * @param \Star\AnnoncesBundle\Entity\Deleg $deleg
+     * @return Annonce
+     */
+    public function setDeleg(\Star\AnnoncesBundle\Entity\Deleg $deleg)
+    {
+        $this->deleg = $deleg;
+
+        return $this;
+    }
+
+    /**
+     * Get deleg
+     *
+     * @return \Star\AnnoncesBundle\Entity\Deleg 
+     */
+    public function getDeleg()
+    {
+        return $this->deleg;
     }
 }
