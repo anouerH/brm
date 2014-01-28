@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "bb9042ee498a87bdffc20a911612dd23",
+    "hash": "0a0bce9edb65697f90ec14267fdf6217",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -629,12 +629,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "da9a97314884275c77a741205bda9f86afe23ffd"
+                "reference": "23d15ad680fe5b695df1565e7854342e608bc483"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/da9a97314884275c77a741205bda9f86afe23ffd",
-                "reference": "da9a97314884275c77a741205bda9f86afe23ffd",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/23d15ad680fe5b695df1565e7854342e608bc483",
+                "reference": "23d15ad680fe5b695df1565e7854342e608bc483",
                 "shasum": ""
             },
             "require": {
@@ -689,7 +689,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-01-22 08:58:14"
+            "time": "2014-01-26 23:20:11"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -1374,18 +1374,65 @@
             "time": "2013-08-21 18:09:35"
         },
         {
+            "name": "shtumi/useful-bundle",
+            "version": "dev-master",
+            "target-dir": "Shtumi/UsefulBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shtumi/ShtumiUsefulBundle.git",
+                "reference": "e8527357ddfc043fc63a82e4a5d0f060ea07068e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shtumi/ShtumiUsefulBundle/zipball/e8527357ddfc043fc63a82e4a5d0f060ea07068e",
+                "reference": "e8527357ddfc043fc63a82e4a5d0f060ea07068e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "suggest": {
+                "sonata-project/admin-bundle": "master-dev",
+                "sonata-project/doctrine-orm-admin-bundle": "master-dev"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Shtumi\\UsefulBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mikhail Shtukin",
+                    "email": "shtumi@tut.by"
+                }
+            ],
+            "description": "Symfony ShtumiUsefulBundle",
+            "keywords": [
+                "Ajax Autocomplete form type",
+                "Dependent filtered form type",
+                "daterange",
+                "shtumi"
+            ],
+            "time": "2013-11-05 08:26:05"
+        },
+        {
             "name": "sonata-project/admin-bundle",
             "version": "dev-master",
             "target-dir": "Sonata/AdminBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "5e8c2ce9116cde7ccaa4220d60f38f1d53209d73"
+                "reference": "ed28b8a9a81c1931fd709ba02e466858f2dc2fa8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/5e8c2ce9116cde7ccaa4220d60f38f1d53209d73",
-                "reference": "5e8c2ce9116cde7ccaa4220d60f38f1d53209d73",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/ed28b8a9a81c1931fd709ba02e466858f2dc2fa8",
+                "reference": "ed28b8a9a81c1931fd709ba02e466858f2dc2fa8",
                 "shasum": ""
             },
             "require": {
@@ -1452,7 +1499,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2014-01-21 09:04:46"
+            "time": "2014-01-27 12:51:24"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -1461,12 +1508,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataBlockBundle.git",
-                "reference": "239bc9931f5d93591825022e607dca9aa9b41a04"
+                "reference": "1a9b19d22a78e34f4aa29f528880b30f9e9a9b31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/239bc9931f5d93591825022e607dca9aa9b41a04",
-                "reference": "239bc9931f5d93591825022e607dca9aa9b41a04",
+                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/1a9b19d22a78e34f4aa29f528880b30f9e9a9b31",
+                "reference": "1a9b19d22a78e34f4aa29f528880b30f9e9a9b31",
                 "shasum": ""
             },
             "require": {
@@ -1517,7 +1564,7 @@
                 "block",
                 "sonata"
             ],
-            "time": "2014-01-13 17:16:00"
+            "time": "2014-01-23 16:39:48"
         },
         {
             "name": "sonata-project/core-bundle",
@@ -1584,12 +1631,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "c35f2cb5177ed34d80ebee3e8a9ba6275c67080d"
+                "reference": "a8e4cb3723389b9ed60c83194d24026866ecd0a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/c35f2cb5177ed34d80ebee3e8a9ba6275c67080d",
-                "reference": "c35f2cb5177ed34d80ebee3e8a9ba6275c67080d",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/a8e4cb3723389b9ed60c83194d24026866ecd0a8",
+                "reference": "a8e4cb3723389b9ed60c83194d24026866ecd0a8",
                 "shasum": ""
             },
             "require": {
@@ -1644,7 +1691,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2014-01-23 12:56:57"
+            "time": "2014-01-24 14:05:29"
         },
         {
             "name": "sonata-project/exporter",
@@ -1757,12 +1804,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/stof/StofDoctrineExtensionsBundle.git",
-                "reference": "9da4489322c5442ff021c4cd3f28dd79b2a8df07"
+                "reference": "cbec28d1ed6dce13b0c18c2dfd8f6af81e65cbae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stof/StofDoctrineExtensionsBundle/zipball/9da4489322c5442ff021c4cd3f28dd79b2a8df07",
-                "reference": "9da4489322c5442ff021c4cd3f28dd79b2a8df07",
+                "url": "https://api.github.com/repos/stof/StofDoctrineExtensionsBundle/zipball/cbec28d1ed6dce13b0c18c2dfd8f6af81e65cbae",
+                "reference": "cbec28d1ed6dce13b0c18c2dfd8f6af81e65cbae",
                 "shasum": ""
             },
             "require": {
@@ -1810,7 +1857,7 @@
                 "translatable",
                 "tree"
             ],
-            "time": "2013-10-13 16:27:31"
+            "time": "2014-01-23 11:00:25"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2310,7 +2357,8 @@
         "sonata-project/core-bundle": 20,
         "sonata-project/admin-bundle": 20,
         "sonata-project/block-bundle": 20,
-        "sonata-project/doctrine-orm-admin-bundle": 20
+        "sonata-project/doctrine-orm-admin-bundle": 20,
+        "shtumi/useful-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

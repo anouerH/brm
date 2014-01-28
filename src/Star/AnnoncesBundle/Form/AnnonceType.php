@@ -15,9 +15,23 @@ class AnnonceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('gouv', 'entity', array('class' => 'StarAnnoncesBundle:Gouv','empty_value' => ''))
-            ->add('deleg', 'entity', array('class' => 'StarAnnoncesBundle:Deleg','empty_value' => ''))
-            ->add('locality', 'entity', array('class' => 'StarAnnoncesBundle:Locality','empty_value' => ''))
+            //->add('gouv', 'entity', array('class' => 'StarAnnoncesBundle:Gouv','empty_value' => ''))
+            ->add('gouv', 'entity', array('class'      => 'StarAnnoncesBundle:Gouv'
+                                   , 'required'   => true
+                                   , 'empty_value'=> ''))
+
+            //->add('deleg', 'entity', array('class' => 'StarAnnoncesBundle:Deleg','empty_value' => ''))
+            ->add('deleg', 'shtumi_dependent_filtered_entity'
+                , array('entity_alias' => 'deleg_by_gouv'
+                      , 'empty_value'=> ''
+                      , 'parent_field'=>'gouv'))
+
+            //->add('locality', 'entity', array('class' => 'StarAnnoncesBundle:Locality','empty_value' => ''))
+            ->add('locality', 'shtumi_dependent_filtered_entity'
+                , array('entity_alias' => 'locality_by_deleg'
+                      , 'empty_value'=> ''
+                      , 'parent_field'=>'deleg'))
+            
             ->add('title')
             ->add('description')
             ->add('price')
@@ -25,6 +39,7 @@ class AnnonceType extends AbstractType
             // ->add('createdAt')
             //->add('updatedAt')
         ;
+        $factory = $builder->getFormFactory();
     }
     
     /**

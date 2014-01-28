@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Shtumi\UsefulBundle\ShtumiUsefulBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

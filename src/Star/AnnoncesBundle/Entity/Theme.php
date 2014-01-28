@@ -5,12 +5,12 @@ namespace Star\AnnoncesBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Deleg
+ * Theme
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Star\AnnoncesBundle\Entity\DelegRepository")
+ * @ORM\Entity(repositoryClass="Star\AnnoncesBundle\Entity\ThemeRepository")
  */
-class Deleg
+class Theme
 {
     /**
      * @var integer
@@ -24,9 +24,26 @@ class Deleg
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $name;
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
+
+    
+
 
     /**
      * @var \DateTime
@@ -42,17 +59,10 @@ class Deleg
      */
     private $updatedAt;
 
-    /**
-    * @ORM\ManyToOne(targetEntity="Star\AnnoncesBundle\Entity\Gouv")
-    * @ORM\JoinColumn(nullable=false)
-    */
-    private $gouv;
-
     public function __construct()
     {
         $this->createdAt = new \Datetime();
     }
-
 
     /**
      * Get id
@@ -65,33 +75,79 @@ class Deleg
     }
 
     /**
-     * Set name
+     * Set title
      *
-     * @param string $name
-     * @return Deleg
+     * @param string $title
+     * @return Theme
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get title
      *
      * @return string 
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Theme
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     * @return Theme
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer 
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 
     /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Deleg
+     * @return Theme
      */
     public function setCreatedAt($createdAt)
     {
@@ -114,7 +170,7 @@ class Deleg
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Deleg
+     * @return Theme
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -132,32 +188,9 @@ class Deleg
     {
         return $this->updatedAt;
     }
-
-    /**
-     * Set gouv
-     *
-     * @param \Star\AnnoncesBundle\Entity\Gouv $gouv
-     * @return Deleg
-     */
-    public function setGouv(\Star\AnnoncesBundle\Entity\Gouv $gouv)
-    {
-        $this->gouv = $gouv;
-
-        return $this;
-    }
-
-    /**
-     * Get gouv
-     *
-     * @return \Star\AnnoncesBundle\Entity\Gouv 
-     */
-    public function getGouv()
-    {
-        return $this->gouv;
-    }
-
+    
     public function __toString()
     {
-        return $this->getName();
+        return $this->getTitle();
     }
 }

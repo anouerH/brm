@@ -28,6 +28,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - ShtumiUsefulBundle::fields.html.twig
 
 # Assetic Configuration
 assetic:
@@ -86,3 +89,23 @@ sonata_block:
         # Enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts:   [admin]
+
+# Chained dropDown list : Region->ville->Localité
+shtumi_useful :
+    dependent_filtered_entities:
+        deleg_by_gouv:
+            class: StarAnnoncesBundle:Deleg
+            parent_property: gouv
+            property: name
+            role: IS_AUTHENTICATED_ANONYMOUSLY
+            no_result_msg: ' '
+            order_property: name
+            order_direction: ASC
+        locality_by_deleg:
+            class: StarAnnoncesBundle:Locality
+            parent_property: deleg
+            property: name
+            role: IS_AUTHENTICATED_ANONYMOUSLY
+            no_result_msg: ' '
+            order_property: name
+            order_direction: ASC

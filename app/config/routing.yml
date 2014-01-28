@@ -46,3 +46,6 @@ admin_check:
 admin_logout:
     pattern:  /admin/logout
     defaults: { _controller: FOSUserBundle:Security:logout }
+
+shtumi_useful:
+    resource: '@ShtumiUsefulBundle/Resources/config/routing.xml'

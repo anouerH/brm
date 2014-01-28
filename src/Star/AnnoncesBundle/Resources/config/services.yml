@@ -22,3 +22,15 @@ services:
         tags: 
             - { name: sonata.admin, manager_type: orm, group: Les régions, label: Les localités }
         arguments: [null, Star\AnnoncesBundle\Entity\Locality, StarAnnoncesBundle:LocalityAdmin]
+
+    star.annonces.admin.theme:
+        class: Star\AnnoncesBundle\Admin\ThemeAdmin
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: Les catégories, label: Liste des thèmes }
+        arguments: [null, Star\AnnoncesBundle\Entity\Theme, StarAnnoncesBundle:ThemeAdmin]
+
+    star.annonces.admin.nature:
+        class: Star\AnnoncesBundle\Admin\NatureAdmin
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: Les catégories, label: Liste des catégories }
+        arguments: [null, Star\AnnoncesBundle\Entity\Nature, StarAnnoncesBundle:NatureAdmin]
