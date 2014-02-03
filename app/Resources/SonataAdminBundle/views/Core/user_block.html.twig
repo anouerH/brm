@@ -1,0 +1,9 @@
+{% block user_block %}
+
+	{% if is_granted("ROLE_ADMIN") %}
+	   {{ app.user.username }} | 
+	{% endif %}
+
+	<a href="{{ path('admin_logout') }}">Déconnexion</a>
+
+{% endblock %}

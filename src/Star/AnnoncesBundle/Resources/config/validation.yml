@@ -1,0 +1,26 @@
+Star\AnnoncesBundle\Entity\Annonce:
+    properties:
+        gouv : 
+            - NotBlank: 
+                message: la région est obligatoire.
+        deleg : 
+            - NotBlank: 
+                message: la ville est obligatoire.
+        locality :
+            - NotBlank: 
+                message : la localité est obligatoire
+
+        title : 
+            - NotBlank: 
+                message: le titre est obligatoire.
+            - Length:
+                min: 10
+        description : 
+            - NotBlank:
+                message : la description est obligatoire.
+        price : 
+            - NotBlank:
+                message : Le prisssx est obligatoire.
+            - Type : 
+                type: numeric
+                message: le prix est non valide.
