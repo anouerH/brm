@@ -15,6 +15,20 @@ class AnnonceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('annonce_type', 'choice', array(
+                'choices' => array('OFFRE' => 'Offre', 'DEMANDE' => 'demande'),
+                'multiple' => false,
+                'expanded' => true,
+                'required' => true,
+                //'data' => 'OFFRE',
+            ))
+            ->add('demande_type', 'choice', array(
+                'choices' => array('VENTE' => 'Vente', 'LOCATION' => 'Location'),
+                'multiple' => false,
+                'expanded' => true,
+                'required' => true,
+                //'data' => 'VENTE',
+            ))
             //->add('gouv', 'entity', array('class' => 'StarAnnoncesBundle:Gouv','empty_value' => ''))
             ->add('gouv', 'entity', array('class'      => 'StarAnnoncesBundle:Gouv'
                                    , 'required'   => true
@@ -31,6 +45,16 @@ class AnnonceType extends AbstractType
                 , array('entity_alias' => 'locality_by_deleg'
                       , 'empty_value'=> ''
                       , 'parent_field'=>'deleg'))
+
+
+             ->add('theme', 'entity', array('class'      => 'StarAnnoncesBundle:Theme'
+                                   , 'required'   => true
+                                   , 'empty_value'=> ''))
+
+             ->add('nature', 'shtumi_dependent_filtered_entity'
+                , array('entity_alias' => 'nature_by_theme'
+                      , 'empty_value'=> ''
+                      , 'parent_field'=>'theme'))
             
             ->add('title')
             ->add('description')

@@ -48,8 +48,10 @@ class AnnonceController extends Controller
         
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
+        
         if ($form->isValid()) {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            $entity->setUser($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();

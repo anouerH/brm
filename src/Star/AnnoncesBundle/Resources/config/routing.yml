@@ -7,7 +7,7 @@ annonce:
     defaults: { _controller:StarAnnoncesBundle:Annonce:index}
 
 annonce_new:
-    pattern:  /new
+    pattern:  /deposer_annonce
     defaults: { _controller:StarAnnoncesBundle:Annonce:new}
 
 annonce_create:
@@ -21,7 +21,7 @@ annonce_show:
         id:  \d+
 
 annonce_edit:
-    pattern: /{slug}/edit
+    pattern: /deposer_annonce/{slug}/edit
     defaults: { _controller:StarAnnoncesBundle:Annonce:edit}
 
 annonce_update:

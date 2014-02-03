@@ -87,10 +87,46 @@ class Annonce
      */
     private $updatedAt;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="annonce_type", type="string", length=45)
+     */
+    private $annonceType;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="demande_type", type="string", length=45)
+     */
+    private $demandeType;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Star\UserBundle\Entity\User")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $user;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Star\AnnoncesBundle\Entity\Theme")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $theme;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Star\AnnoncesBundle\Entity\Nature")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $nature;
+
+
+
     public function __construct()
     {
         $this->createdAt = new \Datetime();
-        $this->imgDirId  = intval(sprintf('%09d', mt_rand(0, 1999999999)));  
+        $this->imgDirId  = intval(sprintf('%09d', mt_rand(0, 1999999999)));
+        $this->annonceType = 'OFFRE';  
+        $this->demandeType = 'VENTE';  
     }
 
     /**
@@ -331,5 +367,120 @@ class Annonce
     public function getLocality()
     {
         return $this->locality;
+    }
+
+    /**
+     * Set annonceType
+     *
+     * @param string $annonceType
+     * @return Annonce
+     */
+    public function setAnnonceType($annonceType)
+    {
+        $this->annonceType = $annonceType;
+
+        return $this;
+    }
+
+    /**
+     * Get annonceType
+     *
+     * @return string 
+     */
+    public function getAnnonceType()
+    {
+        return $this->annonceType;
+    }
+
+    /**
+     * Set demandeType
+     *
+     * @param string $demandeType
+     * @return Annonce
+     */
+    public function setDemandeType($demandeType)
+    {
+        $this->demandeType = $demandeType;
+
+        return $this;
+    }
+
+    /**
+     * Get demandeType
+     *
+     * @return string 
+     */
+    public function getDemandeType()
+    {
+        return $this->demandeType;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Star\UserBundle\Entity\User $user
+     * @return Annonce
+     */
+    public function setUser(\Star\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Star\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set theme
+     *
+     * @param \Star\AnnoncesBundle\Entity\Theme $theme
+     * @return Annonce
+     */
+    public function setTheme(\Star\AnnoncesBundle\Entity\Theme $theme)
+    {
+        $this->theme = $theme;
+
+        return $this;
+    }
+
+    /**
+     * Get theme
+     *
+     * @return \Star\AnnoncesBundle\Entity\Theme 
+     */
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+
+    /**
+     * Set nature
+     *
+     * @param \Star\AnnoncesBundle\Entity\Nature $nature
+     * @return Annonce
+     */
+    public function setNature(\Star\AnnoncesBundle\Entity\Nature $nature)
+    {
+        $this->nature = $nature;
+
+        return $this;
+    }
+
+    /**
+     * Get nature
+     *
+     * @return \Star\AnnoncesBundle\Entity\Nature 
+     */
+    public function getNature()
+    {
+        return $this->nature;
     }
 }

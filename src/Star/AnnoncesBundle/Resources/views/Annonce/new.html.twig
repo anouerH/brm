@@ -11,55 +11,38 @@
 {% include "PunkAveFileUploaderBundle:Default:templates.html.twig" %}
     <h3>Déposer une annonce</h3>
 
-    {#{ form(form) }#}
+
     
 
 
 
-    <form class="form-horizontal " action="{{ path('annonce_create', { editId: entity.imgDirId }) }}" method="post" {{ form_enctype(form) }}>
+    <form class="form-horizontal " novalidate action="{{ path('annonce_create', { editId: entity.imgDirId }) }}" method="post" {{ form_enctype(form) }}>  
 
-    {#{ form_widget(form) }#}
-    {#{ form_rest(form) }#}
-    {{ form_errors(form) }}
-        <!--<div class="form-group">
-            <label for="inputEmail3" class="col-sm-4">Type de l'annonce</label>
+        
+        <div class="form-group">
+            {{ form_label(form.annonce_type, 'Type de l\'annonce'|raw, {'label_attr': {'class': 'col-sm-4'}}) }}
             <div class="col-sm-5">
-            <label class="radio-inline">
-              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Offre
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Demande
-            </label>
+                {% for child in form.annonce_type %}
+                    <label class="radio-inline">
+                       {{ form_widget(child) }}{{ form_label(child) }}
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            {{ form_label(form.demande_type, 'Type de la demande', {'label_attr': {'class': 'col-sm-4'}}) }}
+            <div class="col-sm-5">
+                {% for child in form.demande_type %}
+                    <label class="radio-inline">
+                       {{ form_widget(child) }}{{ form_label(child) }}
+                    </label>
+                {% endfor %}
             </div>
         </div>
 
-
-        <div class="form-group">
-            <label for="inputEmail3" class="col-sm-4">Type de la demande</label>
-            <div class="col-sm-8">
-            <label class="radio-inline">
-              <input type="radio" name="optionsRadiosDem" id="optionsRadiosDem1" value="option1" checked> Vente
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="optionsRadiosDem" id="optionsRadiosDem2" value="option2">Location
-            </label>
-            </div>
-        </div>-->
-
-
-        <!--<div class="form-group">
-            <div class="row">
-                <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder=".col-xs-2">
-                </div>
-                <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder=".col-xs-3">
-                </div>
-                <div class="col-xs-4">
-                    <input type="text" class="form-control" placeholder=".col-xs-4">
-                </div>
-            </div>
-        </div>-->
+        
 
 
         <div style='width:50%; float:left'>
@@ -69,6 +52,8 @@
                 <div class="col-sm-6">
                     
                     {{ form_widget(form.gouv, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.gouv) }}
+
                 </div>
             </div>
 
@@ -78,6 +63,7 @@
                 <div class="col-sm-6">
                     
                     {{ form_widget(form.deleg, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.deleg) }}
                 </div>
             </div>
 
@@ -87,38 +73,31 @@
                 <div class="col-sm-6">
                     
                     {{ form_widget(form.locality, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.locality) }}
                 </div>
             </div>
         </div>
         <div style='width:50%; float:left'>
-        
+            
             <div class="form-group">
-                <label for="theme" class="col-sm-2 control-label">Thème</label>
+                
+                {{ form_label(form.theme, 'Thème', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+
                 <div class="col-sm-6">
-                    <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+                    {{ form_widget(form.theme, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.theme) }}
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="nature" class="col-sm-2 control-label">Nature</label>
+                {{ form_label(form.nature, 'Nature', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
                 <div class="col-sm-6">
-                    <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+                    {{ form_widget(form.nature, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.nature) }}
                 </div>
             </div>
 
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label for="categorie" class="col-sm-2 control-label">Catégorie</label>
                 <div class="col-sm-6">
                     <select class="form-control">
@@ -129,8 +108,8 @@
                         <option>5</option>
                     </select>
                 </div>
-            </div>
-
+            </div>-->
+            
 
         </div>
         <div style="clear:both;"></div>
@@ -141,6 +120,7 @@
             <div class="col-sm-10">
                 
                 {{ form_widget(form.title, {'attr': {'class': 'form-control','placeholder': 'Titre'}}) }}
+                {{ form_errors(form.title) }}
             </div>
         </div>
 
@@ -148,6 +128,7 @@
             {{ form_label(form.description, 'Description', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
             <div class="col-sm-10">
             {{ form_widget(form.description, {'attr': {'class': 'form-control','placeholder': 'Description','rows':'5'}}) }}
+            {{ form_errors(form.description) }}
             </div>
         </div>
 
@@ -162,7 +143,9 @@
                 <!--<input type="text" class="form-control">-->
                 {{ form_widget(form.price, {'attr': {'class': 'form-control','placeholder': 'Prix'}}) }}
                 <span class="input-group-addon">.00</span>
+
             </div>
+            {{ form_errors(form.price) }}
         </div>
 
 
@@ -171,7 +154,7 @@
 
     </div>
     {{ form_rest(form) }}
-    <button class="btn btn-primary" type="submit">{{  "Save New Listing" }}</button>
+    <button class="btn btn-primary" type="submit" style="float:right">{{  "Valider" }}</button>
     
     
 

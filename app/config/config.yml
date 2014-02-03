@@ -89,7 +89,9 @@ sonata_block:
         # Enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts:   [admin]
-
+sonata_admin:
+    title:      Star Annonces Admin
+    # title_logo: /bundles/starannonces/logo.png
 # Chained dropDown list : Region->ville->Localité
 shtumi_useful :
     dependent_filtered_entities:
@@ -108,4 +110,12 @@ shtumi_useful :
             role: IS_AUTHENTICATED_ANONYMOUSLY
             no_result_msg: ' '
             order_property: name
+            order_direction: ASC
+        nature_by_theme:
+            class: StarAnnoncesBundle:Nature
+            parent_property: theme
+            property: title
+            role: IS_AUTHENTICATED_ANONYMOUSLY
+            no_result_msg: ' '
+            order_property: title
             order_direction: ASC
