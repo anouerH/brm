@@ -34,3 +34,21 @@ services:
         tags: 
             - { name: sonata.admin, manager_type: orm, group: Les catégories, label: Liste des catégories }
         arguments: [null, Star\AnnoncesBundle\Entity\Nature, StarAnnoncesBundle:NatureAdmin]
+
+    star.annonces.admin.brand:
+        class: Star\AnnoncesBundle\Admin\BrandAdmin
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: Les catégories, label: Liste des marques }
+        arguments: [null, Star\AnnoncesBundle\Entity\Brand, StarAnnoncesBundle:BrandAdmin]
+
+    star.annonces.admin.Model:
+        class: Star\AnnoncesBundle\Admin\ModelAdmin
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: Les catégories, label: Liste des modèles }
+        arguments: [null, Star\AnnoncesBundle\Entity\Model, StarAnnoncesBundle:ModelAdmin]
+    
+    star.annonces.admin.Energy:
+        class: Star\AnnoncesBundle\Admin\EnergyAdmin
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: Les catégories, label: Liste des energies }
+        arguments: [null, Star\AnnoncesBundle\Entity\Energy, StarAnnoncesBundle:EnergyAdmin]

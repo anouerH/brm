@@ -55,11 +55,68 @@ class AnnonceType extends AbstractType
                 , array('entity_alias' => 'nature_by_theme'
                       , 'empty_value'=> ''
                       , 'parent_field'=>'theme'))
+
+             ->add('brand', 'shtumi_dependent_filtered_entity'
+                , array('entity_alias' => 'brand_by_nature'
+                      , 'empty_value'=> ''
+                      , 'parent_field'=>'nature'))
+
+             ->add('model', 'shtumi_dependent_filtered_entity'
+                , array('entity_alias' => 'model_by_brand'
+                      , 'empty_value'=> ''
+                      , 'parent_field'=>'brand'))
+              
             
+            ->add('energy', 'entity', array('class'      => 'StarAnnoncesBundle:Energy'
+                                   , 'required'   => false
+                                   , 'empty_value'=> ''))
+            
+            ->add('power')
+            ->add('mileage')
+            //->add('release')
+            ->add('release', 'date', array(
+                'widget' => 'single_text',
+                
+                // this is actually the default format for single_text
+                'format' => 'yyyy-MM-dd',
+            ))
+            ->add('totalArea')
+                
+                ->add('livingArea')
+                ->add('numberRooms')
+                ->add('numberBathRooms')
+                ->add('parckingPlaces')
+                ->add('constructionYear')
+                ->add('floorNumber')
+                
             ->add('title')
             ->add('description')
             ->add('price')
+            //->add('fixedPrice')
+            ->add('fixedPrice', 'choice', array(
+                'choices' => array('1' => 'Fixe', '0' => 'Négociable'),
+                'multiple' => false,
+                'expanded' => true,
+                'required' => true,
+                //'data' => 'OFFRE',
+            ))
+                
+            ->add('showPhoneNumber', 'choice', array(
+                'choices' => array('0' => 'Non', '1' => 'Oui'),
+                'multiple' => false,
+                'expanded' => true,
+                'required' => true,
+                //'data' => 'OFFRE',
+            ))
             
+            ->add('convertStars', 'choice', array(
+                'choices' => array('0' => 'Non', '1' => 'Oui'),
+                'multiple' => false,
+                'expanded' => true,
+                'required' => true,
+                //'data' => 'OFFRE',
+            ))
+                
             // ->add('createdAt')
             //->add('updatedAt')
         ;

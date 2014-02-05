@@ -5139,3 +5139,7 @@ footer {
 .accordion-content ul li a:hover {
   color:#ff6c00;
 }
+
+div .engin-field, div .model-list, div .brand-list, div .immob-field{
+    display: none;
+}

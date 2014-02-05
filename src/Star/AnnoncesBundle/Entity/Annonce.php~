@@ -119,14 +119,127 @@ class Annonce
     */
     private $nature;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="Star\AnnoncesBundle\Entity\Brand")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $brand;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="Star\AnnoncesBundle\Entity\Model")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $model;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="Star\AnnoncesBundle\Entity\Energy")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $energy;
+        
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="power", type="string", length=255,  nullable=true)
+     */
+    private $power;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mileage", type="string", length=255 ,nullable=true)
+     */
+    private $mileage;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="total_area", type="string", length=255 ,nullable=true)
+     */
+    private $totalArea;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="living_area", type="string", length=255 ,nullable=true)
+     */
+    private $livingArea;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="number_rooms", type="string", length=255 ,nullable=true)
+     */
+    private $numberRooms;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="number_bathrooms", type="string", length=255 ,nullable=true)
+     */
+    private $numberBathRooms;
+    
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parcking_places", type="string", length=255 ,nullable=true)
+     */
+    private $parckingPlaces;
+    
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="construction_year", type="integer", nullable=true)
+     */
+    private $constructionYear;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="floor_number", type="integer", nullable=true)
+     */
+    private $floorNumber;
+        
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(name="releasedate", type="date", nullable=true)
+     */
+    private $release;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="fixed_price", type="integer", nullable=true)
+     */
+    private $fixedPrice;
+    
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="show_phone_number", type="integer", nullable=true)
+     */
+    private $showPhoneNumber;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="convert_stars", type="integer", nullable=true)
+     */
+    private $convertStars;
+    
+    
+    
     public function __construct()
     {
         $this->createdAt = new \Datetime();
         $this->imgDirId  = intval(sprintf('%09d', mt_rand(0, 1999999999)));
         $this->annonceType = 'OFFRE';  
-        $this->demandeType = 'VENTE';  
+        $this->demandeType = 'VENTE';
+        $this->fixedPrice = 1;
     }
 
     /**
@@ -436,5 +549,373 @@ class Annonce
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set theme
+     *
+     * @param \Star\AnnoncesBundle\Entity\Theme $theme
+     * @return Annonce
+     */
+    public function setTheme(\Star\AnnoncesBundle\Entity\Theme $theme)
+    {
+        $this->theme = $theme;
+
+        return $this;
+    }
+
+    /**
+     * Get theme
+     *
+     * @return \Star\AnnoncesBundle\Entity\Theme 
+     */
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+
+    /**
+     * Set nature
+     *
+     * @param \Star\AnnoncesBundle\Entity\Nature $nature
+     * @return Annonce
+     */
+    public function setNature(\Star\AnnoncesBundle\Entity\Nature $nature)
+    {
+        $this->nature = $nature;
+
+        return $this;
+    }
+
+    /**
+     * Get nature
+     *
+     * @return \Star\AnnoncesBundle\Entity\Nature 
+     */
+    public function getNature()
+    {
+        return $this->nature;
+    }
+
+    /**
+     * Set brand
+     *
+     * @param \Star\AnnoncesBundle\Entity\Brand $brand
+     * @return Annonce
+     */
+    public function setBrand(\Star\AnnoncesBundle\Entity\Brand $brand = null)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return \Star\AnnoncesBundle\Entity\Brand 
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+    /**
+     * Set model
+     *
+     * @param \Star\AnnoncesBundle\Entity\Model $model
+     * @return Annonce
+     */
+    public function setModel(\Star\AnnoncesBundle\Entity\Model $model = null)
+    {
+        $this->model = $model;
+
+        return $this;
+    }
+
+    /**
+     * Get model
+     *
+     * @return \Star\AnnoncesBundle\Entity\Model 
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Set energy
+     *
+     * @param \Star\AnnoncesBundle\Entity\Energy $energy
+     * @return Annonce
+     */
+    public function setEnergy(\Star\AnnoncesBundle\Entity\Energy $energy = null)
+    {
+        $this->energy = $energy;
+
+        return $this;
+    }
+
+    /**
+     * Get energy
+     *
+     * @return \Star\AnnoncesBundle\Entity\Energy 
+     */
+    public function getEnergy()
+    {
+        return $this->energy;
+    }
+
+    /**
+     * Set power
+     *
+     * @param string $power
+     * @return Annonce
+     */
+    public function setPower($power)
+    {
+        $this->power = $power;
+
+        return $this;
+    }
+
+    /**
+     * Get power
+     *
+     * @return string 
+     */
+    public function getPower()
+    {
+        return $this->power;
+    }
+
+    /**
+     * Set mileage
+     *
+     * @param string $mileage
+     * @return Annonce
+     */
+    public function setMileage($mileage)
+    {
+        $this->mileage = $mileage;
+
+        return $this;
+    }
+
+    /**
+     * Get mileage
+     *
+     * @return string 
+     */
+    public function getMileage()
+    {
+        return $this->mileage;
+    }
+
+    /**
+     * Set release
+     *
+     * @param \DateTime $release
+     * @return Annonce
+     */
+    public function setRelease($release)
+    {
+        $this->release = $release;
+
+        return $this;
+    }
+
+    /**
+     * Get release
+     *
+     * @return \DateTime 
+     */
+    public function getRelease()
+    {
+        return $this->release;
+    }
+
+    /**
+     * Set totalArea
+     *
+     * @param string $totalArea
+     * @return Annonce
+     */
+    public function setTotalArea($totalArea)
+    {
+        $this->totalArea = $totalArea;
+
+        return $this;
+    }
+
+    /**
+     * Get totalArea
+     *
+     * @return string 
+     */
+    public function getTotalArea()
+    {
+        return $this->totalArea;
+    }
+
+    /**
+     * Set livingArea
+     *
+     * @param string $livingArea
+     * @return Annonce
+     */
+    public function setLivingArea($livingArea)
+    {
+        $this->livingArea = $livingArea;
+
+        return $this;
+    }
+
+    /**
+     * Get livingArea
+     *
+     * @return string 
+     */
+    public function getLivingArea()
+    {
+        return $this->livingArea;
+    }
+
+    /**
+     * Set numberRooms
+     *
+     * @param string $numberRooms
+     * @return Annonce
+     */
+    public function setNumberRooms($numberRooms)
+    {
+        $this->numberRooms = $numberRooms;
+
+        return $this;
+    }
+
+    /**
+     * Get numberRooms
+     *
+     * @return string 
+     */
+    public function getNumberRooms()
+    {
+        return $this->numberRooms;
+    }
+
+    /**
+     * Set numberBathRooms
+     *
+     * @param string $numberBathRooms
+     * @return Annonce
+     */
+    public function setNumberBathRooms($numberBathRooms)
+    {
+        $this->numberBathRooms = $numberBathRooms;
+
+        return $this;
+    }
+
+    /**
+     * Get numberBathRooms
+     *
+     * @return string 
+     */
+    public function getNumberBathRooms()
+    {
+        return $this->numberBathRooms;
+    }
+
+    /**
+     * Set parckingPlaces
+     *
+     * @param string $parckingPlaces
+     * @return Annonce
+     */
+    public function setParckingPlaces($parckingPlaces)
+    {
+        $this->parckingPlaces = $parckingPlaces;
+
+        return $this;
+    }
+
+    /**
+     * Get parckingPlaces
+     *
+     * @return string 
+     */
+    public function getParckingPlaces()
+    {
+        return $this->parckingPlaces;
+    }
+
+    /**
+     * Set constructionYear
+     *
+     * @param integer $constructionYear
+     * @return Annonce
+     */
+    public function setConstructionYear($constructionYear)
+    {
+        $this->constructionYear = $constructionYear;
+
+        return $this;
+    }
+
+    /**
+     * Get constructionYear
+     *
+     * @return integer 
+     */
+    public function getConstructionYear()
+    {
+        return $this->constructionYear;
+    }
+
+    /**
+     * Set floorNumber
+     *
+     * @param integer $floorNumber
+     * @return Annonce
+     */
+    public function setFloorNumber($floorNumber)
+    {
+        $this->floorNumber = $floorNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get floorNumber
+     *
+     * @return integer 
+     */
+    public function getFloorNumber()
+    {
+        return $this->floorNumber;
+    }
+
+    /**
+     * Set fixedPrice
+     *
+     * @param integer $fixedPrice
+     * @return Annonce
+     */
+    public function setFixedPrice($fixedPrice)
+    {
+        $this->fixedPrice = $fixedPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get fixedPrice
+     *
+     * @return integer 
+     */
+    public function getFixedPrice()
+    {
+        return $this->fixedPrice;
     }
 }

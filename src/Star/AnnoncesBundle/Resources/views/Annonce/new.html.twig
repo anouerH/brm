@@ -97,6 +97,125 @@
                 </div>
             </div>
 
+            <div class="form-group brand-list">
+                {{ form_label(form.brand, 'Catégorie', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="col-sm-6">
+                    {{ form_widget(form.brand, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.brand) }}
+                </div>
+            </div>
+
+            <div class="form-group model-list">
+                {{ form_label(form.model, 'Modèle', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="col-sm-6">
+                    {{ form_widget(form.model, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.model) }}
+                </div>
+            </div>
+            
+            
+            <div class="form-group engin-field">
+                {{ form_label(form.energy, 'Energie', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="col-sm-6">
+                    {{ form_widget(form.energy, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.energy) }}
+                </div>
+            </div>
+            
+            
+            
+            <div class="form-group engin-field">
+                {{ form_label(form.power, 'Puissance fiscale en CV', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(form.power, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.power) }}
+                </div>
+            </div>
+            
+            <div class="form-group engin-field">
+                {{ form_label(form.mileage, 'Kilométrage', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(form.mileage, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.mileage) }}
+                </div>
+            </div>
+            
+            <div class="form-group engin-field">
+                {{ form_label(form.release, 'Date de mise en circulation', {'label_attr': {'class': 'col-sm-4'}}) }}
+                <div class="col-sm-5">
+                    {{ form_widget(form.release, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.release) }}
+                </div>
+            </div>
+            
+            
+            
+            <div class="form-group immob-field">
+                {{ form_label(form.totalArea, 'Surface Totale (m 2)', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(form.totalArea, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.totalArea) }}
+                </div>
+            </div>
+            
+            
+            <div class="form-group immob-field">
+                {{ form_label(form.livingArea, 'Surface habitable (m 2)', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(form.livingArea, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.livingArea) }}
+                </div>
+            </div>
+            
+            
+            <div class="form-group immob-field">
+                {{ form_label(form.numberRooms, 'Nombre de pièce(s)', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(form.numberRooms, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.numberRooms) }}
+                </div>
+            </div>
+            
+            
+            <div class="form-group immob-field">
+                {{ form_label(form.numberBathRooms, 'Nombre de salle(s) de bain', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(form.numberBathRooms, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.numberBathRooms) }}
+                </div>
+            </div>
+            
+            
+            <div class="form-group immob-field">
+                {{ form_label(form.parckingPlaces, 'Nombre de place parking auto', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(form.parckingPlaces, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.parckingPlaces) }}
+                </div>
+            </div>
+            
+            
+            <div class="form-group immob-field">
+                {{ form_label(form.constructionYear, 'Année de construction', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(form.constructionYear, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.constructionYear) }}
+                </div>
+            </div>
+            
+            
+            <div class="form-group immob-field">
+                {{ form_label(form.floorNumber, 'Numéro de l’étage', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(form.floorNumber, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.floorNumber) }}
+                </div>
+            </div>
+            
+            
+            
+            
+
             <!--<div class="form-group">
                 <label for="categorie" class="col-sm-2 control-label">Catégorie</label>
                 <div class="col-sm-6">
@@ -135,24 +254,62 @@
 
         
 
-        
-        <div class="form-group">
-            {{ form_label(form.price, 'Prix', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
-            <div class="input-group col-sm-3">
-                <span class="input-group-addon">DT</span>
-                <!--<input type="text" class="form-control">-->
-                {{ form_widget(form.price, {'attr': {'class': 'form-control','placeholder': 'Prix'}}) }}
-                <span class="input-group-addon">.00</span>
+        <div style='width:50%; float:left'>
+            <div class="form-group">
+                {{ form_label(form.price, 'Prix', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="input-group col-sm-6">
+                    <span class="input-group-addon">DT</span>
+                    <!--<input type="text" class="form-control">-->
+                    {{ form_widget(form.price, {'attr': {'class': 'form-control','placeholder': 'Prix'}}) }}
+                    <span class="input-group-addon">.00</span>
 
+                </div>
+                {{ form_errors(form.price) }}
             </div>
-            {{ form_errors(form.price) }}
+       </div>
+       <div style='width:50%; float:left'>
+           <div class="form-group">
+           
+            <div class="col-sm-8">
+                {% for child in form.fixedPrice %}
+                    <label class="radio-inline">
+                       {{ form_widget(child) }}{{ form_label(child) }}
+                    </label>
+                {% endfor %}
+            </div>
         </div>
-
+           
+       </div>
+        <div style="clear:both;"></div>
 
     {# Hydrated by javascript #}
     <div class="file-uploader">
 
     </div>
+    
+    <div class="form-group">
+        {{ form_label(form.showPhoneNumber, 'Afficher mon numéro de téléphone pour cette annonce ?'|raw, {'label_attr': {'class': 'col-sm-8'}}) }}
+        <div class="col-sm-3">
+            {% for child in form.showPhoneNumber %}
+                <label class="radio-inline">
+                   {{ form_widget(child) }}{{ form_label(child) }}
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+        
+    
+    <div class="form-group">
+        {{ form_label(form.convertStars, 'Convertir mes stars sur cette annonce ?  (Annonces avec images seulement)'|raw, {'label_attr': {'class': 'col-sm-8'}}) }}
+        <div class="col-sm-3">
+            {% for child in form.convertStars %}
+                <label class="radio-inline">
+                   {{ form_widget(child) }}{{ form_label(child) }}
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+        
     {{ form_rest(form) }}
     <button class="btn btn-primary" type="submit" style="float:right">{{  "Valider" }}</button>
     
@@ -181,13 +338,13 @@ $(function() {
 
     
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('annonce') }}">
+    <!--<ul class="record_actions">
+        <li>
+            <a href="{{ path('annonce') }}">
             Back to the list
-        </a>
-    </li>
-</ul>
+            </a>
+        </li>
+    </ul>-->
 
 
 {% endblock %}

@@ -119,3 +119,19 @@ shtumi_useful :
             no_result_msg: ' '
             order_property: title
             order_direction: ASC
+        brand_by_nature:
+            class: StarAnnoncesBundle:Brand
+            parent_property: nature
+            property: name
+            role: IS_AUTHENTICATED_ANONYMOUSLY
+            no_result_msg: ' '
+            order_property: name
+            order_direction: ASC
+        model_by_brand:
+            class: StarAnnoncesBundle:Model
+            parent_property: brand
+            property: name
+            role: IS_AUTHENTICATED_ANONYMOUSLY
+            no_result_msg: ' '
+            order_property: name
+            order_direction: ASC
