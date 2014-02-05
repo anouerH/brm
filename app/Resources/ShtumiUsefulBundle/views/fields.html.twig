@@ -1,0 +1,90 @@
+
+{% block shtumi_dependent_filtered_entity_widget %}
+
+    <select {{ block('widget_attributes') }}></select>
+
+    <img src='{{ asset('bundles/shtumiuseful/images/ajax-loader.gif' ) }}' id='loader' style='display: none;'>
+    <script type="text/javascript">
+        jQuery(function(){
+
+            jQuery("select#{{ form.parent.offsetGet( parent_field ).vars.id }}").change( function() {
+                var selected_index = {{ value ? value : 0 }};
+                
+                var parentId = jQuery(this).val() ;
+                
+                jQuery("#loader").show();
+                jQuery.ajax({
+                    type: "POST",
+                    data: {
+                        parent_id: jQuery(this).val(),
+                        entity_alias: "{{ entity_alias }}",
+                        empty_value: "{{ empty_value }}"
+                    },
+                    url:"{{ path('shtumi_dependent_filtered_entity') }}",
+                    success: function(msg){
+                    	var emptyValue = false;
+                        var entityAlias = "{{ entity_alias }}" ;
+                        
+                        if(msg == '<option value=""> </option>')
+                            emptyValue = true;
+                        
+                        console.log(parentId);
+                        console.log(entityAlias);
+                    	
+                        if (msg != ''){
+                            if(!emptyValue && entityAlias == 'brand_by_nature'){
+                                jQuery("div .brand-list").show();
+                            }
+                            if(!emptyValue && entityAlias == 'model_by_brand'){
+                                jQuery("div .model-list").show();
+                            }
+                            
+                            if(entityAlias == 'nature_by_theme' && parentId != 1){
+                                jQuery("div .engin-field").hide();
+                            }
+                            
+                            if(entityAlias == 'nature_by_theme' && parentId != 2){
+                                jQuery("div .immob-field").hide();
+                            }
+                            
+                        
+                            jQuery("select#{{ form.vars.id }}").html(msg).show();
+                            jQuery.each(jQuery("select#{{ form.vars.id }} option"), function (index, option){
+                                if (jQuery(option).val() == selected_index)
+                                    jQuery(option).prop('selected', true);
+                            })
+                            jQuery("select#{{ form.vars.id }}").trigger('change');
+                            jQuery("#loader").hide();
+                        } else {
+
+                            jQuery("select#{{ form.vars.id }}").html('<em>{{ no_result_msg|trans() }}</em>');
+                            jQuery("#loader").hide();
+                        }
+                        if(emptyValue && entityAlias == 'brand_by_nature'){
+                            jQuery("div .brand-list").hide();
+                            jQuery("div .model-list").hide();
+                        }
+                        
+                        if(emptyValue && entityAlias == 'model_by_brand'){
+                            jQuery("div .model-list").hide();
+                        }
+                        
+                        if(entityAlias == 'nature_by_theme' && parentId == 1){
+                            jQuery("div .engin-field").show();
+                        }
+                        
+                        if(entityAlias == 'nature_by_theme' && parentId == 2){
+                            jQuery("div .immob-field").show();
+                        }
+                        
+                    },
+                    error: function(xhr, ajaxOptions, thrownError){
+                    jQuery('html').html(xhr.responseText);
+                    }
+                });
+            });
+            jQuery("select#{{ form.parent.offsetGet( parent_field ).vars.id }}").trigger('change');
+        });
+    </script>
+
+{% endblock %}
