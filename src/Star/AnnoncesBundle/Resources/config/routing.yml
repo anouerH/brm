@@ -36,3 +36,7 @@ annonce_upload:
 annonce_delete:
     pattern: /{id}/delete
     defaults: { _controller:StarAnnoncesBundle:Annonce:delete}
+
+annonce_last:
+    pattern: /last
+    defaults: { _controller:StarAnnoncesBundle:Annonce:lastAnnonces}

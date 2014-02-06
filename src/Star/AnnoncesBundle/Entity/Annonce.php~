@@ -231,6 +231,11 @@ class Annonce
      */
     private $convertStars;
     
+    /**
+     *
+     * @var array
+     */
+    private $images;
     
     
     public function __construct()
@@ -240,6 +245,8 @@ class Annonce
         $this->annonceType = 'OFFRE';  
         $this->demandeType = 'VENTE';
         $this->fixedPrice = 1;
+        $this->showPhoneNumber = 0;
+        $this->convertStars = 0;
     }
 
     /**
@@ -917,5 +924,51 @@ class Annonce
     public function getFixedPrice()
     {
         return $this->fixedPrice;
+    }
+
+    /**
+     * Set showPhoneNumber
+     *
+     * @param integer $showPhoneNumber
+     * @return Annonce
+     */
+    public function setShowPhoneNumber($showPhoneNumber)
+    {
+        $this->showPhoneNumber = $showPhoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get showPhoneNumber
+     *
+     * @return integer 
+     */
+    public function getShowPhoneNumber()
+    {
+        return $this->showPhoneNumber;
+    }
+
+    /**
+     * Set convertStars
+     *
+     * @param integer $convertStars
+     * @return Annonce
+     */
+    public function setConvertStars($convertStars)
+    {
+        $this->convertStars = $convertStars;
+
+        return $this;
+    }
+
+    /**
+     * Get convertStars
+     *
+     * @return integer 
+     */
+    public function getConvertStars()
+    {
+        return $this->convertStars;
     }
 }

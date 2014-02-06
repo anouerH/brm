@@ -7,7 +7,9 @@
 
 {% block body %}
 
-  <h2>Liste des articles</h2>
-  Hellooooo {#{ name }#}!
+
+
+  {#{ include ('StarAnnoncesBundle:Annonce:last.html.twig') }#}
+  {{ render(controller("StarAnnoncesBundle:Annonce:lastAnnonces"))  }}
 
 {% endblock %}

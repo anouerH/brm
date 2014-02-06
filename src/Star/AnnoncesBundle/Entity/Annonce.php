@@ -231,6 +231,11 @@ class Annonce
      */
     private $convertStars;
     
+    /**
+     *
+     * @var array
+     */
+    private $images;
     
     
     public function __construct()
@@ -965,5 +970,22 @@ class Annonce
     public function getConvertStars()
     {
         return $this->convertStars;
+    }
+    
+    /**
+     * set Images 
+     */
+    public function setImages($images){
+        $this->images = $images;
+
+        return $this;
+    }
+    
+    /**
+     * get Images
+     */
+    
+    public function getImages(){
+        return $this->images;
     }
 }

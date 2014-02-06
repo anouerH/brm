@@ -15,7 +15,7 @@
     </div>
     {% endfor %}
     
-    <form class="edit-form form-horizontal" action="{{ path('annonce_update', { id: entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <form class="edit-form form-horizontal" novalidate action="{{ path('annonce_update', { id: entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
 
 
         {#{ form_widget(edit_form) }#}
@@ -43,33 +43,170 @@
             </div>
         </div>
         
+        <div style='width:50%; float:left'>
+            <div class="form-group">
 
-        <div class="form-group">
+                {{ form_label(edit_form.gouv, 'Région', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="col-sm-6">
 
-            {{ form_label(edit_form.gouv, 'Région', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
-            <div class="col-sm-3">
-                
-                {{ form_widget(edit_form.gouv, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(edit_form.gouv, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.gouv) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                {{ form_label(edit_form.deleg, 'Ville', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="col-sm-6">
+
+                    {{ form_widget(edit_form.deleg, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.deleg) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                {{ form_label(edit_form.locality, 'Localité', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="col-sm-6">
+
+                    {{ form_widget(edit_form.locality, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.locality) }}
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-
-            {{ form_label(edit_form.deleg, 'Ville', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
-            <div class="col-sm-3">
+        
+        <div style='width:50%; float:left'>
+            <div class="form-group">
                 
-                {{ form_widget(edit_form.deleg, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(edit_form.theme, 'Thème', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+
+                <div class="col-sm-6">
+                    {{ form_widget(edit_form.theme, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.theme) }}
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-
-            {{ form_label(edit_form.locality, 'Localité', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
-            <div class="col-sm-3">
+            
+            <div class="form-group">
+                {{ form_label(edit_form.nature, 'Nature', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="col-sm-6">
+                    {{ form_widget(edit_form.nature, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.nature) }}
+                </div>
+            </div>
                 
-                {{ form_widget(edit_form.locality, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-group brand-list">
+                {{ form_label(edit_form.brand, 'Catégorie', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="col-sm-6">
+                    {{ form_widget(edit_form.brand, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.brand) }}
+                </div>
             </div>
+                
+            <div class="form-group model-list">
+                {{ form_label(edit_form.model, 'Modèle', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="col-sm-6">
+                    {{ form_widget(edit_form.model, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.model) }}
+                </div>
+            </div>
+                
+            <div class="form-group engin-field">
+                {{ form_label(edit_form.energy, 'Energie', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="col-sm-6">
+                    {{ form_widget(edit_form.energy, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.energy) }}
+                </div>
+            </div>
+                
+            <div class="form-group engin-field">
+                {{ form_label(edit_form.power, 'Puissance fiscale en CV', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(edit_form.power, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.power) }}
+                </div>
+            </div>
+            
+            <div class="form-group engin-field">
+                {{ form_label(edit_form.mileage, 'Kilométrage', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(edit_form.mileage, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.mileage) }}
+                </div>
+            </div>
+            
+            <div class="form-group engin-field">
+                {{ form_label(edit_form.release, 'Date de mise en circulation', {'label_attr': {'class': 'col-sm-4'}}) }}
+                <div class="col-sm-5">
+                    {{ form_widget(edit_form.release, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.release) }}
+                </div>
+            </div>
+                
+                
+            <div class="form-group immob-field">
+                {{ form_label(edit_form.totalArea, 'Surface Totale (m 2)', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(edit_form.totalArea, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.totalArea) }}
+                </div>
+            </div>
+            
+            
+            <div class="form-group immob-field">
+                {{ form_label(edit_form.livingArea, 'Surface habitable (m 2)', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(edit_form.livingArea, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.livingArea) }}
+                </div>
+            </div>
+                
+            <div class="form-group immob-field">
+                {{ form_label(edit_form.numberRooms, 'Nombre de pièce(s)', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(edit_form.numberRooms, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.numberRooms) }}
+                </div>
+            </div>
+            
+            
+            <div class="form-group immob-field">
+                {{ form_label(edit_form.numberBathRooms, 'Nombre de salle(s) de bain', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(edit_form.numberBathRooms, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.numberBathRooms) }}
+                </div>
+            </div>
+                
+                
+           <div class="form-group immob-field">
+                {{ form_label(edit_form.parckingPlaces, 'Nombre de place parking auto', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(edit_form.parckingPlaces, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.parckingPlaces) }}
+                </div>
+            </div>
+            
+            
+            <div class="form-group immob-field">
+                {{ form_label(edit_form.constructionYear, 'Année de construction', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(edit_form.constructionYear, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.constructionYear) }}
+                </div>
+            </div>
+                
+            <div class="form-group immob-field">
+                {{ form_label(edit_form.floorNumber, 'Numéro de l’étage', {'label_attr': {'class': 'col-sm-6'}}) }}
+                <div class="col-sm-3">
+                    {{ form_widget(edit_form.floorNumber, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(edit_form.floorNumber) }}
+                </div>
+            </div>
+                
+                
+                
         </div>
+        <div style="clear:both;"></div>
 
         <div class="form-group">
 
@@ -86,21 +223,62 @@
             {{ form_widget(edit_form.description, {'attr': {'class': 'form-control','placeholder': 'Description','rows':'5'}}) }}
             </div>
         </div>
-
-        <div class="form-group">
-            {{ form_label(edit_form.price, 'Prix', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
-            <div class="input-group col-sm-3">
-                <span class="input-group-addon">DT</span>
-                {{ form_widget(edit_form.price, {'attr': {'class': 'form-control','placeholder': 'Prix'}}) }}
-                <span class="input-group-addon">.00</span>
+        <div style='width:50%; float:left'>
+            <div class="form-group">
+                {{ form_label(edit_form.price, 'Prix', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="input-group col-sm-6">
+                    <span class="input-group-addon">DT</span>
+                    {{ form_widget(edit_form.price, {'attr': {'class': 'form-control','placeholder': 'Prix'}}) }}
+                    <span class="input-group-addon">.00</span>
+                </div>
             </div>
         </div>
-
-
-
+        <div style='width:50%; float:left'>
+            <div class="form-group">
+           
+            <div class="col-sm-8">
+                {% for child in edit_form.fixedPrice %}
+                    <label class="radio-inline">
+                       {{ form_widget(child) }}{{ form_label(child) }}
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+        </div>
+        <div style="clear:both;"></div>
+        
+        
+        
 
         {# Hydrated by javascript #}
         <div class="file-uploader"></div>
+        
+        
+        
+        
+        <div class="form-group">
+        {{ form_label(edit_form.showPhoneNumber, 'Afficher mon numéro de téléphone pour cette annonce ?'|raw, {'label_attr': {'class': 'col-sm-8'}}) }}
+        <div class="col-sm-3">
+            {% for child in edit_form.showPhoneNumber %}
+                <label class="radio-inline">
+                   {{ form_widget(child) }}{{ form_label(child) }}
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+        
+    
+    <div class="form-group">
+        {{ form_label(edit_form.convertStars, 'Convertir mes stars sur cette annonce ?  (Annonces avec images seulement)'|raw, {'label_attr': {'class': 'col-sm-8'}}) }}
+        <div class="col-sm-3">
+            {% for child in edit_form.convertStars %}
+                <label class="radio-inline">
+                   {{ form_widget(child) }}{{ form_label(child) }}
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+        
         {{ form_rest(edit_form) }}
         <button class="btn btn-primary" type="submit">{{  "Save New Listing" }}</button>
     
@@ -111,14 +289,14 @@
 
     
 
-        <ul class="record_actions">
+        <!--<ul class="record_actions">
     <li>
         <a href="{{ path('annonce') }}">
             Back to the list
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>
-</ul>
+</ul>-->
 
 <script type="text/javascript">
 

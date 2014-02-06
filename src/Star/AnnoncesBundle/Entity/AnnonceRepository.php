@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class AnnonceRepository extends EntityRepository
 {
+    public function getlastAnnonces(){
+        $qb = $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC')
+            ->setMaxResults(5);
+        $query = $qb->getQuery();
+        
+        return $query->getResult();
+    }
 }

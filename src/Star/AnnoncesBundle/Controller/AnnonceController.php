@@ -281,4 +281,23 @@ class AnnonceController extends Controller
 
         $this->get('punk_ave.file_uploader')->handleFileUpload(array('folder' => 'tmp/attachments/' . $editId));
     }
+    
+    /**
+     * Les dernières annonces
+     */
+    public function lastAnnoncesAction(){
+         $em = $this->getDoctrine()->getManager();
+         $annonces = $em->getRepository('StarAnnoncesBundle:Annonce')->getlastAnnonces();
+         
+         foreach ($annonces as $annonce){
+             
+             $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $annonce->getImgDirId()));
+             
+             $annonce->setImages($existingFiles);
+         }
+         return $this->render('StarAnnoncesBundle:Annonce:last.html.twig', array(
+            'annonces' => $annonces,
+        ));
+         
+    }
 }

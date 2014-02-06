@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="{{ asset('css/list.css') }}" type="text/css" />
+<div class="annonce_bottom">
+    <div class="last_ann_index">
+        <div class="titre_annon">
+            <h2>Les dernières annonces</h2>
+        </div>
+        <ul class="liste_search_index">
+            {% for entity in annonces %}
+            <li>
+                <div class="liste_gauche_index">
+                    
+                    <div class="img">
+                        <a href="tunisie-annonce-191-terrain-vue-sur-mer-gabes-el-metouia-cite-el-maya" style="text-decoration:none; color:#069; font-size:12px" alt="{{ entity.title }}">
+                            <div id="productImageWrapID_191">
+                                {% if entity.images is empty %}
+                                    <img src="{{ asset('img/no-image.png') }}" alt="{{ entity.title }}">
+                                    
+                                {% else %}
+                                <img src="/uploads/tmp/attachments/359073733/thumbnails/{{entity.images | first}}" alt="{{ entity.title }}" style="max-height:88px; max-width:90px;">
+                                {% endif %}
+                            </div>
+                       </a>
+                       <div class="num-photos">{% if entity.images is not empty %}{{ entity.images | length}} photo(s){% endif %}</div>
+                    </div>
+                    
+                </div>
+                <div class="liste_droite_index1">
+                   
+                    <div class="titre_ann_home"><a href="tunisie-annonce-191-terrain-vue-sur-mer-gabes-el-metouia-cite-el-maya" style="text-decoration:none;" class="titre_ann_home"><strong>{{ entity.title }}</strong></a></div>
+                    <div class="prix">{{ entity.price }}<sup>dt</sup></div>
+                    
+                    <div class="plus">
+                        <img width="24" height="18" style="cursor:pointer" title="Ajouter à ma selection" alt="Ajouter à ma selection" src="{{ asset('img/plus.gif') }}">
+                    </div>
+                    
+                    <div class="desc">{{entity.description}}</div>
+                    <div style="float: left; width: 100%; text-align: right; color: #999; font-size:11px">Vue 22 fois<!-- &nbsp;<img src="images/eye.png" alt="vue 22 fois" title="vue 22 fois" /> --></div>
+                    
+                </div>
+                <div class="bottom_liste">
+                    <div class="location"><span class="text_1"><strong>&nbsp;Lieu :</strong> <span><a style="color:#1291D3" href="tunisie-annonce-recherche-region-GABES">{{entity.gouv}}</a> - <a style="color:#1291D3" href="tunisie-annonce-recherche-ville-EL METOUIA">{{entity.deleg}}</a> - <a style="color:#1291D3" href="tunisie-annonce-recherche-localite-1092">{{entity.locality}}</a></span></span> </div>
+                    <div class="posted2"><span class="text_2"><strong>Posté </strong> <span>le {{entity.createdAt| date('d/m/Y')}}</span></span> </div>
+                </div>
+            </li>
+            
+            
+          {% endfor %}
+        </ul>
+    </div>
+</div>
