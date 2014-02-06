@@ -1,0 +1,145 @@
+/* 
+    Document   : list
+    Created on : Feb 6, 2014, 3:57:39 PM
+    Author     : anouer
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.annonce_bottom {
+    overflow: visible;
+    float: left;
+}
+.annonce_bottom ul {
+    margin: 0;
+}
+.last_ann_index {
+    border: 1px #edecec solid;
+    padding: 3px;
+    overflow: hidden;
+    color: #61767C;
+    font-size: 12px;
+    float: left;
+    width: 545px;
+    margin: 0px 0px 10px 0px;
+}
+.titre_annon {
+    overflow: hidden;
+    padding: 0 0 5px;
+}
+.titre_annon h2 {
+    background: none repeat scroll 0 0 #EDECEC;
+    border-radius: 2px 2px 2px 2px;
+    color: #393838;
+    font-size: 14px;
+    font-weight: bold;
+    height: 40px;
+    padding: 10px 10px;
+    margin-top: 0px;
+}
+.liste_gauche_index {
+    text-align: center;
+}
+.liste_search_index li {
+    border-bottom: 1px solid #DCDFDF;
+    overflow: hidden;
+    padding: 6px 0;
+    width: 100%;
+    position: relative;
+}
+.liste_gauche_index {
+    float: left;
+    width: 100px;
+    padding: 4px;
+    text-align: center;
+}
+
+.liste_droite_index1 {
+    float: left;
+    width: 412px;
+}
+.liste_gauche_index {
+    float: left;
+    padding: 4px;
+    text-align: center;
+    width: 100px;
+}
+
+.img .num-photos {
+    background: none repeat scroll 0 0 #FF6623;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    font-size: 11px;
+    padding: 0 5px;
+    position: absolute;
+    left: 47px;
+    top: 4px;
+}
+
+.titre_ann_home {
+    float: left;
+    color: #006699;
+    font-size: 12px;
+    width: 282px;
+    text-align: left;
+}
+.prix {
+    width: 80px !important;
+    height: 18px !important;
+    left: 380px !important;
+    float: left !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+    color: #c43d9b;
+    display: block;
+    font-weight: bold;
+    text-align: right;
+}
+.plus {
+    float: right;
+    text-align: right;
+    width: 50px;
+}
+.desc {
+    color: #61767C;
+    float: left;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 18px;
+    margin: 7px 0 0;
+    text-align: left;
+    width: 393px;
+}
+
+.bottom_liste {
+    float: left;
+    width: 100%;
+}
+.location {
+    float: left;
+    text-align: left;
+    width: 66%;
+}
+.liste_search_index li div .text_1 {
+    background: url("../img/text_1-bg.gif") no-repeat scroll 1px 2px transparent;
+    float: left;
+    padding: 0 18px 0 24px;
+    margin: 0 0 0 5px;
+}
+.liste_search_index li div .text_1 strong {
+    color: #F08B28;
+    display: inline-block;
+}
+.posted2 {
+    width: 33%;
+    float: left;
+    text-align: right;
+}
+.liste_search_index li div .text_2 {
+    background: url("../img/text_2-bg.gif") no-repeat scroll 1px -1px transparent;
+    float: right;
+    padding: 0 0 2px 25px;
+    height: 17px;
+}
+
