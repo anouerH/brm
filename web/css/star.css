@@ -1,0 +1,30 @@
+.titre_star {
+    display: block;
+    background: url(../img/stars.gif) no-repeat left center;
+    padding: 5px 0 5px 27px;
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0px 0px 10px;
+    color: #666;
+}
+div .slide-stars {
+    margin: 20px auto 0px auto;
+    width: 543px;
+    height: 300px;
+    position: relative;
+    color: #fff;
+    overflow: hidden;
+    padding: 5px;
+    border: 3px solid #ccc;
+    background-color: #ffffff;
+    -moz-box-shadow: 1px 1px 4px #cccccc;
+    -webkit-box-shadow: 1px 1px 4px #cccccc;
+    box-shadow: 1px 1px 4px #cccccc;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 4px;
+    margin: 0px 0px 10px 0px;
+}
+
+

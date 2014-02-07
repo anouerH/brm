@@ -16,4 +16,8 @@ class DefaultController extends Controller
     public function menuAction(){
     	return $this->render('StarAnnoncesBundle:Default:menu.html.twig');
     }
+    
+    public function mapAction(){
+        return $this->render('StarAnnoncesBundle:Default:map.html.twig');
+    }
 }

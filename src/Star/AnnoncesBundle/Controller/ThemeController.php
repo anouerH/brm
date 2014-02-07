@@ -14,15 +14,28 @@ class ThemeController extends Controller
 {
 	
 	public function menuAction(){
-		$em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('StarAnnoncesBundle:Theme')->findAll();
-        /*return array(
-            'entities' => $entities,
-        );*/
-		//var_dump($entities);
-        return $this->render('StarAnnoncesBundle:Theme:menu.html.twig', array(
-            'entities' => $entities,
-        ));
+            $entities = $em->getRepository('StarAnnoncesBundle:Theme')->findAll();
+            /*return array(
+                'entities' => $entities,
+            );*/
+                    //var_dump($entities);
+            return $this->render('StarAnnoncesBundle:Theme:menu.html.twig', array(
+                'entities' => $entities,
+            ));
+	}
+        
+        public function footerAction(){
+            $em = $this->getDoctrine()->getManager();
+
+            $entities = $em->getRepository('StarAnnoncesBundle:Theme')->findAll();
+            /*return array(
+                'entities' => $entities,
+            );*/
+                    //var_dump($entities);
+            return $this->render('StarAnnoncesBundle:Theme:footer.html.twig', array(
+                'entities' => $entities,
+            ));
 	}
 }

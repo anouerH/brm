@@ -300,4 +300,29 @@ class AnnonceController extends Controller
         ));
          
     }
+    
+    /**
+     * les annonces stars
+     */
+    
+    public function annoncesStarsAction(){
+        return $this->render('StarAnnoncesBundle:Annonce:star.html.twig');
+    }
+    
+    /**
+     * Detail Annonce
+     */
+    public function detailAnnonceAction($slug){
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('StarAnnoncesBundle:Annonce')->findOneBy(array('slug' => $slug));
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Annonce entity.');
+        }
+        
+        return $this->render('StarAnnoncesBundle:Annonce:detail-annonce.html.twig', array(
+            'entity' => $entity,
+        ));
+    }
 }

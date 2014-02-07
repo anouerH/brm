@@ -10,7 +10,7 @@
                 <div class="liste_gauche_index">
                     
                     <div class="img">
-                        <a href="tunisie-annonce-191-terrain-vue-sur-mer-gabes-el-metouia-cite-el-maya" style="text-decoration:none; color:#069; font-size:12px" alt="{{ entity.title }}">
+                        <a href="{{ path('annonce_detail', { 'slug': entity.slug , 'gouv': entity.gouv , 'deleg': entity.deleg, 'locality': entity.locality}) }}" style="text-decoration:none; color:#069; font-size:12px" alt="{{ entity.title }}">
                             <div id="productImageWrapID_191">
                                 {% if entity.images is empty %}
                                     <img src="{{ asset('img/no-image.png') }}" alt="{{ entity.title }}">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="liste_droite_index1">
                    
-                    <div class="titre_ann_home"><a href="tunisie-annonce-191-terrain-vue-sur-mer-gabes-el-metouia-cite-el-maya" style="text-decoration:none;" class="titre_ann_home"><strong>{{ entity.title }}</strong></a></div>
+                    <div class="titre_ann_home"><a href="{{ path('annonce_detail', { 'slug': entity.slug , 'gouv': entity.gouv, 'deleg': entity.deleg, 'locality': entity.locality}) }}" style="text-decoration:none;" class="titre_ann_home"><strong>{{ entity.title }}</strong></a></div>
                     <div class="prix">{{ entity.price }}<sup>dt</sup></div>
                     
                     <div class="plus">

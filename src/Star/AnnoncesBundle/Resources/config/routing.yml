@@ -40,3 +40,7 @@ annonce_delete:
 annonce_last:
     pattern: /last
     defaults: { _controller:StarAnnoncesBundle:Annonce:lastAnnonces}
+    
+annonce_detail:
+    pattern: /tunisie-annonce-{slug}/{gouv}-{deleg}-{locality}
+    defaults: { _controller:StarAnnoncesBundle:Annonce:detailAnnonce}

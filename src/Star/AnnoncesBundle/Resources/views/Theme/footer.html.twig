@@ -1,0 +1,57 @@
+<div class="footer">
+    <div class="FBG">
+        <div class="FBG_resize">
+            <div class="click_blog">
+                <p>petites annonces gratuites en tunisie, tunisie immobilier, tunisie
+                annonces, passer annonce gratuite, annonces algeriennes, petites
+                annonces, passer une annonce, annonces immobilier, location, vente ,
+                achat, maison, appartement, louer, vendre, acheter, location, immobilier, maison, locations de
+                vacances en tunisie,
+                </p>
+                <div class="rss">
+                    <img src="{{ asset('img/twiter.gif') }}" width="16" height="16" class="floated"> 
+                    <img src="{{ asset('img/fbicon.gif') }}" width="16" class="floated" height="16"> 
+                    <img src="{{ asset('img/rss.gif') }}" width="16" height="16" class="floated">
+                </div>
+                <div class="clr"></div>
+            </div>
+            <div class="blog">
+                <h2>Les catégories </h2>
+                <div class="clr"></div>
+                <ul style="float:left; width:150px; margin:0px 20px 0px 20px">
+                    {% for entitie in entities |slice(0, 8) %} 
+                        <li><a href="#"><img src="{{ asset('img/row.png') }}" border="0">&nbsp;&nbsp;{{entitie.title}}</a></li>
+                    {% endfor %}
+        	</ul>
+
+                <ul style="float:left; width:150px; margin:0px 20px 0px 20px">
+                    {% for entitie in entities |slice(8, entities|length)%} 
+                        <li><a href="#"><img src="{{ asset('img/row.png') }}" border="0">&nbsp;&nbsp;{{entitie.title}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="blog1">
+                <h2>Starannonces</h2>
+                <div class="clr"></div>
+                <ul>
+                          <li><a href="aide.php">Comment ça marche</a></li>
+                          <li><a href="flux_rss.php">Flus RSS</a></li>
+                          <li><a href="#">Mentions Legales</a></li>
+                          <li><a href="contact.php?objet=publicite">Publicité</a></li>
+                </ul>
+            </div>
+                
+            <div class="blog last">
+                <h2>Contact</h2>
+                <p>Phone: 71 459 369<br>
+                      Fax: 71 459 369<br>
+                      Site: <a href="#">www.benomedia.com</a><br>
+                      Email: <a href="#">contact@benomedia.com</a><br>
+                      Address: 51, rue palestine. 
+                </p>
+            </div>
+            <div class="clr"></div>
+        </div>
+    </div>
+</div>

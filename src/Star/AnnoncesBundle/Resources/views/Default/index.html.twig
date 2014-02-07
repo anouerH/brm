@@ -7,9 +7,9 @@
 
 {% block body %}
 
+  
 
-
-  {#{ include ('StarAnnoncesBundle:Annonce:last.html.twig') }#}
+  {{ render(controller("StarAnnoncesBundle:Annonce:annoncesStars"))  }}
   {{ render(controller("StarAnnoncesBundle:Annonce:lastAnnonces"))  }}
 
 {% endblock %}

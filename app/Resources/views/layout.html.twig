@@ -138,7 +138,11 @@
           {% endblock %}
         </div>
         <div id="menu" class="span3">
-        <img src="{{ asset('img/pub.jpg') }}" >
+           {% if app.request.get('_route') == 'star_annonces_homepage' %}
+                {{ render(controller("StarAnnoncesBundle:Default:map"))  }}
+            {% else %}
+                 <img src="{{ asset('img/pub.jpg') }}" >
+            {% endif %}
         </div>
       </div>
 
@@ -147,35 +151,14 @@
       
     </div>
 
-
-    <!-- footer-->
-    <div class="footer">
-      <div class="FBG">
-        <div class="FBG_resize">
-          <div class="click_blog">
-            <p>petites annonces gratuites en tunisie, tunisie immobilier, tunisie
-              annonces, passer annonce gratuite, annonces algeriennes, petites
-              annonces, passer une annonce, annonces immobilier, location, vente ,
-              achat, maison, appartement, louer, vendre, acheter, location, immobilier, maison, locations de
-              vacances en tunisie,</p>
-
-              <div class="rss">
-                <img src="{{ asset('img/twiter.gif') }}" width="16" height="16" class="floated"> 
-                <img src="{{ asset('img/fbicon.gif') }}" width="16" class="floated" height="16"> 
-                <img src="{{ asset('img/rss.gif') }}" width="16" height="16" class="floated">
-              </div>
-
-              <div class="clr"></div>
-              <div class="blog"></div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end footer-->
+    {{ render(controller("StarAnnoncesBundle:Theme:footer"))  }}
+    
     
     <footer>
-      <p>The sky's the limit © 2012 and beyond.</p>
+        <div class="footer_resize">
+            <p class="leftt">© Copyright <a href="#">starannonces</a>. All Rights Reserved </p>
+            <div class="clr"></div>
+        </div>
     </footer>
 
     {% javascripts

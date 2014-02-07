@@ -5025,6 +5025,7 @@ a.badge:hover {
   overflow: hidden;
   width: 100%;
   margin: 20px 0 0;
+  color:#7B7B7B;
 }
 
 .FBG {
@@ -5037,6 +5038,12 @@ a.badge:hover {
   padding: 0;
   width: 960px;
 }
+.FBG_resize .blog {
+    float: left;
+    margin: 0;
+    padding: 20px 35px 10px 0;
+    width: 430px;
+}
 .click_blog {
   color: #B0B0B0;
   margin: 0;
@@ -5047,7 +5054,7 @@ a.badge:hover {
   margin: 0;
   padding: 0;
   width: 680px;
-  font-size: 9px;
+  font-size: 10px;
 }
 .rss {
   color: #505050;
@@ -5078,6 +5085,48 @@ footer {
   border-top: 1px solid #3C3C3C;
   padding: 20px;
 }
+.FBG_resize ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.FBG_resize li {
+    border-bottom: 1px solid #404040;
+    margin: 0;
+    padding: 5px 0;
+}
+.FBG_resize li a {
+    color: #7B7B7B;
+    font: 12px Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 5px 0;
+    text-decoration: none;
+  
+}
+.FBG_resize .blog1 {
+    float: left;
+    margin: 0;
+    padding: 20px 35px 10px 0;
+    width: 230px;
+}
+.FBG_resize .blog.last {
+    padding: 20px 0 10px;
+    width: 195px;
+}
+.footer_resize {
+    margin: 0 auto;
+    padding: 0;
+    width: 980px;
+    overflow: hidden;
+}
+.footerbas p.leftt {
+    float: left;
+    margin: 0;
+    padding: 15px 0 0;
+    text-align: left;
+    width: 550px;
+}
+
 /* Menu */
 .ann_themes, .depose_ann {
   border: 1px #edecec solid;
@@ -5143,4 +5192,53 @@ footer {
 
 div .engin-field, div .model-list, div .brand-list, div .immob-field{
     display: none;
+}
+
+
+.carte_tun {
+    border: 1px #edecec solid;
+    padding: 3px;
+    width: 215px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 0 0 20px;
+}
+.carte_tun h2 {
+    background: #edecec;
+    color: #393838;
+    padding: 7px 10px;
+    height: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    line-height: 20px;
+    margin-top: 0;
+}
+.boxgrid {
+    overflow: hidden;
+    position: relative;
+}
+#carte-map {
+    background: url(../img/carte_tunisie/none.png) no-repeat;
+}
+#map {
+    width: 235px;
+    height: 149px;
+    margin: 20px 0 0 20px;
+}
+
+.bub_t {
+    overflow: hidden;
+    margin: 0 0 20px;
+    width: 215px;
+}
+.bub_tun {
+    overflow: hidden;
+    margin: 0 0 20px;
+    padding: 3px;
+    width: 220px;
 }
