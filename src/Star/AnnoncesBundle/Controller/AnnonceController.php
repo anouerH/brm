@@ -316,13 +316,14 @@ class AnnonceController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('StarAnnoncesBundle:Annonce')->findOneBy(array('slug' => $slug));
-
+        
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Annonce entity.');
         }
-        
+        $images =  $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $entity->getImgDirId()));
         return $this->render('StarAnnoncesBundle:Annonce:detail-annonce.html.twig', array(
             'entity' => $entity,
+            'images'=>$images
         ));
     }
 }

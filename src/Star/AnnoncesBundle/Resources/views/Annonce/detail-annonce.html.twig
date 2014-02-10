@@ -1,1 +1,125 @@
-test de test 
+
+{% extends "::layout-detail.html.twig" %}
+
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+{% block body -%}
+  
+  
+  <div id="ligne1_details">
+            <div class="filarian">
+                <ul>
+                    <li class="home">
+                        <a title="aller à la page d'accueil" href="index.php">Accueil</a>
+                        <span>&nbsp;</span>
+                    </li>
+                    <li class="product">
+                        <a href="recherche.php?cat_m=6" title="toutes les annonces 'Au féminin'"><strong>{{entity.theme}}</strong></a>
+                        <span>&nbsp;</span>
+                    </li>
+                    <li class="product">
+                        <a href="recherche.php?SCATID=40" title="toutes les annonces 'Montres '"><strong>{{entity.nature}}</strong></a>
+                    </li>			    
+                </ul>
+            </div>
+		
+            <div class="gelerie_img" id="highslide-gallery">
+                <div style="width:100%; height:180px; text-align:center; color:#999">
+                     {% if images is empty %}
+                    <img src="{{ asset('img/photo-camera.png') }}" border="0" title="Photo indisponible" alt="Photo indisponible" style="border:none">
+                    {% else %}
+                    <p>
+                        {% for image in images %}
+                            
+		
+                        <a rel="example_group" href="/uploads/tmp/attachments/{{entity.imgDirId}}/originals/{{image}}" title="{{entity.title}}">
+                            <img alt="" src="/uploads/tmp/attachments/{{entity.imgDirId}}/thumbnails/{{image}}" />
+                        </a>
+                            
+                            
+                
+                
+                    
+                        {% endfor %}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        
+            <div style="width:250px; border:solid 1px #EDECEC; height:221px; float:left;">
+                <div>
+                    <div class="actions">
+                        <div class="bt-contact">
+                            <div class="les-boutons">
+                                <a href="" class="contact-ann select highslide" onclick="return hs.htmlExpand(this, { contentId: 'highslide-html' } )"><span>Contacter <br>l'annonceur</span></a>
+                                <a href="" class="tel-ann highslide"><span>Aucun num de<br>téléphone</span></a>                   
+                  
+                            </div>
+                        </div>
+          
+          
+                        <div class="bt-sociales">
+                            <ul>
+                                <li>
+                                    <a href="#" class="email-ami highslide" onclick="return hs.htmlExpand(this, { contentId: 'highslide-html-send_freind' } )">Envoyer à un ami</a>
+                                </li>
+                                <li>
+                                    <div class="add_fv"><a href="#" onclick="apprise('Merci de vous connecter pour ajouter les annonces favorites', {'animate':true});" class="favoris">Ajouter aux Favoris</a></div>
+                                </li>
+                                <li>
+                                    <a class="imprimer" href="#" onclick="window.print();return false;">Imprimer l'annonce</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="return hs.htmlExpand(this, { contentId: 'highslide-html-abus' } )" class="signaler">Signaler un abus (ou erreur)</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+      
+            </div> 
+        </div>
+        
+  
+  
+        <div id="ligne_details">
+            <div class="filarian">
+                <ul>
+                    <li class="product"><a href="recherche.php?region_recherche=BEJA" title=""><strong>{{entity.gouv}}</strong></a><span>&nbsp;</span></li>
+                    <li class="product"><a href="recherche.php?ville=AMDOUN" title=""><strong>{{entity.deleg}}</strong></a><span>&nbsp;</span></li>
+                    <li class="product"><a href="recherche.php?localite=396" title=""><strong>{{entity.locality}}</strong></a><span>&nbsp;</span></li>
+                </ul>
+            </div>
+        </div>
+  
+  
+  
+        <div id="ligne1_details">
+            <div class="text_ann">
+                <div id="detailInfos">
+                    <h3>
+                        <div><span class="noir" id="titre_detail_annonce">{{entity.title}}</span></div>
+                        <span class="prix-ann">{{entity.price}}<sup>dt</sup></span>
+                        <span class="negos">&nbsp;Prix fixe</span>
+                    </h3>
+                </div>
+                <div>{{entity.description}}</div>
+		<div style="text-align:left; width:220px; float:right; margin-left:6px">
+		
+		</div>
+            </div>
+            <div class="clr"></div>
+        </div>
+  
+
+  
+  
+        
+
+  
+  
+    
+  
+{% endblock %}

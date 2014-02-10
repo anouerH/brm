@@ -1,0 +1,230 @@
+/* 
+    Document   : list
+    Created on : Feb 6, 2014, 3:57:39 PM
+    Author     : anouer
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#ligne1_details {
+    min-height: 256px;
+    width: 765px;
+    float: left;
+}
+.filarian {
+    margin: 0;
+    padding: 0 0 8px;
+    font-size: 12px;
+    text-align: left;
+}
+.filarian li {
+    display: inline;
+    font-size: 0.84em;
+    text-transform: uppercase;
+}
+filarian li a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #616366;
+}
+.gelerie_img {
+    border: 1px #edecec solid;
+    padding: 3px 0 0 14px;
+    overflow: hidden;
+    color: #61767C;
+    font-size: 12px;
+    margin: 0 8px 15px 0;
+    width: 487px;
+    float: left;
+    text-align: left;
+    min-height: 218px;
+}
+.gelerie_img img {
+    border: 1px solid #BBBBBB;
+    margin: 10px 10px 10px 0;
+    padding: 2px;
+    vertical-align: top;
+}
+
+.filarian li span {
+    background: url(../img/fleche_div.png) no-repeat scroll center 4px transparent;
+    padding: 0 5px;
+}
+
+.actions {
+    /*margin: 10px 0;*/
+    overflow: hidden;
+    width: 256px;
+    float: left;
+}
+.bt-contact {
+    background: none repeat scroll 0 0 white;
+    border: 2px solid #fff;
+    margin-bottom: 20px;
+    /*padding: 10px;*/
+    width: 238px;
+    float: left;
+    /*margin: 0 20px 0 0;*/
+}
+.les-boutons {
+    background: url(../img/bg-boutoon.png) no-repeat;
+    width: 240px;
+    height: 80px;
+   
+    /*margin: 0 35px;*/
+   /* padding: 9px 8px 9px 9px;*/
+    float: left;
+}
+.les-boutons a.select {
+    background: url(../img/hover_btt.png) no-repeat 10px 9px;
+    color: #fff;
+}
+.les-boutons a.contact-ann {
+    font-weight: bold;
+    font-size: 11px;
+    color: #469920;
+    width: 119px;
+    margin: 0 2px 0 0;
+    display: block;
+    float: left;
+    height: 70px;
+    text-decoration: none;
+}
+.les-boutons a.contact-ann span {
+    background: url("../img/icons/picto-contact.png") no-repeat scroll center 8px transparent;
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    height: 33px;
+    padding: 32px 0 0;
+    text-align: center;
+    width: 113px;
+    color: #FFF;
+}
+.les-boutons a.tel-ann {
+    font-weight: bold;
+    font-size: 11px;
+    color: #469920;
+    width: 115px;
+    margin: 10px  2px 0 0;
+    display: block;
+    float: left;
+    height: 70px;
+    text-decoration: none;
+    
+}
+.les-boutons a.tel-ann span {
+    background: url(../img/icons/picto-tel.png) no-repeat center 1px;
+    font-weight: bold;
+    font-size: 11px;
+    width: 113px;
+    display: block;
+    height: 33px;
+    text-align: center;
+    padding: 23px 0 0;
+}
+.bt-sociales {
+    /*background: none repeat scroll 0 0 white;*/
+    /*border: 5px solid #E9E9E9;*/
+    /*margin-bottom: 10px;*/
+    /*padding-top: 10px;*/
+    width: 215px;
+    float: left;
+    /*min-height: 226px;*/
+}
+.bt-sociales ul {
+    float: left;
+    width: 170px;
+    margin: 0 10px 0 0;
+}
+.bt-sociales ul li {
+    margin: 5px 0;
+    margin-left: 10px;
+    list-style: none;
+    width: 200px;
+}
+.bt-sociales ul li a.email-ami {
+    background: url(../img/icons/icone-envoyer.png) no-repeat left center;
+    color: #F00;
+    display: block;
+    padding: 0 0 0 25px;
+    line-height: 20px;
+    text-decoration: none;
+}
+.bt-sociales ul li a.favoris {
+    background: url(../img/icons/icon_add_favoris_20x20.gif) left center no-repeat;
+    color: #F00;
+    display: block;
+    padding: 0 0 0 25px;
+    line-height: 20px;
+    text-decoration: none;
+}
+.bt-sociales ul li a.imprimer {
+    background: url(../img/icons/icon_print_20x20.gif) no-repeat left center;
+    color: #F00;
+    display: block;
+    padding: 0 0 0 25px;
+    line-height: 20px;
+    text-decoration: none;
+}
+.bt-sociales ul li a.signaler {
+    background: url(../img/icons/abus.png) no-repeat left center;
+    color: #F00;
+    display: block;
+    padding: 0 0 0 25px;
+    line-height: 20px;
+    text-decoration: none;
+}
+.bt-sociales ul li a{
+    font-size: 11px;
+}
+
+.les-boutons a.tel-ann:hover {
+	background:url(../img/hover_btt.png) no-repeat 0 -61px;
+	color:#fff;
+}
+
+#ligne1_details {
+    min-height: 256px;
+    width: 765px;
+    float: left;
+}
+
+.text_ann {
+    border: 1px #edecec solid;
+    padding: 10px;
+    overflow: hidden;
+    color: #61767C;
+    font-size: 12px;
+    margin: 0 9px 11px 0;
+    float: left;
+    width: 741px;
+   
+}
+#titre_detail_annonce {
+    width: 256px;
+    float: left;
+}
+#detailInfos {
+    font-size: 12px;
+    margin: 0 15px 10px;
+    margin: 0px 0px 10px 10px;
+}
+#detailInfos h3 {
+    border-bottom: 1px dotted black;
+    color: #0e87b6;
+    font: bold 14px "Trebuchet MS", Helvetica, sans-serif;
+    margin: 5px 0 15px;
+    padding-bottom: 5px;
+}
+#detailInfos .prix-ann {
+    background: #f68600;
+    color: #fff;
+    padding: 2px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin: 0 10px 0 0;
+}
