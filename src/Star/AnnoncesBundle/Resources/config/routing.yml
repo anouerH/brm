@@ -44,3 +44,6 @@ annonce_last:
 annonce_detail:
     pattern: /tunisie-annonce-{slug}/{gouv}-{deleg}-{locality}
     defaults: { _controller:StarAnnoncesBundle:Annonce:detailAnnonce}
+contact_annonceur:
+    pattern: /contact-annonceur
+    defaults: { _controller:StarAnnoncesBundle:Annonce:contactAnnonceur}

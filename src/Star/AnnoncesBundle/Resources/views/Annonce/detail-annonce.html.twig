@@ -53,7 +53,7 @@
                     <div class="actions">
                         <div class="bt-contact">
                             <div class="les-boutons">
-                                <a href="" class="contact-ann select highslide" onclick="return hs.htmlExpand(this, { contentId: 'highslide-html' } )"><span>Contacter <br>l'annonceur</span></a>
+                                <a href="" class="contact-ann select highslide" data-toggle="modal" data-target="#myModal" ><span>Contacter <br>l'annonceur</span></a>
                                 <a href="" class="tel-ann highslide"><span>Aucun num de<br>téléphone</span></a>                   
                   
                             </div>
@@ -102,23 +102,140 @@
                     <h3>
                         <div><span class="noir" id="titre_detail_annonce">{{entity.title}}</span></div>
                         <span class="prix-ann">{{entity.price}}<sup>dt</sup></span>
-                        <span class="negos">&nbsp;Prix fixe</span>
+                        <span class="negos">&nbsp;{% if entity.fixedPrice == 1 %}Prix fixe{%else%} Prix négociable {%endif%}</span>
+                        <div class="noir" style="width:255px; text-align:left; float:right; margin-left:30px">Caractéristiques</div>
                     </h3>
                 </div>
-                <div>{{entity.description}}</div>
-		<div style="text-align:left; width:220px; float:right; margin-left:6px">
-		
+                
+		<div style="text-align:left; width:485px; float:left; margin-left:6px">
+                    {{entity.description}}
+                </div>
+                <div style="text-align:left; width:220px; float:right; margin-left:6px">
+                    <div id="detailInfos">
+                        <ul>
+                            <li class="odd">
+                                <span class="name">Energie</span>
+                                <span class="value">{{entity.energy}}</span>
+                            </li>
+                            <li class="even">
+                                <span class="name">Puissance fiscale</span>
+                                <span class="value">{{entity.power}} cv</span>
+                            </li>
+                            <li class="odd">
+                                <span class="name">Kilométrage</span>
+                                <span class="value">{{entity.mileage}} km</span>
+                            </li>
+                            <li class="even">
+                                <span class="name">Mise en circulation</span>
+                                <span class="value">{{entity.release | date('d/m/Y')}}</span>
+                            </li>
+		      </ul>
+			</div>
+		            
 		</div>
             </div>
             <div class="clr"></div>
         </div>
-  
+        <div id="ligne1_details">
+            <div id="id_annonce" style="float:left; width:220px; margin:0 0 0 13px; font-weight:bold">ID Annonce: 0012{{entity.id}}</div>
+            <div class="txt-inserer">Insérée le {{entity.createdAt | date('d/m/Y')}}&nbsp;&nbsp;&nbsp;&nbsp;
+                Modifiée le {{entity.updatedAt | date('d/m/Y')}}&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{ asset('img/eye.png') }}" alt="vue {{entity.visitors}} fois" title="vue {{entity.visitors}} fois">{{entity.visitors}}
+            </div>
+        </div>
 
+  
+  
+  <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Envoyer un message à l'annonceur</h4>
+      </div>
+           
+      <form id="contact-annonceur" class="form-horizontal" role="form" action="{{ path('contact_annonceur') }}" >
+        <div class="modal-body">
+
+                {% if app.user %}
+
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" id="subject" name="subject" placeholder="Objet" required>
+                  <input type="hidden" class="form-control" id="anonnceur" name="anonnceur" value="{{entity.user.email}}">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <textarea class="form-control" rows="5" placeholder="Message" id="message" name="message" required></textarea>
+                </div>
+              </div>
+            
+            {% else %}
+              <div class="alert alert-info">
+                Vous devez vous connecter pour contacter l'annonceur
+              </div>
+              {% endif %}
+            
+        </div>
+              
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+          {% if app.user %}<button type="submit" class="btn btn-primary">Envoyer</button>{% endif %}
+        </div>
+      </form>
+            
+    </div>
+  </div>
+</div>
   
   
         
 
   
+  <script>
+  
+  $(document).ready(function() {
+
+    //listen for the form beeing submitted
+    $("#contact-annonceur").submit(function(){
+       //get the url for the form
+       var url=$("#contact-annonceur").attr("action");
+
+       //start send the post request
+        $.post(url,{
+            subject:$("#subject").val(),
+            anonnceur:$("#anonnceur").val(),
+            message:$("#message").val(),
+        },function(data){
+            //the response is in the data variable
+
+             if(data.responseCode==200 ){           
+                 $('#output').html(data.greeting);
+                 $('#output').css("color","red");
+             }
+            else if(data.responseCode==400){//bad request
+                $('#output').html(data.greeting);
+                $('#output').css("color","red");
+            }
+            else{
+               //if we got to this point we know that the controller
+               //did not return a json_encoded array. We can assume that           
+               //an unexpected PHP error occured
+               alert("An unexpeded error occured.");
+
+               //if you want to print the error:
+               $('#output').html(data);
+            }
+        });//It is silly. But you should not write 'json' or any thing as the fourth parameter. It should be undefined. I'll explain it futher down
+
+       //we dont what the browser to submit the form
+       return false;
+    });
+
+
+ });
+  </script>
   
     
   

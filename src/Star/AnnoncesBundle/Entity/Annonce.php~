@@ -237,6 +237,15 @@ class Annonce
      */
     private $images;
     
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="visitors", type="integer", nullable=true)
+     */
+    private $visitors;
+    
+    
+    
     
     public function __construct()
     {
@@ -970,5 +979,22 @@ class Annonce
     public function getConvertStars()
     {
         return $this->convertStars;
+    }
+    
+    /**
+     * set Images 
+     */
+    public function setImages($images){
+        $this->images = $images;
+
+        return $this;
+    }
+    
+    /**
+     * get Images
+     */
+    
+    public function getImages(){
+        return $this->images;
     }
 }

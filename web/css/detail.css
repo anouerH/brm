@@ -202,7 +202,7 @@ filarian li a {
    
 }
 #titre_detail_annonce {
-    width: 256px;
+    width: 220px;
     float: left;
 }
 #detailInfos {
@@ -227,4 +227,44 @@ filarian li a {
     -moz-border-radius: 5px;
     border-radius: 5px;
     margin: 0 10px 0 0;
+}
+.gelerie_img p {
+    text-align: left;
+}
+#detailInfos {
+    font-size: 12px;
+    margin: 0 15px 10px;
+    margin: 0px 0px 10px 10px;
+}
+#detailInfos .odd {
+    background: #f9f9f9;
+    border-bottom: 1px solid #f5f5f5;
+}
+#detailInfos ul li {
+    padding: 5px 0;
+    overflow: hidden;
+}
+#detailInfos .name {
+    float: left;
+    width: 110px;
+}
+#detailInfos .value {
+    color: #000;
+    display: block;
+    float: right;
+    font-weight: bold;
+    width: 72px;
+    text-align: center;
+}
+.noir {
+    color: #000;
+}
+.txt-inserer {
+    text-align: right;
+    overflow: hidden;
+    padding: 0 20px 0 0;
+    color: #f68600;
+    font-weight: bold;
+    line-height: 18px;
+    float: left;
 }

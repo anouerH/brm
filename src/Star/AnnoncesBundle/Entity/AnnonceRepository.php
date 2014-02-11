@@ -20,4 +20,5 @@ class AnnonceRepository extends EntityRepository
         
         return $query->getResult();
     }
-}
+    
+ }

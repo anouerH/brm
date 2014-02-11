@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Star\AnnoncesBundle\Entity\Annonce;
 use Star\AnnoncesBundle\Form\AnnonceType;
+use Symfony\Component\HttpFoundation\Response;
+
 
 /**
  * Annonce controller.
@@ -286,6 +288,7 @@ class AnnonceController extends Controller
      * Les dernières annonces
      */
     public function lastAnnoncesAction(){
+        
          $em = $this->getDoctrine()->getManager();
          $annonces = $em->getRepository('StarAnnoncesBundle:Annonce')->getlastAnnonces();
          
@@ -313,6 +316,7 @@ class AnnonceController extends Controller
      * Detail Annonce
      */
     public function detailAnnonceAction($slug){
+        
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('StarAnnoncesBundle:Annonce')->findOneBy(array('slug' => $slug));
@@ -320,10 +324,49 @@ class AnnonceController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Annonce entity.');
         }
+        $session = $this->get('session');
+        
+        if ((!$session->has('visitors')) || (!in_array($entity->getId(), $session->get('visitors'))) ) {
+            $entity->setVisitors($entity->getVisitors()+1);
+            $em->persist($entity);
+            $em->flush();
+            if(!$session->has('visitors')){
+                $session->set('visitors', array());
+            }
+            $idsInSession = $session->get('visitors');
+            array_push($idsInSession, $entity->getId());
+            $session->set('visitors', $idsInSession);
+        }
+        
         $images =  $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $entity->getImgDirId()));
         return $this->render('StarAnnoncesBundle:Annonce:detail-annonce.html.twig', array(
             'entity' => $entity,
             'images'=>$images
         ));
+    }
+    
+    /**
+     * Contact Annonceur
+     */
+    public function contactAnnonceurAction(Request $request){
+        
+        var_dump($request->request->get('subject'));
+        
+        $usr= $this->get('security.context')->getToken()->getUser();
+
+
+        $message = \Swift_Message::newInstance()
+        ->setSubject($request->request->get('subject'))
+        ->setFrom($usr->getEmail())
+        ->setTo($request->request->get('annonceur'))
+        ->setBody($this->renderView('StarAnnoncesBundle:Annonces:email.txt.twig', array('name' => $name)))
+    ;
+    $this->get('mailer')->send($message);
+    
+        
+        
+        $return=array("responseCode"=>200,  "greeting"=>'ddd');
+        $return=json_encode($return);//jscon encode the array
+        return new Response($return,200,array('Content-Type'=>'application/json'));//make sure it has the correct content type
     }
 }
