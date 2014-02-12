@@ -5242,3 +5242,14 @@ div .engin-field, div .model-list, div .brand-list, div .immob-field{
     padding: 3px;
     width: 220px;
 }
+
+.titre_star {
+    display: block;
+    background: url(../img/stars.gif) no-repeat left center;
+    padding: 5px 0 5px 27px;
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0px 0px 10px;
+    color: #666;
+}

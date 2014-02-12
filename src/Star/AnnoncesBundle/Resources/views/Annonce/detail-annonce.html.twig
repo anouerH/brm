@@ -139,7 +139,7 @@
         <div id="ligne1_details">
             <div id="id_annonce" style="float:left; width:220px; margin:0 0 0 13px; font-weight:bold">ID Annonce: 0012{{entity.id}}</div>
             <div class="txt-inserer">Insérée le {{entity.createdAt | date('d/m/Y')}}&nbsp;&nbsp;&nbsp;&nbsp;
-                Modifiée le {{entity.updatedAt | date('d/m/Y')}}&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{ asset('img/eye.png') }}" alt="vue {{entity.visitors}} fois" title="vue {{entity.visitors}} fois">{{entity.visitors}}
+                Modifiée le {{entity.updatedAt | date('d/m/Y')}}&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-eye-open"></i><!--<img src="{{ asset('img/eye.png') }}" alt="vue {{entity.visitors}} fois" title="vue {{entity.visitors}} fois">-->&nbsp;&nbsp;{{entity.visitors}}
             </div>
         </div>
 

@@ -350,7 +350,7 @@ class AnnonceController extends Controller
      */
     public function contactAnnonceurAction(Request $request){
         
-        var_dump($request->request->get('subject'));
+        var_dump($request->request->get('subject'), $request->request->get('anonnceur'));
         
         $usr= $this->get('security.context')->getToken()->getUser();
 
@@ -358,15 +358,23 @@ class AnnonceController extends Controller
         $message = \Swift_Message::newInstance()
         ->setSubject($request->request->get('subject'))
         ->setFrom($usr->getEmail())
-        ->setTo($request->request->get('annonceur'))
-        ->setBody($this->renderView('StarAnnoncesBundle:Annonces:email.txt.twig', array('name' => $name)))
-    ;
-    $this->get('mailer')->send($message);
+        ->setTo($request->request->get('anonnceur'))
+        ->setContentType("text/html")
+        ->setBody($this->renderView('StarAnnoncesBundle:Annonce:contact-annonceur.html.twig', array('name' => $usr->getUsername())))
+            ;
+            $this->get('mailer')->send($message);
     
         
         
         $return=array("responseCode"=>200,  "greeting"=>'ddd');
         $return=json_encode($return);//jscon encode the array
         return new Response($return,200,array('Content-Type'=>'application/json'));//make sure it has the correct content type
+    }
+    
+    /**
+     * Espace Membre
+     */
+    public function espaceMembreAction(){
+        return $this->render('StarAnnoncesBundle:Annonce:espace-membre.html.twig');
     }
 }

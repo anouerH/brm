@@ -1,3 +1,8 @@
+star_message:
+    resource: "@StarMessageBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 star_user:
     resource: "@StarUserBundle/Resources/config/routing.yml"
     prefix:   /
@@ -49,3 +54,7 @@ admin_logout:
 
 shtumi_useful:
     resource: '@ShtumiUsefulBundle/Resources/config/routing.xml'
+
+fos_message:
+    resource: "@FOSMessageBundle/Resources/config/routing.xml"
+    prefix: /messagerie

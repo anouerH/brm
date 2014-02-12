@@ -135,3 +135,7 @@ shtumi_useful :
             no_result_msg: ' '
             order_property: name
             order_direction: ASC
+fos_message:
+    db_driver: orm
+    thread_class: Star\MessageBundle\Entity\Thread
+    message_class: Star\MessageBundle\Entity\Message

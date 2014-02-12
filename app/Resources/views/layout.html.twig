@@ -74,7 +74,7 @@
             <ul class="login">
                 <li class="left">&nbsp;</li>
                 {% if is_granted('ROLE_USER') %}
-                  <li>Bienvenue {{ app.user.username|capitalize }}</li>
+                    <li>  <i class=" icon-user icon-white"></i> Bienvenue {{ app.user.username|capitalize }}{% if fos_message_nb_unread() > 0%}&nbsp;<i class=" icon-envelope icon-white"></i><span class="badge badge-success">{{ fos_message_nb_unread() }} </span>{% endif %}</li>
                   <li class="sep">|</li>
                 {% else %}
                   <li><a href='{{ path('fos_user_registration_register')}}'>S'inscrire</a></li>

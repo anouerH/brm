@@ -47,3 +47,6 @@ annonce_detail:
 contact_annonceur:
     pattern: /contact-annonceur
     defaults: { _controller:StarAnnoncesBundle:Annonce:contactAnnonceur}
+espace_membre:
+    pattern: /espace-membre
+    defaults: { _controller:StarAnnoncesBundle:Annonce:espaceMembre}
