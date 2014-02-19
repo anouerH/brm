@@ -139,3 +139,4 @@ fos_message:
     db_driver: orm
     thread_class: Star\MessageBundle\Entity\Thread
     message_class: Star\MessageBundle\Entity\Message
+             

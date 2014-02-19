@@ -1,0 +1,93 @@
+{% block fos_message_content %}
+
+<h5><b>Objet</b> : {{ thread.subject }}</h5>
+
+{% for message in thread.messages %}
+    
+    <div class="messenger_thread_message">
+        <div class="messenger_thread_message_info">
+            {% trans with {'%sender%': message.sender|e, '%date%': message.createdAt|date ('d/m/Y à H:i')} from 'FOSMessageBundle' %}message_info{% endtrans %}
+        </div>
+
+        <div class="messenger_thread_message_body" id="message_{{ message.id }}">
+            <pre style="margin-left: {{loop.index0}}0px">{{ message.body }}</pre>
+        </div>
+    </div>
+{% endfor %}
+
+<h4>{% trans from 'FOSMessageBundle' %}reply{% endtrans %}</h4>
+
+<form id="message-reply" action="{{ url('fos_message_thread_view', {'threadId': thread.id}) }}" method="post" class="form-horizontal">
+    {#{ form_widget(form) }#}
+        
+    <div class="form-group ">
+        {{ form_label(form.body, 'Votre message', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+        <div class="col-sm-9">
+        {{ form_widget(form.body, {'attr': {'class': 'form-control','placeholder': 'Votre message','rows':'5'}}) }}
+        {{ form_errors(form.body) }}
+        </div>
+    </div>
+        {{ form_rest(form) }}
+    <!--<input type="submit" />-->
+    <div style="padding-top: 20px">
+        <button type="submit" class="btn btn-primary" style="float: right">Envoyer</button>
+    </div>
+    
+</form>
+
+{% endblock %}
+
+<script>
+    //callback handler for form submit
+    $("#message-reply").submit(function(e)
+    {
+        var postData = $(this).serializeArray();
+        var formURL = $(this).attr("action");
+        $.ajax(
+        {
+            url : formURL,
+            type: "POST",
+            data : postData,
+            success:function(data, textStatus, jqXHR) 
+            {
+                //data: return data from server
+                getMessage();
+            },
+            error: function(jqXHR, textStatus, errorThrown) 
+            {
+                //if fails      
+            }
+        });
+        e.preventDefault(); //STOP default action
+        e.unbind(); //unbind. to stop multiple form submit.
+    });
+    
+    // surchager les anciens messages
+    function getMessage(){
+        var threadId = "{{thread.id}}";
+            var urlTwig = "{{ url('fos_message_thread_view', {'threadId': 'threadIdVal'}) }}";
+            urlTwig = urlTwig.replace("threadIdVal", threadId);
+            $.ajax({
+                url: urlTwig,
+                type: 'GET',
+                dataType: 'html',
+                cache: "false",
+                processData: false,
+                data: content,
+                success: function (data) {
+                    //var result = $('<div />').append(data).find('#showresults').html();
+                        $('#messagerie').html(data);
+                       //$('#messagerie form #message').remove();
+                    
+                    //alert('yeye');
+                },
+                error: function (xhr, status) {
+                    alert("Sorry, there was a problem!");
+                },
+                complete: function (xhr, status) {
+                    //$('#showresults').slideDown('slow')
+                    
+                }
+            });
+    }
+</script>
