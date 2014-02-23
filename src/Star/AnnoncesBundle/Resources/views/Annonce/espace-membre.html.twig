@@ -1,11 +1,103 @@
 
 {% extends "::layout.html.twig" %}
-
-
+    
 {% block title %}
   Espace membre - {{ parent() }}
 {% endblock %}
 {% block body -%}
   <div class="titre_star">Espace membre </div>
+  
+    <ul id="tabs">
+      <li id="current"><a href="#" name="tab1">Messages</a></li>
+      <li id=""><a href="#" name="tab2">Mes annonces</a></li>
+      <li id=""><a href="#" name="tab3">Mes stars</a></li>
+      <li id=""><a href="#" name="tab4">Profil</a></li>    
+    </ul>
+  
+    <div id="content-tab"> 
+        
+     
+    
+      <div id="tab1" style="display: block;">
+        <ul id="sub-tabs">
+            <li id="current"><a href="#" name="sub-tab1">Messages Reçus</a></li>
+            <li id=""><a href="#" name="sub-tab2">Messages envoyés</a></li>
+            <li id=""><a href="#" name="sub-tab3">Corbeille</a></li>
+        </ul>
+              
+        <div id="sub-content-tab">
+            <div id="sub-tab1" style="display: block;">
+                {% render url('fos_message_inbox') %}
+            </div>
+            <div id="sub-tab2" style="display: none;">
+                {% render url('fos_message_sent') %}
+            </div>
+            <div id="sub-tab3" style="display: none;">
+                {% render url('fos_message_deleted') %}
+            </div>
+        </div>
+          
+      </div>
+      <div id="tab2" style="display: none;">
+          <h2>Vivamus fringilla suscipit justo</h2>
+          <p>Aenean dui nulla, egestas sit amet auctor vitae, facilisis id odio. Donec dictum gravida feugiat.</p>
+          <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras pretium elit et erat condimentum et volutpat lorem vehicula</p>
+          <p>Morbi tincidunt pharetra orci commodo molestie. Praesent ut leo nec dolor tempor eleifend.</p>    
+      </div>
+      <div id="tab3" style="display: none;">
+          <h2>Phasellus non nibh</h2>
+          <p>Non erat laoreet ullamcorper. Pellentesque magna metus, feugiat eu elementum sit amet, cursus sed diam. Curabitur posuere porttitor lorem, eu malesuada tortor faucibus sed.</p>
+          <h3>Duis pulvinar nibh vel urna</h3>
+          <p>Donec purus leo, porttitor eu molestie quis, porttitor sit amet ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec accumsan ornare elit id imperdiet. </p>
+          <p>Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et. </p>
+      </div>
+      <div id="tab4" style="display: none;">
+          {#% render url('fos_user_profile_edit') %#}
+          <h2>Cum sociis natoque penatibus</h2>
+          <p>Magnis dis parturient montes, nascetur ridiculus mus. Nullam ac massa quis nisi porta mollis venenatis sit amet urna. Ut in mauris velit, sed bibendum turpis.</p>
+          <p>Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent bibendum sagittis libero.</p>
+          <h3>Imperdiet sem interdum nec</h3>
+          <p>Mauris rhoncus tincidunt libero quis fringilla.</p>    
+      </div>
+  </div>
+  
+ <script>
+    $(document).ready(function() {
+        $("#content-tab").find("[id^='tab']").hide(); // Hide all content
+        $("#tabs li:first").attr("id","current"); // Activate the first tab
+        $("#content-tab #tab1").fadeIn(); // Show first tab's content
+
+        $('#tabs a').click(function(e) {
+            e.preventDefault();
+            if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
+             return;       
+            }
+            else{             
+              $("#content-tab").find("[id^='tab']").hide(); // Hide all content
+              $("#tabs li").attr("id",""); //Reset id's
+              $(this).parent().attr("id","current"); // Activate this
+              $('#' + $(this).attr('name')).fadeIn(); // Show content for the current tab
+            }
+        });
+        $("#sub-content-tab").find("[id^='sub-tab']").hide(); // Hide all content
+        $("#sub-tabs li:first").attr("id","current"); // Activate the first tab
+        $("#sub-content-tab #sub-tab1").fadeIn(); // Show first tab's content
+
+        $('#sub-tabs a').click(function(e) {
+            e.preventDefault();
+            if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
+             return;       
+            }
+            else{             
+              $("#sub-content-tab").find("[id^='sub-tab']").hide(); // Hide all content
+              $("#sub-tabs li").attr("id",""); //Reset id's
+              $(this).parent().attr("id","current"); // Activate this
+              $('#' + $(this).attr('name')).fadeIn(); // Show content for the current tab
+            }
+        });
+    });
+    
+    </script>
+  
 {% endblock %}
   

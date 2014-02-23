@@ -350,7 +350,7 @@ class AnnonceController extends Controller
      */
     public function contactAnnonceurAction(Request $request){
         
-        var_dump($request->request->get('subject'), $request->request->get('anonnceur'));
+        // var_dump($request->request->get('subject'), $request->request->get('anonnceur'));
         
         $usr= $this->get('security.context')->getToken()->getUser();
 
