@@ -139,4 +139,23 @@ fos_message:
     db_driver: orm
     thread_class: Star\MessageBundle\Entity\Thread
     message_class: Star\MessageBundle\Entity\Message
-             
+    
+fos_elastica:
+    clients:
+        default: { host: starannonces.local, port: 80 }
+    #serializer:
+    #    callback_class: FOS\ElasticaBundle\Serializer\Callback
+    #    serializer: serializer
+    indexes:
+        website:
+            client: default
+            types:
+                 annonce:
+                     mappings:
+                         theme:
+                     persistence:
+                         driver: orm
+                         model: Star\AnnoncesBundle\Entity\Annonce
+                         provider:
+                         finder:
+                      

@@ -377,4 +377,30 @@ class AnnonceController extends Controller
     public function espaceMembreAction(){
         return $this->render('StarAnnoncesBundle:Annonce:espace-membre.html.twig');
     }
+    
+    /**
+     * search annonces
+     *
+     * @Route("/search", name="annonce_search")
+     * @Method("GET")
+     * @Template("StarAnnoncesBundle:Annonce:search.html.twig")
+     */
+    public function searchAction(){
+        
+        $finder = $this->container->get('fos_elastica.finder.website.annonce');
+        $boolQuery = new \Elastica\Query\Bool();
+        
+        $categoryQuery = new \Elastica\Query\Terms();
+        $categoryQuery->setTerms('theme_id', array('1', '2', '3'));
+        $boolQuery->addMust($categoryQuery);
+        
+        $data = $finder->find($boolQuery);
+        
+        var_dump(count($data));
+        
+        
+
+        
+        return $data;
+    }
 }

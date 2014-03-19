@@ -50,3 +50,6 @@ contact_annonceur:
 espace_membre:
     pattern: /espace-membre
     defaults: { _controller:StarAnnoncesBundle:Annonce:espaceMembre}
+annonce_search:
+    pattern: /search
+    defaults: { _controller:StarAnnoncesBundle:Annonce:search}
