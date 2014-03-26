@@ -1,0 +1,239 @@
+{% extends "::layout-search.html.twig" %}
+
+{% block title %}
+  Recherche annonce - {{ parent() }}
+{% endblock %}
+
+{% block body -%}
+ <div id="form-header" class="form-header" >
+           
+               
+           
+        
+ <link href="{{ asset('bundles/starsearchengine/css/search.css') }}" rel="stylesheet" />
+ <link rel="stylesheet" href="{{ asset('css/list.css') }}" type="text/css" />
+    
+    <div class="titre_star">Rechercher une annonce</div>
+    {#{ form_widget(form) }#}
+    <div class="search">
+        <form class="form-inline" id="search-engine-form" novalidate action="#" method="post" {{ form_enctype(form) }}>
+
+            <div id="box_search">
+                
+                <div class="demi_radio not_emploi">
+                    {% for child in form.annonceType %}
+                    <label class="radio-inline">
+                       {{ form_widget(child) }}{{ form_label(child) }}
+                    </label>
+                {% endfor %}
+                    
+                </div>
+                
+                <div class="demi_radio not_emploi">
+                    <!--<input type="radio" checked="checked" id="anon_Rubrique" value="1" name="anon_Rubrique">&nbsp;Vente&nbsp;&nbsp;
+                    <input type="radio" id="anon_Rubrique" value="0" name="anon_Rubrique">&nbsp;Location-->
+                    
+                    {% for child in form.demandeType %}
+                    <label class="radio-inline">
+                       {{ form_widget(child) }}{{ form_label(child) }}
+                    </label>
+                {% endfor %}
+                    
+                </div>
+                
+                <div style="height:25px;" class="demi_radio not_emploi">
+                    <label style="width:70px">ID Annonce</label>
+                    <input type="text" style="width:70px" class="input_field_search" value="" name="id_annonce" id="id_annonce">
+                </div>
+                
+                
+                
+                <!--Les themes-->
+                <div id="sub_box_region">
+                    <div class="demi">
+                        <label>Thème</label>
+                        {{ form_widget(form.theme, {'attr': {'class': 'form-control field_search'}}) }}
+                    </div>
+                    <div class="demi">
+                        <label>Nature</label>
+                         {{ form_widget(form.nature, {'attr': {'class': 'form-control field_search'}}) }}
+                    </div>
+                    <div class="demi">
+                        <label>Catégorie</label>
+                        {{ form_widget(form.brand, {'attr': {'class': 'form-control field_search'}}) }}
+                    </div>
+                </div>
+                
+                
+                <!--Les régions-->
+                <div id="sub_box_region">
+                    <div class="demi">
+                        <label>Région</label>
+                        {{ form_widget(form.gouv, {'attr': {'class': 'form-control field_search'}}) }}
+                    </div>
+                    <div class="demi">
+                        <label>Ville</label>
+                         {{ form_widget(form.deleg, {'attr': {'class': 'form-control field_search'}}) }}
+                    </div>
+                    <div class="demi">
+                        <label>Localité</label>
+                        {{ form_widget(form.locality, {'attr': {'class': 'form-control field_search'}}) }}
+                    </div>
+                </div>
+                <div style="width:160px" class="demi">
+                    <div style="width: 85px; float: left;  text-align:right">
+                            {{ form_widget(form.withPhotos, {'attr': {'class': 'form-control'}}) }}
+                            
+                    </div>
+                    <div style="width: 50px; float: left;">
+                            {{ form_label(form.withPhotos, 'Photo', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                    </div>
+		</div>
+                
+                <div class="demi">
+                          <label style="width:33px">Prix</label>
+                          	
+                                {{ form_widget(form.min_price, {'attr': {'class': 'form-control price-field','placeholder': 'Min'}}) }}
+				 {{ form_widget(form.max_price, {'attr': {'class': 'form-control price-field','placeholder': 'Max'}}) }}
+						
+                 </div>
+                
+                
+                {{ form_rest(form) }}
+                
+                <div id="searchBtnTop" class="herobtn demi">
+                    <span class="l"></span><span class="m">Lancer la recherche</span><span class="r"></span>
+                </div>
+                
+                
+                
+            </div>
+            
+            
+        </form>
+    </div>
+
+    
+    
+</div>
+        <div class="clearfix visible-xs"></div>
+        <div id="content" class="span9">
+            <h1></h1>
+            {%if(entities | length)%}            
+            <div class="annonce_bottom">
+                <div class="last_ann_index">
+                    <div class="titre_annon">
+                        <h2>Les dernières annonces</h2>
+                    </div>
+                    <ul class="liste_search_index">
+                        
+                        {% for entity in entities %}
+                            {%set editId = entity.imgDirId %}
+                            {%set countImgs = 0 %}
+                            {%set displayIt = true %}
+                            {%if withPhotos and punkave_get_files('tmp/attachments/' ~ editId ) | length == 0  %}
+                                {%set displayIt = false %}
+                            {%endif%}
+                            {#% if(withPhotos && )%#}
+                        {%if displayIt %}
+                        <li>
+                            <div class="liste_gauche_index">
+
+                                <div class="img">
+                                    <a href="{{ path('annonce_detail', { 'slug': entity.slug , 'gouv': entity.gouv , 'deleg': entity.deleg, 'locality': entity.locality}) }}" style="text-decoration:none; color:#069; font-size:12px" alt="{{ entity.title }}">
+                                        <div id="productImageWrapID_191">
+                                            
+                                            
+                                            {%if(punkave_get_files('tmp/attachments/' ~ editId ) | length)%}
+                                                {%set countImgs = punkave_get_files('tmp/attachments/' ~ editId ) | length %}
+                                                <img src=
+                                            '/uploads/tmp/attachments/{{editId}}/thumbnails/{{ punkave_get_files('tmp/attachments/' ~ editId ) | first }}'>
+                                             {%else%}
+                                                <img src="{{ asset('img/no-image.png') }}" alt="{{ entity.title }}">
+                                             {%endif%}
+                                            
+                                        </div>
+                                    </a>
+                                   <div class="num-photos">{% if countImgs %}{{ countImgs }} photo(s){% endif %}</div>
+                                </div>
+
+                            </div>
+                            <div class="liste_droite_index1">
+
+                                <div class="titre_ann_home"><a href="{{ path('annonce_detail', { 'slug': entity.slug , 'gouv': entity.gouv, 'deleg': entity.deleg, 'locality': entity.locality}) }}" style="text-decoration:none;" class="titre_ann_home"><strong>{{ entity.title }}</strong></a></div>
+                                <div class="prix">{{ entity.price }}<sup>dt</sup></div>
+
+                                <div class="plus">
+                                    <img width="24" height="18" style="cursor:pointer" title="Ajouter à ma selection" alt="Ajouter à ma selection" src="{{ asset('img/plus.gif') }}">
+                                </div>
+
+                                <div class="desc">{{entity.description | slice(1, 200)}} ...</div>
+                                <div style="float: left; width: 100%; text-align: right; color: #999; font-size:11px">Vue {{entity.visitors}} fois<!-- &nbsp;<img src="images/eye.png" alt="vue 22 fois" title="vue 22 fois" /> --></div>
+
+                            </div>
+                            <div class="bottom_liste">
+                                <div class="location"><span class="text_1"><strong>&nbsp;Lieu :</strong> <span><a style="color:#1291D3" href="tunisie-annonce-recherche-region-GABES">{{entity.gouv}}</a> - <a style="color:#1291D3" href="tunisie-annonce-recherche-ville-EL METOUIA">{{entity.deleg}}</a> - <a style="color:#1291D3" href="tunisie-annonce-recherche-localite-1092">{{entity.locality}}</a></span></span> </div>
+                                <div class="posted2"><span class="text_2"><strong>Posté </strong> <span>le {{entity.createdAt| date('d/m/Y')}}</span></span> </div>
+                            </div>
+                        </li>
+                        {%endif%}
+                        
+                      {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="pagination">
+                <div class="pagination-buttons">
+                    {% if pagination.page>1 %}
+                        <a href="{{ path(pagination.route, 
+                        pagination.route_params|merge({'page': 1})) }}" class="pagination-node"><<</a>
+                        <a href="{{ path(pagination.route, 
+                        pagination.route_params|merge({'page': pagination.page-1})) }}" class="pagination-node"><</a>
+                    {% endif %}
+                    {#display p numbers only from p-4 to p+4 but don't go <1 or >pages_count#}
+                        {% for p in range(max(pagination.page-4, 1), 
+                        min(pagination.page+4, pagination.pages_count)) %}
+                        <a{% if p == pagination.page %} class="current-page"{%else%} class="pagination-node" rel="{{p}}" {% endif %} 
+                            href="#">{{ p }}
+                        </a>
+                    {% endfor %}
+                    {% if pagination.page<pagination.pages_count %}
+                        <a href="{{ path(pagination.route, 
+                            pagination.route_params|merge({'page': pagination.page+1})) }}" class="pagination-node">>
+                           </a>
+                        <a href="{{ path(pagination.route, 
+                    pagination.route_params|merge({'page': pagination.pages_count})) }}" class="pagination-node"  >>></a>
+                    {% endif %}
+                </div>
+            </div>
+            
+            
+            
+            {%else%}
+                {%if(submited)%}
+                <div class="alert alert-block">
+                    Aucune annonce trouvée
+                </div>
+                
+                {%endif%}
+            {%endif%}
+            
+           </div>
+<script type="text/javascript">
+    $("#searchBtnTop").click(function(){
+       $("#search-engine-form").submit();
+    });
+    
+    $(".pagination-node").click(function(){
+        $("#search-engine-form").attr("action", "{{path('star_search_engine_search')}}/"+$(this).attr("rel")) ;
+        $("#search-engine-form").submit();
+    });
+    
+</script>
+
+
+{% endblock %}

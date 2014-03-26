@@ -32,7 +32,7 @@ class AppKernel extends Kernel
             new Shtumi\UsefulBundle\ShtumiUsefulBundle(),
             new FOS\MessageBundle\FOSMessageBundle(),
             new Star\MessageBundle\StarMessageBundle(),
-            new FOS\ElasticaBundle\FOSElasticaBundle(),
+            new Star\SearchEngineBundle\StarSearchEngineBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

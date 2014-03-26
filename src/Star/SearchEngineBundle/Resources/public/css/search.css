@@ -1,0 +1,103 @@
+.search {
+    float: left;
+    width: 762px;
+}
+#box_search {
+    background-color: #EEEEEE;
+    border: 1px solid #EDECEC;
+    border-radius: 4px 4px 4px 4px;
+    float: left;
+    height: auto;
+    min-height: 120px;
+    padding: 10px;
+    width: 741px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+#sub_box_region {
+    float: left;
+    width: 100%;
+}
+.demi {
+    float: left;
+    padding: 10px 3px 3px 10px;
+    width: 31%;
+}
+#box_search label {
+    color: #3366FF;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 9px;
+    margin-top: 5px;
+    text-align: right;
+    width: 60px;
+}
+.field_search {
+    color: #847B6C;
+    float: left;
+    height: 25px;
+    padding: 3px;
+    width: 140px !important;
+}
+.input_field_search {
+    color: #999999;
+    float: left;
+    height: 19px;
+    padding: 3px;
+    width: 129px;
+}
+
+.price-field {
+    color: #999999;
+    width: 60px;
+}
+
+.herobtn {
+    display: block;
+    float: right;
+}
+.herobtn .l {
+    background: url("../images/loupe_recherche.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    width: 41px;
+}
+.herobtn .m {
+    background: url("../images/corps_btn.gif") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 41px;
+    padding: 0 10px;
+}
+.herobtn .r {
+    background: url("../images/back_btn.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    width: 5px;
+}
+.herobtn span {
+    cursor: pointer;
+    float: left;
+    height: 41px;
+}
+.btn {
+    float: left;
+    padding: 0 35px 0 0;
+    text-align: right;
+    width: 468px;
+}
+.demi_radio {
+    color: #3366FF;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 9px;
+    margin-top: 5px;
+    padding: 10px 3px 3px 48px;
+    width: 32%;
+}
+
+.radio-inline label{
+    float: left;
+    margin-right: 5px !important;
+    width: 0 !important; 
+}

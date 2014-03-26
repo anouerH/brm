@@ -1,3 +1,7 @@
+star_search_engine:
+    resource: "@StarSearchEngineBundle/Resources/config/routing.yml"
+    prefix:   /
+
 star_message:
     resource: "@StarMessageBundle/Controller/"
     type:     annotation

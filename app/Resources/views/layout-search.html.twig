@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>{% block title %}STAR ANNONCES annonces gratuites en Tunisie{% endblock %}</title>
+
+    {% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
+      <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" />
+      <link rel="stylesheet" href="{{ asset('css/slide.css') }}" type="text/css" />
+      <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.css') }}" type="text/css" />
+      <link rel="stylesheet" href="{{ asset('css/ui-lightness/jquery-ui-1.8.4.custom.css') }}" type="text/css" />
+    {% endblock %}
+    
+    {% block javascripts %}
+    
+    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/slide.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.dataTables.js') }}"></script>
+  {% endblock %}
+  </head>
+
+  <body>
+
+
+  
+
+
+
+    <!-- Panel -->
+    <div id="toppanel">
+        <div id="panel">
+            <div class="content clearfix">
+                
+                <div class="left">
+                    <form   class="form-inline" action="{{ path("fos_user_security_check") }}" method="post">
+                        <h1>Connexion</h1>
+                        
+
+                        <div class="control-group">
+                          <label class="control-label" for="username">Pseudo</label>
+                          <div class="controls">
+                            <input type="text" id="username" name="_username" placeholder="Pseudo">
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          <label class="control-label" for="password">Mot de passe</label>
+                          <div class="controls">
+                          <input type="password" id="password" name="_password" placeholder="Password">
+                          </div>
+                        </div>
+
+                        
+
+                        <div class="control-group">
+                          <div class="controls">
+                            <label class="checkbox">
+                              <input type="checkbox" id="remember_me" name="_remember_me" value="on"> Se souvenir de moi
+                            </label>
+                            <button type="submit" class="btn">Envoyer</button>
+                          </div>
+                        </div>
+
+                    </form>
+
+                </div>
+                
+            </div>
+        </div>
+        <!-- /login --> 
+        <!-- The tab on top --> 
+        <div class="tab">
+            <ul class="login">
+                <li class="left">&nbsp;</li>
+                {% if is_granted('ROLE_USER') %}
+                    <li>  <i class=" icon-user icon-white"></i> Bienvenue {{ app.user.username|capitalize }}{% if fos_message_nb_unread() > 0%}&nbsp;<i class=" icon-envelope icon-white"></i><span class="badge badge-success">{{ fos_message_nb_unread() }} </span>{% endif %}</li>
+                  <li class="sep">|</li>
+                {% else %}
+                  <li><a href='{{ path('fos_user_registration_register')}}'>S'inscrire</a></li>
+                  <li class="sep">|</li>
+                {% endif %}
+                <li id="toggle">
+                    {% if is_granted('ROLE_USER') %}
+                      <a href="{{ path('fos_user_security_logout')}}">Log out</a>
+                    {% else %}
+                      <a id="open" class="open" href="#">Log In</a>
+                      <a id="close" style="display: none;" class="closee" href="#">Fermer</a>
+                    {% endif %}
+                    
+                         
+                </li>
+                <li class="right">&nbsp;</li>
+            </ul>
+        </div>
+        <!-- / top -->
+    </div>
+    <!--panel -->  
+
+
+
+
+    <div class="container">
+      <div id="header" class="hero-unit">
+        <div class="logo">
+          <a href="/"><img src="{{ asset('img/logo.png') }}" width="265" height="100"></a>
+        </div>
+
+        <!--<h1>Mon Projet Symfony2</h1>
+        <p>Ce projet est propulsé par Symfony2, et construit grâce au tutoriel du siteduzero.</p>
+        <p><a class="btn btn-primary btn-large" href="http://www.siteduzero.com/informatique/tutoriels/developpez-votre-site-web-avec-le-framework-symfony2">
+          Lire le tutoriel »
+        </a></p>-->
+        <div class="menu_nav">
+          <ul>
+            <li class="active" style="width: 115px"><a href="#">Acceuil </a></li>
+            <li style="width: 187px"><a href="#">Déposer une annonce </a></li>
+            <li style="width: 131px"><a href="#">Recherche</a></li>
+            <li style="width: 166px"><a href="#">Connexion</a></li>
+            <li style="width: 99px"><a href="#">Aide</a></li>
+            <li style="width: 167px"><a href="#">Inscription</a></li>
+            <li style="width: 95px"><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class='addannonce'>
+          <a href="{{ path('annonce_new')}}"></a>
+        </div>
+      </div>
+      
+
+      <div class="row">
+        <div id="menu" class="span3">
+          {{ render(controller("StarAnnoncesBundle:Theme:menu"))  }}
+        </div>
+        {% block body %}
+               {% endblock %}      
+        <div id="menu" class="span3">
+           {% if app.request.get('_route') == 'star_annonces_homepage' %}
+                {{ render(controller("StarAnnoncesBundle:Default:map"))  }}
+            {% else %}
+                 <img src="{{ asset('img/pub.jpg') }}" >
+            {% endif %}
+        </div>
+      </div>
+
+      <hr>
+
+      
+    </div>
+
+    {{ render(controller("StarAnnoncesBundle:Theme:footer"))  }}
+    
+    
+    <footer>
+        <div class="footer_resize">
+            <p class="leftt">© Copyright <a href="#">starannonces</a>. All Rights Reserved </p>
+            <div class="clr"></div>
+        </div>
+    </footer>
+
+    {% javascripts
+      '@StarAnnoncesBundle/Resources/public/js/underscore-min.js'
+      '@StarAnnoncesBundle/Resources/public/js/jquery-ui-1.8.22.custom.min.js'
+      '@PunkAveFileUploaderBundle/Resources/public/js/jquery.fileupload.js'
+      '@PunkAveFileUploaderBundle/Resources/public/js/jquery.iframe-transport.js'
+      '@PunkAveFileUploaderBundle/Resources/public/js/FileUploader.js' %}
+      <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+
+  </body>
+</html>

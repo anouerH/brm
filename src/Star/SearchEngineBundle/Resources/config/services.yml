@@ -1,0 +1,7 @@
+parameters:
+#    star_search_engine.example.class: Star\SearchEngineBundle\Example
+
+services:
+#    star_search_engine.example:
+#        class: %star_search_engine.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
