@@ -224,6 +224,15 @@
             
            </div>
 <script type="text/javascript">
+    var theme = "{{theme}}";
+    var nature = "{{nature}}";
+    var submited = "{{submited}}";
+    /*if(theme>0 && !submited){
+        $("#search-engine-form #form_theme").val(theme);
+        $("#search-engine-form #form_nature").val(nature);
+        //$("#search-engine-form").submit();
+    }*/
+    
     $("#searchBtnTop").click(function(){
        $("#search-engine-form").submit();
     });

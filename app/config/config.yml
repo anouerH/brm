@@ -117,7 +117,7 @@ shtumi_useful :
             property: title
             role: IS_AUTHENTICATED_ANONYMOUSLY
             no_result_msg: ' '
-            order_property: title
+            order_property: position
             order_direction: ASC
         brand_by_nature:
             class: StarAnnoncesBundle:Brand
@@ -125,7 +125,7 @@ shtumi_useful :
             property: name
             role: IS_AUTHENTICATED_ANONYMOUSLY
             no_result_msg: ' '
-            order_property: name
+            order_property: position
             order_direction: ASC
         model_by_brand:
             class: StarAnnoncesBundle:Model

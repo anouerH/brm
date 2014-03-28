@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Star\AnnoncesBundle\Entity\Annonce;
 use Star\AnnoncesBundle\Form\AnnonceType;
 use Symfony\Component\HttpFoundation\Response;
-
+use Doctrine\ORM\EntityRepository;
 
 class SearchEngineController extends Controller
 {
@@ -26,9 +26,9 @@ class SearchEngineController extends Controller
      */
     
    
-    public function searchAction($page, Request $request){
+    public function searchAction($theme, $nature, $page, Request $request){
         
-        
+        // var_dump($theme, $nature);
         $em = $this->getDoctrine()->getManager();
 
         $repository = $em->getRepository('StarAnnoncesBundle:Annonce');
@@ -64,13 +64,18 @@ class SearchEngineController extends Controller
             ))
                 
             ->add('theme', 'entity', array('class'      => 'StarAnnoncesBundle:Theme'
-                                   , 'required'   => true
-                                   , 'empty_value'=> ''))
+                                   //, 'required'   => true
+                                   , 'empty_value'=> ''
+                                   ,'query_builder' => function(EntityRepository $er) {
+                                        return $er->createQueryBuilder('t')
+                                            ->orderBy('t.position', 'ASC');
+                                    },))
 
              ->add('nature', 'shtumi_dependent_filtered_entity'
                 , array('entity_alias' => 'nature_by_theme'
                       , 'empty_value'=> ''
-                      , 'parent_field'=>'theme'))
+                      , 'parent_field'=>'theme'
+                   ))
 
              ->add('brand', 'shtumi_dependent_filtered_entity'
                 , array('entity_alias' => 'brand_by_nature'
@@ -107,11 +112,28 @@ class SearchEngineController extends Controller
            
             ->getForm();
         
-         $form->handleRequest($request);
+        $form->handleRequest($request);
+        if ($nature && !$request->isMethod('POST')) {
+            $themeObj = $em->getRepository('StarAnnoncesBundle:Theme')->find($theme);
+            $natureObj = $em->getRepository('StarAnnoncesBundle:Nature')->find($nature);
+           
+            $data = $form->getData(); 
+            $data['theme'] = $themeObj;
+            $data['nature'] = $natureObj;
+            $form->setData($data);
+            //$form->submit($request);
+            
+            $results = $repository->searchAnnonces( $page,$maxAdds, $data );
+            var_dump(count($results));
+            $submited = true;
+            //die('eee');
+        }
         $results = array();
         $submited = false;
         $withPhotos = false;
+       
         if ($form->isValid()) {
+           
             // data is an array with "name", "email", and "message" keys
             $data = $form->getData();
              
@@ -132,7 +154,9 @@ class SearchEngineController extends Controller
             'form'   => $form->createView(),
             'submited'=>$submited,
             'withPhotos'=>$withPhotos, 
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'theme'=>$theme,
+            'nature'=>$nature
         );
 
     }

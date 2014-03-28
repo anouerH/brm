@@ -51,7 +51,11 @@ class Theme
      * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
-
+    /*
+     * associated natures
+     */
+    private $natures;
+    
     /**
      * @var \DateTime
      *
@@ -192,5 +196,15 @@ class Theme
     public function __toString()
     {
         return $this->getTitle();
+    }
+    
+    public function setNatures($natures)
+    {
+        $this->natures = $natures;
+    }
+ 
+    public function getNatures()
+    {
+        return $this->natures;
     }
 }

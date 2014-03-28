@@ -17,10 +17,9 @@ class ThemeController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $entities = $em->getRepository('StarAnnoncesBundle:Theme')->findAll();
-            /*return array(
-                'entities' => $entities,
-            );*/
-                    //var_dump($entities);
+            foreach ($entities as $entity){
+                $entity->setNatures($em->getRepository('StarAnnoncesBundle:Nature')->findBy(array('theme'=>$entity)) );
+            }
             return $this->render('StarAnnoncesBundle:Theme:menu.html.twig', array(
                 'entities' => $entities,
             ));
@@ -30,10 +29,7 @@ class ThemeController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $entities = $em->getRepository('StarAnnoncesBundle:Theme')->findAll();
-            /*return array(
-                'entities' => $entities,
-            );*/
-                    //var_dump($entities);
+            
             return $this->render('StarAnnoncesBundle:Theme:footer.html.twig', array(
                 'entities' => $entities,
             ));

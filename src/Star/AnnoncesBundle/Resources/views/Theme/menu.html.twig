@@ -14,14 +14,10 @@
 			<div class="accordion-title">{{entitie.title}}</div>
 			<div class="accordion-content accordionhidden" style="display: none;">
 				<ul>
-					<li><a href="tunisie-annonce-recherche-1-automobiles">Automobiles</a></li>
-					<li><a href="tunisie-annonce-recherche-2-motos-scooters">Motos, Scooters</a></li>
-					<li><a href="tunisie-annonce-recherche-3-bateaux">Bateaux</a></li>
-					<li><a href="tunisie-annonce-recherche-122-velos">Vélos</a></li>
-					<li><a href="tunisie-annonce-recherche-4-autoradios">Autoradios</a></li>
-					<li><a href="tunisie-annonce-recherche-5-pieces-accessoires">Pièces Accessoires</a></li>
-					<li><a href="tunisie-annonce-recherche-6-autre">Autre</a></li>
-					<li><a href="tunisie-annonce-recherche-tout-1-autos-motos-bateaux">Tout</a></li>
+                                      
+                                    {% for nature in entitie.natures %} 
+                                        <li><a href="{{path('star_search_engine_search', {'theme': entitie.id, 'nature': nature.id})}}">{{nature.title}}</a></li>
+                                    {% endfor %}
 				</ul>
 			</div>
 		{% endfor %}
