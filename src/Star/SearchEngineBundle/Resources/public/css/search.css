@@ -101,3 +101,6 @@
     margin-right: 5px !important;
     width: 0 !important; 
 }
+#menu{
+    min-height: 500px;
+}

@@ -34,7 +34,6 @@ class AnnonceRepository extends EntityRepository
             
             // Specific cases
             if(is_object($value)){
-                var_dump($key,$value->getId());
                 $qb->andWhere('a.'.$key.' = ?'.$cpt);
                 $qb->setParameter($cpt, $value->getId());
                 $cpt++;

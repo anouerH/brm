@@ -27,8 +27,8 @@ class SearchEngineController extends Controller
     
    
     public function searchAction($theme, $nature, $page, Request $request){
-        
-        // var_dump($theme, $nature);
+        $random = substr(number_format(time() * rand(),0,'',''),0,8);
+        var_dump($random);
         $em = $this->getDoctrine()->getManager();
 
         $repository = $em->getRepository('StarAnnoncesBundle:Annonce');
