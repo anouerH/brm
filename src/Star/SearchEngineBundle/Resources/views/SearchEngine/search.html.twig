@@ -63,7 +63,23 @@
                         {{ form_widget(form.brand, {'attr': {'class': 'form-control field_search'}}) }}
                     </div>
                 </div>
-                
+                <!--les modeles-->
+                <div id="sub_box_region">
+                    <div class="demi model-list">
+                        <label>Modèle</label>
+                        {{ form_widget(form.model, {'attr': {'class': 'form-control field_search'}}) }}
+                    </div>
+                        
+                   <div class="demi model-list">
+                        <label>Energie</label>
+                        {{ form_widget(form.energy, {'attr': {'class': 'form-control field_search'}}) }}
+                    </div>
+                     <div class="demi model-list">
+                        <label>Age véhicule</label>
+                        {{ form_widget(form.age, {'attr': {'class': 'form-control field_search'}}) }}
+                    </div>
+                        
+                </div>
                 
                 <!--Les régions-->
                 <div id="sub_box_region">
@@ -113,7 +129,7 @@
         </form>
     </div>
 
-    
+
     
 </div>
         <div class="clearfix visible-xs"></div>
@@ -224,15 +240,7 @@
             
            </div>
 <script type="text/javascript">
-    var theme = "{{theme}}";
-    var nature = "{{nature}}";
-    var submited = "{{submited}}";
-    /*if(theme>0 && !submited){
-        $("#search-engine-form #form_theme").val(theme);
-        $("#search-engine-form #form_nature").val(nature);
-        //$("#search-engine-form").submit();
-    }*/
-    
+       
     $("#searchBtnTop").click(function(){
        $("#search-engine-form").submit();
     });

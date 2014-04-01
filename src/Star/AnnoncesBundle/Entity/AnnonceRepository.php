@@ -30,22 +30,35 @@ class AnnonceRepository extends EntityRepository
         foreach ($data as $key => $value) {
             
             if($value === NULL )                continue;
-            if($key == "withPhotos")                continue;
-            
+            if($key == "withPhotos")            continue;
+            //if($key == "age")                   continue;
             // Specific cases
+            print "<br>----";
+            var_dump($key);
+            print "----</br>";
             if(is_object($value)){
+                var_dump($key,$value->getId());
                 $qb->andWhere('a.'.$key.' = ?'.$cpt);
-                $qb->setParameter($cpt, $value);
+                $qb->setParameter($cpt, $value->getId());
+                $cpt++;
                 continue;
             }
             if($key == 'min_price'){
                 $qb->andWhere('a.price >= ?'.$cpt);
                 $qb->setParameter($cpt, $value);
+                $cpt++;
                 continue;
             }
             if($key == 'max_price'){
                 $qb->andWhere('a.price <= ?'.$cpt);
                 $qb->setParameter($cpt, $value);
+                $cpt++;
+                continue;
+            }
+            if($key == 'age'){
+                $qb->andWhere('a.release > ?'.$cpt);
+                $qb->setParameter($cpt, new \DateTime('-1 year'));
+                $cpt++;
                 continue;
             }
             

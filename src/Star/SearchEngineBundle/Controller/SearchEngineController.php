@@ -83,7 +83,26 @@ class SearchEngineController extends Controller
                       , 'parent_field'=>'nature'))
                 
                 
-                
+             ->add('model', 'shtumi_dependent_filtered_entity'
+                , array('entity_alias' => 'model_by_brand'
+                      , 'empty_value'=> ''
+                      , 'parent_field'=>'brand'))
+                                            
+             ->add('energy', 'entity', array('class'      => 'StarAnnoncesBundle:Energy'
+                                   , 'required'   => false
+                                   , 'empty_value'=> ''))
+             ->add('age', 'choice', array(
+                'choices'   => array(
+                    '1'   => 'Moins d\'1 ans',
+                    '2'   => 'Entre 1 an & 2 ans',
+                    '4'   => 'Entre 3 & 4 ans',
+                    '8'   => 'Entre 7 & 8 ans ans',
+                    '10'  => 'Entre 9 & 10 ans',
+                    '100' => 'plus de 10 ans',
+
+                )
+                 , 'empty_value'=> ''
+            ))                                
             ->add('gouv', 'entity', array('class'      => 'StarAnnoncesBundle:Gouv'
                                , 'required'   => true
                                , 'empty_value'=> ''))
@@ -112,6 +131,10 @@ class SearchEngineController extends Controller
            
             ->getForm();
         
+        $results = array();
+        $submited = false;
+        $withPhotos = false;
+        
         $form->handleRequest($request);
         if ($nature && !$request->isMethod('POST')) {
             $themeObj = $em->getRepository('StarAnnoncesBundle:Theme')->find($theme);
@@ -124,13 +147,11 @@ class SearchEngineController extends Controller
             //$form->submit($request);
             
             $results = $repository->searchAnnonces( $page,$maxAdds, $data );
-            var_dump(count($results));
+            
             $submited = true;
             //die('eee');
         }
-        $results = array();
-        $submited = false;
-        $withPhotos = false;
+       
        
         if ($form->isValid()) {
            
@@ -155,8 +176,7 @@ class SearchEngineController extends Controller
             'submited'=>$submited,
             'withPhotos'=>$withPhotos, 
             'pagination' => $pagination,
-            'theme'=>$theme,
-            'nature'=>$nature
+            
         );
 
     }
