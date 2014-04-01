@@ -31,11 +31,8 @@ class AnnonceRepository extends EntityRepository
             
             if($value === NULL )                continue;
             if($key == "withPhotos")            continue;
-            //if($key == "age")                   continue;
+            
             // Specific cases
-            print "<br>----";
-            var_dump($key);
-            print "----</br>";
             if(is_object($value)){
                 var_dump($key,$value->getId());
                 $qb->andWhere('a.'.$key.' = ?'.$cpt);
@@ -57,7 +54,7 @@ class AnnonceRepository extends EntityRepository
             }
             if($key == 'age'){
                 $qb->andWhere('a.release > ?'.$cpt);
-                $qb->setParameter($cpt, new \DateTime('-1 year'));
+                $qb->setParameter($cpt, new \DateTime('-'.$value.' year'));
                 $cpt++;
                 continue;
             }
