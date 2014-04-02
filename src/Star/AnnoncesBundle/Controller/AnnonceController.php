@@ -57,7 +57,12 @@ class AnnonceController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
+            
+            // update unique id annonce 
+            $entity->setIdAdds($entity->getId());
+            $em->persist($entity);
+            $em->flush();
+            
             return $this->redirect($this->generateUrl('annonce_show', array('id' => $entity->getId())));
         }
 
@@ -195,16 +200,7 @@ class AnnonceController extends Controller
         }
         
         $deleteForm = $this->createDeleteForm($id);
-        //$editForm = $this->createEditForm($entity);
-        /*var_dump($editForm->getData(), $editForm->isValid(), $editForm->getErrorsAsString());
-        $editForm->handleRequest($request);
-        if ($editForm->isValid()) {
-            $em->flush();
-            // On définit un message flash
-            $this->get('session')->getFlashBag()->add('notice', 'Annonce bien modifiée');
-            return $this->redirect($this->generateUrl('annonce_edit', array('slug' => $entity->getSlug())));
-        }*/
-
+        
         $editForm = $this->createEditForm($entity);
 
         if ($request->isMethod('POST')) {
@@ -213,9 +209,7 @@ class AnnonceController extends Controller
             if ($editForm->isValid()) {
                 // the validation passed, do something with the $author object
                 $em->flush();
-                //die("updated ...");
-                //return $this->redirect($this->generateUrl(...));
-                // On définit un message flash
+                
                 $this->get('session')->getFlashBag()->add('notice', 'Annonce bien modifiée');
                 return $this->redirect($this->generateUrl('annonce'));
             }
@@ -376,6 +370,16 @@ class AnnonceController extends Controller
      */
     public function espaceMembreAction(){
         return $this->render('StarAnnoncesBundle:Annonce:espace-membre.html.twig');
+    }
+    
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function generateIdAdds()
+    {
+        var_dump('generate Id Adds');
+        die();
     }
     
     

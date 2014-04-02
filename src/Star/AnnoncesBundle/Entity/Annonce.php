@@ -244,6 +244,13 @@ class Annonce
      */
     private $visitors;
     
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_adds", type="integer", nullable=true)
+     */
+    private $idAdds;
+    
     
     
     
@@ -1019,5 +1026,29 @@ class Annonce
     public function getVisitors()
     {
         return $this->visitors;
+    }
+
+    /**
+     * Set idAdds
+     *
+     * @param integer $idAdds
+     * @return Annonce
+     */
+    public function setIdAdds($idAdds)
+    { 
+        $random = substr(number_format(time() * rand(),0,'',''),0,4);
+        $this->idAdds = $random.sprintf("%04d", $idAdds);
+
+        return $this;
+    }
+
+    /**
+     * Get idAdds
+     *
+     * @return integer 
+     */
+    public function getIdAdds()
+    {
+        return $this->idAdds;
     }
 }

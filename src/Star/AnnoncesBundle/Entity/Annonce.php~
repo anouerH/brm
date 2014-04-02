@@ -244,6 +244,13 @@ class Annonce
      */
     private $visitors;
     
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_adds", type="integer", nullable=true)
+     */
+    private $idAdds;
+    
     
     
     
@@ -996,5 +1003,28 @@ class Annonce
     
     public function getImages(){
         return $this->images;
+    }
+
+    /**
+     * Set visitors
+     *
+     * @param integer $visitors
+     * @return Annonce
+     */
+    public function setVisitors($visitors)
+    {
+        $this->visitors = $visitors;
+
+        return $this;
+    }
+
+    /**
+     * Get visitors
+     *
+     * @return integer 
+     */
+    public function getVisitors()
+    {
+        return $this->visitors;
     }
 }
