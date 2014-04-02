@@ -252,6 +252,14 @@ class Annonce
     private $idAdds;
     
     
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="validity", type="string", length=45 ,nullable=false)
+     */
+    private $validity;
+    
+    
     
     
     public function __construct()
@@ -1026,5 +1034,29 @@ class Annonce
     public function getVisitors()
     {
         return $this->visitors;
+    }
+
+    /**
+     * Set idAdds
+     *
+     * @param integer $idAdds
+     * @return Annonce
+     */
+    public function setIdAdds($idAdds)
+    { 
+        $random = substr(number_format(time() * rand(),0,'',''),0,4);
+        $this->idAdds = $random.sprintf("%04d", $idAdds);
+
+        return $this;
+    }
+
+    /**
+     * Get idAdds
+     *
+     * @return integer 
+     */
+    public function getIdAdds()
+    {
+        return $this->idAdds;
     }
 }

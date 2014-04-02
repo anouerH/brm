@@ -29,10 +29,7 @@
                     
                 </div>
                 
-                <div class="demi_radio not_emploi">
-                    <!--<input type="radio" checked="checked" id="anon_Rubrique" value="1" name="anon_Rubrique">&nbsp;Vente&nbsp;&nbsp;
-                    <input type="radio" id="anon_Rubrique" value="0" name="anon_Rubrique">&nbsp;Location-->
-                    
+                <div class="demi_radio not_emploi">                    
                     {% for child in form.demandeType %}
                     <label class="radio-inline">
                        {{ form_widget(child) }}{{ form_label(child) }}
@@ -43,7 +40,8 @@
                 
                 <div style="height:25px;" class="demi_radio not_emploi">
                     <label style="width:70px">ID Annonce</label>
-                    <input type="text" style="width:70px" class="input_field_search" value="" name="id_annonce" id="id_annonce">
+                    
+                     {{ form_widget(form.idAdds, {'attr': {'class': 'input_field_search',  'style':'width:70px'}}) }}
                 </div>
                 
                 

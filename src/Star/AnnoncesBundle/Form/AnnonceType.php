@@ -116,6 +116,20 @@ class AnnonceType extends AbstractType
                 'required' => true,
                 //'data' => 'OFFRE',
             ))
+
+            ->add('validity', 'choice', array(
+                'choices'   => array(
+                    "7, 'DAY'"    => '1 semaine',
+                    "15, 'DAY'"    => '2 semaines',
+                    "1 MONTH"   => '1 mois',
+                    "2 MONTH"   => '2 mois',
+                    "3 MONTH"   => '2 mois',
+                    "6 MONTH"   => '2 mois',
+
+                )
+                ,'required' => true
+                , 'empty_value'=> ''
+            ))      
                 
             // ->add('createdAt')
             //->add('updatedAt')

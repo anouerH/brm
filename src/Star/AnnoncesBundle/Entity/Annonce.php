@@ -252,6 +252,14 @@ class Annonce
     private $idAdds;
     
     
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="validity", type="string", length=45 ,nullable=false)
+     */
+    private $validity;
+    
+    
     
     
     public function __construct()
@@ -1050,5 +1058,28 @@ class Annonce
     public function getIdAdds()
     {
         return $this->idAdds;
+    }
+
+    /**
+     * Set validity
+     *
+     * @param string $validity
+     * @return Annonce
+     */
+    public function setValidity($validity)
+    {
+        $this->validity = $validity;
+
+        return $this;
+    }
+
+    /**
+     * Get validity
+     *
+     * @return string 
+     */
+    public function getValidity()
+    {
+        return $this->validity;
     }
 }

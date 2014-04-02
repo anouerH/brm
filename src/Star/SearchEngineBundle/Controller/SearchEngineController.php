@@ -27,8 +27,8 @@ class SearchEngineController extends Controller
     
    
     public function searchAction($theme, $nature, $page, Request $request){
-        $random = substr(number_format(time() * rand(),0,'',''),0,8);
-        var_dump($random);
+        // $random = substr(number_format(time() * rand(),0,'',''),0,8);
+        // var_dump($random);
         $em = $this->getDoctrine()->getManager();
 
         $repository = $em->getRepository('StarAnnoncesBundle:Annonce');
@@ -62,6 +62,7 @@ class SearchEngineController extends Controller
                 'required' => true,
                 //'data' => 'VENTE',
             ))
+            ->add('idAdds', 'integer')
                 
             ->add('theme', 'entity', array('class'      => 'StarAnnoncesBundle:Theme'
                                    //, 'required'   => true

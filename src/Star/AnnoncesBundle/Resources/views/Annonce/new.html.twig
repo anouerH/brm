@@ -263,7 +263,17 @@
            
        </div>
         <div style="clear:both;"></div>
-
+        <div style='width:50%; float:left'>
+            <div class="form-group">
+                {{ form_label(form.validity, 'Validité', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="input-group col-sm-6">
+                    {{ form_widget(form.validity, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.validity) }}
+                </div>
+                {{ form_errors(form.price) }}
+            </div>
+       </div>
+       <div style="clear:both;"></div>
     {# Hydrated by javascript #}
     <div class="file-uploader">
 
