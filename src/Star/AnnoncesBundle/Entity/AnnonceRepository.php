@@ -67,10 +67,8 @@ class AnnonceRepository extends EntityRepository
         
        
         // check validty : select created_at, DATE_ADD(created_at, INTERVAL 2 year) from Annonce ;
+        $qb->andWhere("DATE_ADD(a.createdAt, a.validity, 'DAY') > CURRENT_DATE()");
         
-        $qb->andWhere("DATE_ADD(a.createdAt, 1, 'DAY') > CURRENT_DATE()");
-        // ->andWhere("p.created_at <= DATE_ADD(CURRENT_DATE(),4, 'day')")
-        // $qb->setParameter($cpt, $value);
             
 
         $qb->orderBy('a.createdAt', 'DESC');

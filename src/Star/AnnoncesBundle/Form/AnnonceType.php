@@ -119,12 +119,12 @@ class AnnonceType extends AbstractType
 
             ->add('validity', 'choice', array(
                 'choices'   => array(
-                    "7, 'DAY'"    => '1 semaine',
-                    "15, 'DAY'"    => '2 semaines',
-                    "1 MONTH"   => '1 mois',
-                    "2 MONTH"   => '2 mois',
-                    "3 MONTH"   => '2 mois',
-                    "6 MONTH"   => '2 mois',
+                    "7"    => '1 semaine',
+                    "15"    => '2 semaines',
+                    "30"   => '1 mois',
+                    "60"   => '2 mois',
+                    "90"   => '3 mois',
+                    "180"   => '2 mois',
 
                 )
                 ,'required' => true

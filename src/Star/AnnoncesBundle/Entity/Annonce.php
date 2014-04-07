@@ -253,9 +253,9 @@ class Annonce
     
     
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="validity", type="string", length=45 ,nullable=false)
+     * @ORM\Column(name="validity", type="integer", nullable=true)
      */
     private $validity;
     
