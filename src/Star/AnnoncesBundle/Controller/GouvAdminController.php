@@ -6,6 +6,6 @@ use Sonata\AdminBundle\Controller\CRUDController as Controller;
 
 class GouvAdminController extends Controller
 {
-
+	
     
 }

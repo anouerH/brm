@@ -53,3 +53,6 @@ espace_membre:
 annonce_search:
     pattern: /search
     defaults: { _controller:StarAnnoncesBundle:Annonce:search}
+import_cities:
+    pattern: /import-cities
+    defaults: { _controller:StarAnnoncesBundle:Annonce:importCities}

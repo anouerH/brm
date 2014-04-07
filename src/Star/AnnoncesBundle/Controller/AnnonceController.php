@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Star\AnnoncesBundle\Entity\Annonce;
+use Star\AnnoncesBundle\Entity\Gouv;
+use Star\AnnoncesBundle\Entity\Deleg;
+use Star\AnnoncesBundle\Entity\Locality;
 use Star\AnnoncesBundle\Form\AnnonceType;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -380,6 +383,61 @@ class AnnonceController extends Controller
     {
         var_dump('generate Id Adds');
         die();
+    }
+
+    public function importCitiesAction(){
+
+        $em = $this->getDoctrine()->getManager();
+
+
+        $conn = $this->container->get('database_connection');
+
+        $sql = "SELECT  DISTINCT(gouvernorat)  FROM villes";
+        $stmt = $conn->query($sql);
+       
+        print "<pre>";
+        while ($row = $stmt->fetch()) {
+                var_dump($row['gouvernorat']);
+                // Insertion des geouvernorats :
+                $entity = new Gouv();
+                $entity->setName($row['gouvernorat']);
+                $em->persist($entity);
+
+                $sql1 = "SELECT  DISTINCT(delegation)  FROM villes WHERE gouvernorat = '".$row['gouvernorat']."'";
+                $stmt1 = $conn->query($sql1);
+                
+                while ($row1 = $stmt1->fetch()) {
+                    var_dump("---------->".$row1['delegation']);
+                    // Insertion des delegs :
+                    $entity1 = new Deleg();
+                    $entity1->setName($row1['delegation']);
+                    $entity1->setGouv($entity);
+
+                    $em->persist($entity1);
+
+                    $sql2 = "SELECT  DISTINCT(localite)  FROM villes WHERE delegation = '".$row1['delegation']."'";
+                    $stmt2 = $conn->query($sql2);
+                    while ($row2 = $stmt2->fetch()) {
+                        var_dump("======================>".$row2['localite']);
+
+                        // Insertion des delegs :
+                        $entity2 = new Locality();
+                        $entity2->setName($row2['localite']);
+                        $entity2->setDeleg($entity1);
+
+                        $em->persist($entity2);
+
+                    }
+
+
+                }
+
+                
+        
+        }
+        $em->flush();
+
+       exit(); 
     }
     
     

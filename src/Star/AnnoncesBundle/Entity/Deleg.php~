@@ -31,14 +31,14 @@ class Deleg
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createdAt", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
 
@@ -131,5 +131,33 @@ class Deleg
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set gouv
+     *
+     * @param \Star\AnnoncesBundle\Entity\Gouv $gouv
+     * @return Deleg
+     */
+    public function setGouv(\Star\AnnoncesBundle\Entity\Gouv $gouv)
+    {
+        $this->gouv = $gouv;
+
+        return $this;
+    }
+
+    /**
+     * Get gouv
+     *
+     * @return \Star\AnnoncesBundle\Entity\Gouv 
+     */
+    public function getGouv()
+    {
+        return $this->gouv;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }
