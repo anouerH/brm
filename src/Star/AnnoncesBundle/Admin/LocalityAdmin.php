@@ -40,6 +40,7 @@ class LocalityAdmin extends Admin
         $listMapper
             ->addIdentifier('name')
             ->add('deleg')
+            ->add('gouv')
             ->add('createdAt')
             ->add('_action', 'actions', array(
                 'actions' => array(

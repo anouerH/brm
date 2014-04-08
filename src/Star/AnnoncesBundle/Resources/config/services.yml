@@ -52,3 +52,9 @@ services:
         tags: 
             - { name: sonata.admin, manager_type: orm, group: Les catégories, label: Liste des energies }
         arguments: [null, Star\AnnoncesBundle\Entity\Energy, StarAnnoncesBundle:EnergyAdmin]
+
+    star.annonces.admin.Seuil:
+        class: Star\AnnoncesBundle\Admin\SeuilAdmin
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: Seuil des points star, label: Gestion des points seuil }
+        arguments: [null, Star\AnnoncesBundle\Entity\Seuil, StarAnnoncesBundle:SeuilAdmin]
