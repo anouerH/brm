@@ -1,0 +1,10 @@
+sonata.admin.media:
+    class: Star\AnnoncesBundle\Admin\AnnonceAdmin
+    tags:
+        - { name: sonata.admin, manager_type: orm, label: "Annonce" }
+    arguments:
+        - ~
+        - Star\AnnoncesBundle\Entity\Annonce
+        - 'StarAnnoncesBundle:AnnonceCRUD' # define the new controller via the third argument
+    calls:
+        - [ setTranslationDomain, [StarAnnoncesBundle]]

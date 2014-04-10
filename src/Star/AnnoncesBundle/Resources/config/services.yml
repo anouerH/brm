@@ -58,3 +58,16 @@ services:
         tags: 
             - { name: sonata.admin, manager_type: orm, group: Seuil des points star, label: Gestion des points seuil }
         arguments: [null, Star\AnnoncesBundle\Entity\Seuil, StarAnnoncesBundle:SeuilAdmin]
+
+
+    star.annonces.admin.Annonce:
+        class: Star\AnnoncesBundle\Admin\AnnonceAdmin
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: Les annonces Validées, label: Gestion des annonces validées }
+        arguments: [null, Star\AnnoncesBundle\Entity\Annonce, StarAnnoncesBundle:AnnonceAdmin]
+
+    #star.annonces.admin.AnnonceSuspect:
+    #    class: Star\AnnoncesBundle\Admin\AnnonceSuspectAdmin
+    #    tags: 
+    #        - { name: sonata.admin, manager_type: orm, group:   Les annonces suspectes, label: Gestion des annonces suspects  }
+    #    arguments: [null, Star\AnnoncesBundle\Entity\Annonce, StarAnnoncesBundle:AnnonceSuspectAdmin]

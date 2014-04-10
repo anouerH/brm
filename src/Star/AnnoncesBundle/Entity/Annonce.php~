@@ -259,7 +259,27 @@ class Annonce
      */
     private $validity;
     
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="validated_at", type="datetime", nullable=true)
+     */
+    private $validatedAt;
+
     
+    /**
+    * @var boolean $isEnabled
+    *
+    * @ORM\Column(name="is_enabled", type="boolean", nullable=true)
+    */
+    private $isEnabled;
+
+    /**
+    * @var boolean $isEnabled
+    *
+    * @ORM\Column(name="is_disabled", type="boolean", nullable=true)
+    */
+    private $isDisabled;
     
     
     public function __construct()
@@ -271,6 +291,7 @@ class Annonce
         $this->fixedPrice = 1;
         $this->showPhoneNumber = 0;
         $this->convertStars = 0;
+        $this->isEnabled = 0;
     }
 
     /**
@@ -1081,5 +1102,51 @@ class Annonce
     public function getValidity()
     {
         return $this->validity;
+    }
+
+    /**
+     * Set validatedAt
+     *
+     * @param \DateTime $validatedAt
+     * @return Annonce
+     */
+    public function setValidatedAt($validatedAt)
+    {
+        $this->validatedAt = $validatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get validatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getValidatedAt()
+    {
+        return $this->validatedAt;
+    }
+
+    /**
+     * Set isEnabled
+     *
+     * @param boolean $isEnabled
+     * @return Annonce
+     */
+    public function setIsEnabled($isEnabled)
+    {
+        $this->isEnabled = $isEnabled;
+
+        return $this;
+    }
+
+    /**
+     * Get isEnabled
+     *
+     * @return boolean 
+     */
+    public function getIsEnabled()
+    {
+        return $this->isEnabled;
     }
 }
