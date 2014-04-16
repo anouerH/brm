@@ -53,6 +53,15 @@ class AnnonceController extends Controller
         
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+        // if is star adds and no images uploded
+        if($form->get('convertStars')->getData()){
+            $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $request->query->get('editId') ));
+            if(!count($existingFiles)){
+                // return error 
+                $error = new \Symfony\Component\Form\FormError('Veuillez télecharger des images pour pouvoir convertir l\'annonce en star', null);
+                $form->get('convertStars')->addError($error);
+            }
+        }
         
         if ($form->isValid()) {
             $user = $this->container->get('security.context')->getToken()->getUser();
@@ -72,6 +81,7 @@ class AnnonceController extends Controller
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),
+            'errors' => $form->getErrors()
         );
     }
 
