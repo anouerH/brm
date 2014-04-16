@@ -21,6 +21,7 @@ class LocalityAdmin extends Admin
     {
         $formMapper
             ->add('name')
+            ->add('deleg.gouv')
             ->add('deleg')
             
         ;
@@ -30,6 +31,7 @@ class LocalityAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
+            ->add('deleg.gouv')
             ->add('deleg')
             //->add('createdAt')
         ;
@@ -39,8 +41,9 @@ class LocalityAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
+            ->add('deleg.gouv')
             ->add('deleg')
-            ->add('gouv')
+            
             ->add('createdAt')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -56,6 +59,7 @@ class LocalityAdmin extends Admin
     {
         $showMapper
             ->add('name')
+            ->add('deleg.gouv')
             ->add('deleg')
             ->add('createdAt')
             

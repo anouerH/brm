@@ -8,9 +8,12 @@ use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Star\AnnoncesBundle\Entity\Annonce;
+use Sonata\AdminBundle\Route\RouteCollection;
  
 class AnnonceSuspectAdmin extends Admin
 {
+    protected $baseRouteName = 'adds_admin';
+    
 	// setup the defaut sort column and order
     protected $datagridValues = array(
         '_sort_order' => 'DESC',
@@ -74,6 +77,14 @@ class AnnonceSuspectAdmin extends Admin
 	    //$query->setParameter('my_param', NULL);
 	    return $query;
 	}
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('myCustom'); #Action gets added automaticly
+        //$collection->add('view', $this->getRouterIdParameter().'/view');
+        $collection->remove('create');
+    }
+
 
 
 }

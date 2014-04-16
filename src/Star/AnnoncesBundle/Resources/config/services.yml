@@ -63,11 +63,50 @@ services:
     star.annonces.admin.Annonce:
         class: Star\AnnoncesBundle\Admin\AnnonceAdmin
         tags: 
-            - { name: sonata.admin, manager_type: orm, group: Les annonces Validées, label: Gestion des annonces validées }
+            - { name: sonata.admin, manager_type: orm, group: Les annonces, label: Gestion des annonces validées }
         arguments: [null, Star\AnnoncesBundle\Entity\Annonce, StarAnnoncesBundle:AnnonceAdmin]
 
     #star.annonces.admin.AnnonceSuspect:
     #    class: Star\AnnoncesBundle\Admin\AnnonceSuspectAdmin
     #    tags: 
-    #        - { name: sonata.admin, manager_type: orm, group:   Les annonces suspectes, label: Gestion des annonces suspects  }
+    #        - { name: sonata.admin, manager_type: orm, group:   Les annonces, label: Gestion des annonces suspects  }
     #    arguments: [null, Star\AnnoncesBundle\Entity\Annonce, StarAnnoncesBundle:AnnonceSuspectAdmin]
+        
+    #sonata.block.service.adds:
+    #    class: Star\AnnoncesBundle\Block\AnnoncesBlockService
+    #    tags: 
+    #        - { name: sonata.block }
+    #    arguments: [ "sonata.block.service.adds", @templating ]
+    
+    #sonata.block.service.adds:
+    #    class: Star\AnnoncesBundle\Block\AnnoncesBlockService
+    #    tags:
+    #        - {name: sonata.block}
+    #    arguments: ['sonata.block.service.adds', '@templating', '@sonata.admin.pool']
+    
+    sonata.block.service.adds:
+        id: sonata.block.service.adds
+        class: Star\AnnoncesBundle\Block\AnnoncesBlockService
+        arguments:
+            - { name: service, id: templating }
+        tags:
+            - { name: sonata.block }
+            
+    #sonata.block.service.newsletter:
+    #    class: Star\AnnoncesBundle\Block\NewsletterBlockService
+    #    #arguments: [ "sonata.block.service.newsletter", "@templating" ]
+    #    arguments:
+    #        - "sonata.block.service.newsletter"
+    #        - "@templating"
+    #    #arguments:
+    #    #    - { name: "sonata.block.service.newsletter", id: templating }
+    #    tags:
+    #        - { name: sonata.block }
+    #
+    #sandbox_main.block.rss:
+    #    class: Star\AnnoncesBundle\Block\RssBlockService
+    #    arguments:
+    #        - "acme_main.block.rss"
+    #        - "@templating"
+    #    tags:
+    #        - {name: "sonata.block"}

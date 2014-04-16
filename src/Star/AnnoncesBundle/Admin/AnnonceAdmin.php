@@ -23,7 +23,7 @@ class AnnonceAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('price')
-            ->add('gouv')
+            ->add('gouv.id')
             
         ;
     }
@@ -51,6 +51,7 @@ class AnnonceAdmin extends Admin
                     'delete' => array(),
                 )
             ))
+            ->add('yourLink', null, array('template' => '::testfield.html.twig'))
         ;
     }
 
@@ -64,26 +65,15 @@ class AnnonceAdmin extends Admin
         ;
     }
 
-    public function createQuery($context = 'list')
+    /*public function createQuery($context = 'list')
 	{
 	    $query = parent::createQuery($context);
 	    $query->andWhere(
-            $query->expr()->eq($query->getRootAlias() . '.is_enabled', ':my_param')
+            $query->expr()->eq($query->getRootAlias() . '.isEnabled', ':my_param')
 	    );
 	    $query->setParameter('my_param', 1);
 	    return $query;
-	}
-
-
-    protected function configureRoutes(RouteCollection $collection)
-    {
-        $collection->add('myCustom'); #Action gets added automaticly
-        //$collection->add('view', $this->getRouterIdParameter().'/view');
-        $collection->remove('create');
-    }
-
-
-    
+	}*/
 
 
 }
