@@ -53,35 +53,40 @@ class AnnonceController extends Controller
         
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-        // if is star adds and no images uploded
-        if($form->get('convertStars')->getData()){
-            $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $request->query->get('editId') ));
-            if(!count($existingFiles)){
-                // return error 
-                $error = new \Symfony\Component\Form\FormError('Veuillez télecharger des images pour pouvoir convertir l\'annonce en star', null);
-                $form->get('convertStars')->addError($error);
+        
+        
+        if ($request->isMethod('POST')) {
+            // if is star adds and no images uploded
+            if($form->get('convertStars')->getData()){
+                $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $request->query->get('editId') ));
+                if(!count($existingFiles)){
+                    // return error 
+                    $error = new \Symfony\Component\Form\FormError('Veuillez télecharger des images pour pouvoir convertir l\'annonce en star', null);
+                    $form->get('convertStars')->addError($error);
+                }
             }
+
+            if ($form->isValid()) {
+                $user = $this->container->get('security.context')->getToken()->getUser();
+                $entity->setUser($user);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($entity);
+                $em->flush();
+
+                // update unique id annonce 
+                $entity->setIdAdds($entity->getId());
+                $em->persist($entity);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('annonce_show', array('id' => $entity->getId())));
+            }
+            
         }
         
-        if ($form->isValid()) {
-            $user = $this->container->get('security.context')->getToken()->getUser();
-            $entity->setUser($user);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-            
-            // update unique id annonce 
-            $entity->setIdAdds($entity->getId());
-            $em->persist($entity);
-            $em->flush();
-            
-            return $this->redirect($this->generateUrl('annonce_show', array('id' => $entity->getId())));
-        }
-
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),
-            'errors' => $form->getErrors()
+            
         );
     }
 

@@ -26,7 +26,7 @@ class SearchEngineController extends Controller
      */
     
    
-    public function searchAction($theme, $nature, $page, Request $request){
+    public function searchAction($theme, $nature, $gouv, $page, Request $request){
         // $random = substr(number_format(time() * rand(),0,'',''),0,8);
         // var_dump($random);
         $em = $this->getDoctrine()->getManager();
@@ -137,13 +137,29 @@ class SearchEngineController extends Controller
         $withPhotos = false;
         
         $form->handleRequest($request);
-        if ($nature && !$request->isMethod('POST')) {
+        if ($gouv  && !$request->isMethod('POST')) {
+            $gouvObj = $em->getRepository('StarAnnoncesBundle:Gouv')->find($gouv);
+            
+           
+            $data = $form->getData(); 
+            $data['gouv'] = $gouvObj;
+            
+            $form->setData($data);
+            
+            $results = $repository->searchAnnonces( $page,$maxAdds, $data );
+            
+            $submited = true;
+            //die('eee');
+        }
+        
+        if ($nature  && !$request->isMethod('POST')) {
             $themeObj = $em->getRepository('StarAnnoncesBundle:Theme')->find($theme);
             $natureObj = $em->getRepository('StarAnnoncesBundle:Nature')->find($nature);
            
             $data = $form->getData(); 
             $data['theme'] = $themeObj;
             $data['nature'] = $natureObj;
+            //$data['gouv'] = $gouv;
             $form->setData($data);
             //$form->submit($request);
             

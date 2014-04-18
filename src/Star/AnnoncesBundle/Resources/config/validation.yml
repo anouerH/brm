@@ -20,7 +20,10 @@ Star\AnnoncesBundle\Entity\Annonce:
                 message : la description est obligatoire.
         price : 
             - NotBlank:
-                message : Le prisssx est obligatoire.
+                message : Le prix est obligatoire.
             - Type : 
                 type: numeric
                 message: le prix est non valide.
+        validity : 
+            - NotBlank:
+                message : Le champ validity est obligatoire.

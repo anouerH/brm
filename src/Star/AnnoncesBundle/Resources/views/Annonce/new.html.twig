@@ -12,17 +12,6 @@
     <h3>Déposer une annonce</h3>
 
 
-    
-    --{% if errors|length > 0 %}--
-<ul class="error_list">
-{% for error in errors %}
-<li>{{ error.messageTemplate|trans(error.messageParameters, 'validators') }}</li>
-{% endfor %}
-</ul>
-{% endif %}
-
-
-
     <form class="form-horizontal " novalidate action="{{ path('annonce_create', { editId: entity.imgDirId }) }}" method="post" {{ form_enctype(form) }}>  
 
         
@@ -59,9 +48,11 @@
                 <div class="col-sm-6">
                     
                     {{ form_widget(form.gouv, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_errors(form.gouv) }}
+                    
 
                 </div>
+                <div style="clear:both;"></div>
+                {{ form_errors(form.gouv) }}
             </div>
 
             <div class="form-group">
@@ -70,8 +61,10 @@
                 <div class="col-sm-6">
                     
                     {{ form_widget(form.deleg, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_errors(form.deleg) }}
+                    
                 </div>
+                <div style="clear:both;"></div>
+                {{ form_errors(form.deleg) }}
             </div>
 
             <div class="form-group">
@@ -80,8 +73,10 @@
                 <div class="col-sm-6">
                     
                     {{ form_widget(form.locality, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_errors(form.locality) }}
+                    
                 </div>
+                <div style="clear:both;"></div>
+                {{ form_errors(form.locality) }}
             </div>
         </div>
         <div style='width:50%; float:left'>
@@ -275,9 +270,8 @@
                 {{ form_label(form.validity, 'Validité', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
                 <div class="input-group col-sm-6">
                     {{ form_widget(form.validity, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_errors(form.validity) }}
                 </div>
-                {{ form_errors(form.price) }}
+                {{ form_errors(form.validity) }}
             </div>
        </div>
        <div style="clear:both;"></div>
@@ -306,9 +300,13 @@
                    {{ form_widget(child) }}{{ form_label(child) }}
                 </label>
             {% endfor %}
-            {{ form_errors(form.convertStars) }}
+            
         </div>
+        <div style="clear:both;"></div>
+        {{ form_errors(form.convertStars) }}
+        
     </div>
+       
         
     {{ form_rest(form) }}
     <button class="btn btn-primary" type="submit" style="float:right">{{  "Valider" }}</button>

@@ -1,6 +1,6 @@
 star_search_engine_search:
-    pattern:  /search/{theme}/{nature}/{page}
-    defaults: { _controller: StarSearchEngineBundle:SearchEngine:search,theme:0,nature:0, page:1 }
+    pattern:  /search/{theme}/{nature}/{gouv}/{page}
+    defaults: { _controller: StarSearchEngineBundle:SearchEngine:search,theme:0,nature:0,gouv:0,page:1 }
     
 
 star_search_engine_results:
