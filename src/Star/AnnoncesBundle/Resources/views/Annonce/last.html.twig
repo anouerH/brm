@@ -6,6 +6,7 @@
         </div>
         <ul class="liste_search_index">
             {% for entity in annonces %}
+            {%set editId = entity.imgDirId %}
             <li>
                 <div class="liste_gauche_index">
                     
@@ -16,7 +17,7 @@
                                     <img src="{{ asset('img/no-image.png') }}" alt="{{ entity.title }}">
                                     
                                 {% else %}
-                                <img src="/uploads/tmp/attachments/359073733/thumbnails/{{entity.images | first}}" alt="{{ entity.title }}" style="max-height:88px; max-width:90px;">
+                                <img src="/uploads/tmp/attachments/{{editId}}/thumbnails/{{ punkave_get_files('tmp/attachments/' ~ editId ) | first }}" style="max-height:88px; max-width:90px;">
                                 {% endif %}
                             </div>
                        </a>
