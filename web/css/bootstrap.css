@@ -5393,3 +5393,7 @@ div .engin-field, div .model-list, div .brand-list, div .immob-field{
     list-style: none;
     font-size: 11px;
 }
+
+.form-group .required:after {
+    content: " *";
+}

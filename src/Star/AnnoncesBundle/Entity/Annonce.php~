@@ -9,6 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Star\AnnoncesBundle\Entity\AnnonceRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Annonce
 {
@@ -280,6 +281,12 @@ class Annonce
     * @ORM\Column(name="is_disabled", type="boolean", nullable=true)
     */
     private $isDisabled;
+
+    /**
+    * Add status
+    */
+
+    private $status;
     
     
     public function __construct()
@@ -292,6 +299,7 @@ class Annonce
         $this->showPhoneNumber = 0;
         $this->convertStars = 0;
         $this->isEnabled = 0;
+        $this->isDisabled = 0;
     }
 
     /**
@@ -1118,12 +1126,25 @@ class Annonce
     }
 
     /**
+    * @ORM\PreUpdate
+    */
+    public function EnableAdds()
+    {
+        /*$nbCommentaires = $this->getArticle()->getNbCommentaires();
+        $this->getArticle()->setNbCommentaires($nbCommentaires+1);*/
+        if($this->isEnabled)
+            $this->validatedAt = new \Datetime();
+    }
+
+
+    /**
      * Get validatedAt
      *
      * @return \DateTime 
      */
     public function getValidatedAt()
     {
+
         return $this->validatedAt;
     }
 
@@ -1148,5 +1169,28 @@ class Annonce
     public function getIsEnabled()
     {
         return $this->isEnabled;
+    }
+
+    /**
+     * Set isDisabled
+     *
+     * @param boolean $isDisabled
+     * @return Annonce
+     */
+    public function setIsDisabled($isDisabled)
+    {
+        $this->isDisabled = $isDisabled;
+
+        return $this;
+    }
+
+    /**
+     * Get isDisabled
+     *
+     * @return boolean 
+     */
+    public function getIsDisabled()
+    {
+        return $this->isDisabled;
     }
 }

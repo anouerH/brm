@@ -1,0 +1,127 @@
+{% spaceless %}
+{# Contains Underscore templates for the file uploader. #}
+{# As long as the data-* attributes stay on the appropriate elements #}
+{# you can override the markup pretty extensively in a local version #}
+{# of this file. #}
+
+{# Include this file once in the page. You can instantiate many file uploaders. #}
+{# Each one must receive a distinct uploadUrl option. You can also pass #}
+{# an existingFiles option with a list of filenames that should appear in the #}
+{# editor as having been previously uploaded. #}
+
+{# "Why is this a Twig file?" Twig allows for a mix of comments not seen in the browser #}
+{# and Underscore templates. It's easy to include in a Symfony template. #}
+<style>
+	span.upload {
+
+		 -moz-border-bottom-colors: none;
+	    -moz-border-left-colors: none;
+	    -moz-border-right-colors: none;
+	    -moz-border-top-colors: none;
+	    background-color: #F5F5F5;
+	    background-image: -moz-linear-gradient(center top , #FFFFFF, #E6E6E6);
+	    background-repeat: repeat-x;
+	    border-color: #E6E6E6 #E6E6E6 #B3B3B3;
+	    border-image: none;
+	    border-radius: 4px;
+	    border-style: solid;
+	    border-width: 1px;
+	    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+	    color: #333333;
+	    cursor: pointer;
+	    display: inline-block;
+	    font-size: 13px;
+	    line-height: 10px;
+	    margin-bottom: 0;
+	    padding: 4px 10px;
+	    text-align: center;
+	    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	    vertical-align: middle;
+	    height : 30px;	
+    	background-color: #5BB75B;
+    	background-image: -moz-linear-gradient(center top , #62C462, #51A351);
+    	background-repeat: repeat-x;
+    	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	}
+
+	span.upload  span {
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    line-height : 20px;
+
+}
+
+
+span.upload input {
+
+	/*display: block !important;
+    width: 157px !important;
+    height: 57px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;*/
+
+    display: block !important;
+    width: 157px !important;
+    height: 40px !important;
+    overflow: hidden !important;
+
+    cursor: pointer;
+    direction: ltr;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    /*transform: translate(-300px, 0px) scale(4);*/
+
+
+}
+.thumbnails li{
+	width : 100%;
+	
+}
+.thumbnails li img{
+
+	float:left;
+}
+.thumbnails li div {
+	float:right;
+	margin-top:12px;
+}
+</style>
+<script type="text/template" id="file-uploader-template">
+  <div class="uploader" data-dropzone="1" style="margin-top: 10px; margin-bottom: 10px">
+    <div class="controls" style="margin-bottom: 20px; margin-left:85px; position: relative;">
+      {# No name attribute please, that would cause it to submit with a regular form #}
+      <span class="upload">
+      	<span>Ajouter des photos...</span>
+      	<input type="file" data-files="1" multiple />
+      </span>
+      <p style="margin:0px !important; height:30px; line-height: 30px; color:#ccc"><i>Vos images seront redimensionnées automatiquement</i></p>
+      <span class="spinner" data-spinner="1" style="display: none">
+        <img src="{{ asset('bundles/punkavefileuploader/images/spinner.gif') }}" /> Uploading...
+      </span>
+    </div>
+    <ul class="thumbnails" data-thumbnails="1">
+        {# We populate the list via an API call #}
+    </ul>
+  </div>
+</script>
+
+{# parameters to underscore template: name, thumbnail_url, original_url #}
+<script type="text/template" id="file-uploader-file-template">
+    <li data-name="<%- name %>" class="thumbnail">
+        {# Some things can be thumbnailed, some things not #}
+
+        <% if ('undefined' != typeof thumbnail_url) { %>
+        	<img src="<%- thumbnail_url %>" class="thumbnail-image" />
+        <% } %>
+        <div class="caption">
+            <span class="filename"><%- name %></span>
+            <a rel="tooltip" title="Download Original" class="download thumbnail-action btn" target="download" href="<%- url %>"><i class="icon-download"></i></a>
+            {# ACHTUNG: data-action="delete" matters to javascript #}
+            <a rel="tooltip" title="Delete" data-action="delete" class="delete thumbnail-action btn" href="#delete"><i class="icon-trash"></i></a>
+        </div>
+    </li>
+</script>
+{% endspaceless %}

@@ -35,6 +35,28 @@ class AnnonceController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('StarAnnoncesBundle:Annonce')->findAll();
+
+        return array(
+            'entities' => $entities,
+        );
+    }
+
+    /**
+     * Lists all Annonce entities per user.
+     *
+     * @Route("/list-per-user", name="annonce_list")
+     * @Method("GET")
+     * @Template()
+     */
+
+    public function listAction(){
+        $em = $this->getDoctrine()->getManager();
+
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        
+        $entities = $em->getRepository('StarAnnoncesBundle:Annonce')->findAddsByUser($user);
+        
         return array(
             'entities' => $entities,
         );
@@ -301,16 +323,17 @@ class AnnonceController extends Controller
      */
     public function lastAnnoncesAction(){
         
-         $em = $this->getDoctrine()->getManager();
-         $annonces = $em->getRepository('StarAnnoncesBundle:Annonce')->getlastAnnonces();
+        $maxAdds = $this->container->getParameter('max_adds_per_page');
+        $em = $this->getDoctrine()->getManager();
+        $annonces = $em->getRepository('StarAnnoncesBundle:Annonce')->getlastAnnonces($maxAdds);
          
-         foreach ($annonces as $annonce){
+        foreach ($annonces as $annonce){
              
              $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $annonce->getImgDirId()));
              
              $annonce->setImages($existingFiles);
-         }
-         return $this->render('StarAnnoncesBundle:Annonce:last.html.twig', array(
+        }
+        return $this->render('StarAnnoncesBundle:Annonce:last.html.twig', array(
             'annonces' => $annonces,
         ));
          
@@ -400,60 +423,6 @@ class AnnonceController extends Controller
         die();
     }
 
-    public function importCitiesAction(){
-
-        $em = $this->getDoctrine()->getManager();
-
-
-        $conn = $this->container->get('database_connection');
-
-        $sql = "SELECT  DISTINCT(gouvernorat)  FROM villes";
-        $stmt = $conn->query($sql);
-       
-        print "<pre>";
-        while ($row = $stmt->fetch()) {
-                var_dump($row['gouvernorat']);
-                // Insertion des geouvernorats :
-                $entity = new Gouv();
-                $entity->setName($row['gouvernorat']);
-                $em->persist($entity);
-
-                $sql1 = "SELECT  DISTINCT(delegation)  FROM villes WHERE gouvernorat = '".$row['gouvernorat']."'";
-                $stmt1 = $conn->query($sql1);
-                
-                while ($row1 = $stmt1->fetch()) {
-                    var_dump("---------->".$row1['delegation']);
-                    // Insertion des delegs :
-                    $entity1 = new Deleg();
-                    $entity1->setName($row1['delegation']);
-                    $entity1->setGouv($entity);
-
-                    $em->persist($entity1);
-
-                    $sql2 = "SELECT  DISTINCT(localite)  FROM villes WHERE delegation = '".$row1['delegation']."'";
-                    $stmt2 = $conn->query($sql2);
-                    while ($row2 = $stmt2->fetch()) {
-                        var_dump("======================>".$row2['localite']);
-
-                        // Insertion des delegs :
-                        $entity2 = new Locality();
-                        $entity2->setName($row2['localite']);
-                        $entity2->setDeleg($entity1);
-
-                        $em->persist($entity2);
-
-                    }
-
-
-                }
-
-                
-        
-        }
-        $em->flush();
-
-       exit(); 
-    }
     
-    
+   
 }

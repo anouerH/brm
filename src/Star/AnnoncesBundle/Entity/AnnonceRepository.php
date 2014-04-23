@@ -12,10 +12,21 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class AnnonceRepository extends EntityRepository
 {
-    public function getlastAnnonces(){
+    public function getlastAnnonces($maxAdds = 10){
+        
         $qb = $this->createQueryBuilder('a')
-            ->orderBy('a.createdAt', 'DESC')
-            ->setMaxResults(5);
+            ->orderBy('a.createdAt', 'DESC');
+        
+            // check validty : select created_at, DATE_ADD(created_at, INTERVAL 2 year) from Annonce ;
+            $qb->andWhere("DATE_ADD(a.validatedAt, a.validity, 'DAY') > CURRENT_DATE()");
+
+            // Is valid adds ?
+            $qb->andWhere("a.isEnabled = 1");
+        
+            //$maxAdds = $this->container->getParameter('max_adds_per_page');
+
+            $qb->orderBy('a.createdAt', 'DESC')
+                ->setMaxResults($maxAdds);
         $query = $qb->getQuery();
         
         return $query->getResult();
@@ -56,20 +67,27 @@ class AnnonceRepository extends EntityRepository
                 $qb->setParameter($cpt, new \DateTime('-'.$value.' year'));
                 $cpt++;
                 continue;
-            }   
+            }
+
+
             
             // default
             $qb->andWhere('a.'.$key.' = ?'.$cpt);
             $qb->setParameter($cpt, $value);
+
+
+
              
              $cpt ++;
         }
         
        
         // check validty : select created_at, DATE_ADD(created_at, INTERVAL 2 year) from Annonce ;
-        $qb->andWhere("DATE_ADD(a.createdAt, a.validity, 'DAY') > CURRENT_DATE()");
+        $qb->andWhere("DATE_ADD(a.validatedAt, a.validity, 'DAY') > CURRENT_DATE()");
         
-            
+        
+        // Is valid adds ?
+        $qb->andWhere("a.isEnabled = 1");      
 
         $qb->orderBy('a.createdAt', 'DESC');
         
@@ -88,5 +106,31 @@ class AnnonceRepository extends EntityRepository
         $qb = $this->createQueryBuilder('a');
         return count($qb->getQuery()->getResult());
     }
+
+    // find adds by user
+
+    public function findAddsByUser($user = null){
+
+        $qb = $this->createQueryBuilder('a');
+        
+        if( is_object($user)){
+            $qb->andWhere('a.user = :USER');
+            $qb->setParameter('USER', $user->getId());
+        }
+        $qb->orderBy('a.createdAt', 'DESC');
+        $query = $qb->getQuery();
+        
+        $results = $query->getResult();
+        // set add Status
+        foreach ($results as $entity) {
+            // annonce valides
+            $entity->setStatus(1);         
+        }
+        
+        return $results ;
+    }
+
+
     
+
  }

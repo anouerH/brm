@@ -15,15 +15,22 @@ class AnnonceAdmin extends Admin
 	// setup the defaut sort column and order
     protected $datagridValues = array(
         '_sort_order' => 'DESC',
-        '_sort_by' => 'created_at'
+        '_sort_by' => 'createdAt'
     );
 
 	protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title')
-            ->add('price')
-            ->add('gouv.id')
+            ->add('title',null, array('label'=>'Titre'))
+            ->add('description',null, array('label'=>'Description'))
+            ->add('gouv',null, array('label'=>'Gouvernorat'))
+            ->add('user',null, array('label'=>'Utilisateur'))
+            ->add('isEnabled',null, array('label'=>'Valider'))
+            ->add('isDisabled',null, array('label'=>'Rejeter'))
+            // you can define help messages like this
+            ->setHelps(array(
+               'title' => $this->trans('help_post_title')
+            ));
             
         ;
     }
@@ -31,8 +38,10 @@ class AnnonceAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
-            ->add('price')
+            //->add('title')
+            //->add('price')
+            ->add('isEnabled',null, array('label'=>'les annonces validées ?'))
+            ->add('isDisabled',null, array('label'=>'les annonces rejetées ?'))
             ->add('gouv')
             
         ;
@@ -41,9 +50,12 @@ class AnnonceAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title')
+            ->addIdentifier('title', null, array('label'=>'Titre'))
+            ->add('isEnabled', null, array('label'=>'Validée'))
+            ->add('isDisabled', null, array('label'=>'Rejetée'))
             ->add('gouv')
-            ->add('createdAt')
+            ->add('user')
+            ->add('createdAt', null, array('label'=>'Crée le','format'=>'d/m/Y'))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'view' => array(),
@@ -51,7 +63,7 @@ class AnnonceAdmin extends Admin
                     'delete' => array(),
                 )
             ))
-            ->add('yourLink', null, array('template' => '::testfield.html.twig'))
+            // ->add('yourLink', null, array('template' => '::testfield.html.twig'))
         ;
     }
 
@@ -64,6 +76,14 @@ class AnnonceAdmin extends Admin
             
         ;
     }
+
+
+    public function getEditTemplate()
+    {
+        return 'StarAnnoncesBundle:Sonata:base_edit.html.twig';
+    }
+
+    
 
     /*public function createQuery($context = 'list')
 	{

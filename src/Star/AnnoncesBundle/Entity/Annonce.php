@@ -9,6 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Star\AnnoncesBundle\Entity\AnnonceRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Annonce
 {
@@ -280,6 +281,12 @@ class Annonce
     * @ORM\Column(name="is_disabled", type="boolean", nullable=true)
     */
     private $isDisabled;
+
+    /**
+    * Add status
+    */
+
+    private $status;
     
     
     public function __construct()
@@ -1119,12 +1126,25 @@ class Annonce
     }
 
     /**
+    * @ORM\PreUpdate
+    */
+    public function EnableAdds()
+    {
+        /*$nbCommentaires = $this->getArticle()->getNbCommentaires();
+        $this->getArticle()->setNbCommentaires($nbCommentaires+1);*/
+        if($this->isEnabled)
+            $this->validatedAt = new \Datetime();
+    }
+
+
+    /**
      * Get validatedAt
      *
      * @return \DateTime 
      */
     public function getValidatedAt()
     {
+
         return $this->validatedAt;
     }
 
@@ -1173,4 +1193,22 @@ class Annonce
     {
         return $this->isDisabled;
     }
+
+    /**
+     * set Status  
+     */
+    public function setStatus($status){
+        $this->status = $status;
+
+        return $this;
+    }
+    
+    /**
+     * get Status
+     */
+    
+    public function getStatus(){
+        return $this->status;
+    }
+
 }

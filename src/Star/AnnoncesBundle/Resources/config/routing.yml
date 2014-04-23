@@ -6,6 +6,10 @@ annonce:
     pattern:  /list
     defaults: { _controller:StarAnnoncesBundle:Annonce:index}
 
+annonce_list:
+    pattern:  /list-per-user
+    defaults: { _controller:StarAnnoncesBundle:Annonce:list}
+
 annonce_new:
     pattern:  /deposer_annonce
     defaults: { _controller:StarAnnoncesBundle:Annonce:new}

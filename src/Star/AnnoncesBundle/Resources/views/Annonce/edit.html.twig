@@ -236,7 +236,7 @@
         <div style='width:50%; float:left'>
             <div class="form-group">
            
-            <div class="col-sm-8">
+            <div class="col-sm-10">
                 {% for child in edit_form.fixedPrice %}
                     <label class="radio-inline">
                        {{ form_widget(child) }}{{ form_label(child) }}
@@ -245,6 +245,16 @@
             </div>
         </div>
         </div>
+        <div style="clear:both;"></div>
+        <div style='width:50%; float:left'>
+            <div class="form-group">
+                {{ form_label(edit_form.validity, 'Validité', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
+                <div class="input-group col-sm-6">
+                    {{ form_widget(edit_form.validity, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                {{ form_errors(edit_form.validity) }}
+            </div>
+       </div>
         <div style="clear:both;"></div>
         
         
@@ -257,8 +267,8 @@
         
         
         <div class="form-group">
-        {{ form_label(edit_form.showPhoneNumber, 'Afficher mon numéro de téléphone pour cette annonce ?'|raw, {'label_attr': {'class': 'col-sm-8'}}) }}
-        <div class="col-sm-3">
+        {{ form_label(edit_form.showPhoneNumber, 'Afficher mon numéro de téléphone pour cette annonce ?'|raw, {'label_attr': {'class': 'col-sm-6'}}) }}
+        <div class="col-sm-4">
             {% for child in edit_form.showPhoneNumber %}
                 <label class="radio-inline">
                    {{ form_widget(child) }}{{ form_label(child) }}
@@ -269,8 +279,8 @@
         
     
     <div class="form-group">
-        {{ form_label(edit_form.convertStars, 'Convertir mes stars sur cette annonce ?  (Annonces avec images seulement)'|raw, {'label_attr': {'class': 'col-sm-8'}}) }}
-        <div class="col-sm-3">
+        {{ form_label(edit_form.convertStars, 'Convertir mes stars sur cette annonce ?  (Annonces avec images seulement)'|raw, {'label_attr': {'class': 'col-sm-6'}}) }}
+        <div class="col-sm-4">
             {% for child in edit_form.convertStars %}
                 <label class="radio-inline">
                    {{ form_widget(child) }}{{ form_label(child) }}

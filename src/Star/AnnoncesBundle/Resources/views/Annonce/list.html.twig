@@ -1,0 +1,87 @@
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        oTable = $('#my-adds').dataTable({
+                "bJQueryUI": true,
+                "oLanguage": {
+                    "sProcessing":     "Traitement en cours...",
+                    "sSearch":         "Rechercher&nbsp;:",
+                    "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
+                    "sInfo":           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                    "sInfoEmpty":      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                    "sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                    "sInfoPostFix":    "",
+                    "sLoadingRecords": "Chargement en cours...",
+                    "sZeroRecords":    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                    "sEmptyTable":     "Aucune donnée disponible dans le tableau",
+                    "oPaginate": {
+                        "sFirst":      "Premier",
+                        "sPrevious":   "Pr&eacute;c&eacute;dent",
+                        "sNext":       "Suivant",
+                        "sLast":       "Dernier"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": activer pour trier la colonne par ordre croissant",
+                        "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+                    },
+                    
+                }
+        });
+        
+        
+    });
+    
+    
+</script>
+<div id="dt_grid">
+<table class="records_list" id = "my-adds">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Title</th>
+                <th>Catégorie</th>
+                <th>Etat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{% if entity.createdAt %}{{ entity.createdAt|date('d/m/Y') }}{% endif %}</td>
+                <td>{{ entity.title }}</td>
+                
+                <td>{{ entity.theme }}</td>
+                
+                <td>
+                    <!--<span class="label label-success">Validée</span> |
+                    <span class="label label-danger">Expirée</span> |
+                    <span class="label label-warning">En attente</span>-->
+
+                    {%if entity.status == 1 %}
+                        <span class="label label-success">Validée</span>
+                    {% endif %}
+                    
+                    {{entity.status}}
+                </td>
+                <td>
+                    <!--<ul>
+                        <li>
+                            <a href="{{ path('annonce_edit', { 'slug': entity.slug }) }}">edit</a>
+                        </li>
+                    </ul>-->
+                    <div class="btn-toolbar_">
+                      <div class="btn-group">
+                      <a class="btn" href="{#{ path('annonce_edit', { 'slug': entity.slug }) }#}" title = "Mettre en avant" alt="Mettre en avant"><i class="icon-eject"></i></a>
+
+                        <a class="btn" href="{{ path('annonce_edit', { 'slug': entity.slug }) }}" title = "Editer l'annonce" alt="Editer l'annonce"><i class="icon-edit"></i></a>
+                        <a class="btn" href="#"  title = "Supprimer l'annonce" alt="Supprimer l'annonce"><i class="icon-trash"></i></a>
+                      </div>
+                    </div>
+
+
+                
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>

@@ -1,10 +1,11 @@
 
-{% extends "::layout.html.twig" %}
+{% extends "::layout-detail.html.twig" %}
     
 {% block title %}
   Espace membre - {{ parent() }}
 {% endblock %}
 {% block body -%}
+<div id="member-space" style="width:740px">
   <div class="titre_star">Espace membre </div>
   
     <ul id="tabs">
@@ -14,7 +15,7 @@
       <li id=""><a href="#" name="tab4">Profil</a></li>    
     </ul>
   
-    <div id="content-tab"> 
+    <div id="content-tab" > 
         
      
     
@@ -39,10 +40,10 @@
           
       </div>
       <div id="tab2" style="display: none;">
-          <h2>Vivamus fringilla suscipit justo</h2>
-          <p>Aenean dui nulla, egestas sit amet auctor vitae, facilisis id odio. Donec dictum gravida feugiat.</p>
-          <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras pretium elit et erat condimentum et volutpat lorem vehicula</p>
-          <p>Morbi tincidunt pharetra orci commodo molestie. Praesent ut leo nec dolor tempor eleifend.</p>    
+          <h3>Mes annonces</h3>
+          
+          {% render url('annonce_list') %}
+
       </div>
       <div id="tab3" style="display: none;">
           <h2>Phasellus non nibh</h2>
@@ -60,7 +61,7 @@
           <p>Mauris rhoncus tincidunt libero quis fringilla.</p>    
       </div>
   </div>
-  
+  <div>
  <script>
     $(document).ready(function() {
         $("#content-tab").find("[id^='tab']").hide(); // Hide all content

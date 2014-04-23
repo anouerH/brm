@@ -19,14 +19,14 @@ class AnnonceType extends AbstractType
                 'choices' => array('OFFRE' => 'Offre', 'DEMANDE' => 'demande'),
                 'multiple' => false,
                 'expanded' => true,
-                'required' => true,
+                //'required' => true,
                 //'data' => 'OFFRE',
             ))
             ->add('demande_type', 'choice', array(
                 'choices' => array('VENTE' => 'Vente', 'LOCATION' => 'Location'),
                 'multiple' => false,
                 'expanded' => true,
-                'required' => true,
+                //'required' => true,
                 //'data' => 'VENTE',
             ))
             //->add('gouv', 'entity', array('class' => 'StarAnnoncesBundle:Gouv','empty_value' => ''))
