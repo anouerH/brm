@@ -124,7 +124,26 @@ class AnnonceRepository extends EntityRepository
         // set add Status
         foreach ($results as $entity) {
             // annonce valides
-            $entity->setStatus(1);         
+
+            // par defaut l'annonce est en attente :: Etat 0
+            $entity->setStatus(0);
+            if($entity->getIsEnabled()){
+                // Annonce valide :: Etat 1
+                $entity->setStatus(1);
+                $expireDate  = $entity->getValidatedAt()->modify('+'.$entity->getValidity().' day');
+                $currentDate    =  new \DateTime();
+                // $diff = date_diff($expireDate,$currentDate, false);
+                // s$interval = $expireDate->diff($currentDate);
+
+                // Vérifier si l'annonce est expirée
+                if(strtotime($currentDate->format('Y-m-d')) > strtotime($expireDate->format('Y-m-d'))){
+                    // Annonce expiré :: Etat 2
+                    $entity->setStatus(2);
+                    
+                }
+                
+
+            }         
         }
         
         return $results ;

@@ -52,15 +52,19 @@
                 <td>{{ entity.theme }}</td>
                 
                 <td>
-                    <!--<span class="label label-success">Validée</span> |
-                    <span class="label label-danger">Expirée</span> |
-                    <span class="label label-warning">En attente</span>-->
 
+                    {%if entity.status == 0 %}
+                        <span class="label label-warning">En attente</span>
+                    {% endif %}
                     {%if entity.status == 1 %}
                         <span class="label label-success">Validée</span>
                     {% endif %}
+
+                    {%if entity.status == 2 %}
+                        <span class="label label-danger">Expirée</span>
+                    {% endif %}
+
                     
-                    {{entity.status}}
                 </td>
                 <td>
                     <!--<ul>

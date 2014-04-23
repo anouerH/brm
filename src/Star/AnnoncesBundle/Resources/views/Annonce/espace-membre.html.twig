@@ -9,10 +9,14 @@
   <div class="titre_star">Espace membre </div>
   
     <ul id="tabs">
-      <li id="current"><a href="#" name="tab1">Messages</a></li>
-      <li id=""><a href="#" name="tab2">Mes annonces</a></li>
-      <li id=""><a href="#" name="tab3">Mes stars</a></li>
-      <li id=""><a href="#" name="tab4">Profil</a></li>    
+      <li id="current"><a href="#" name="tab1"><i class="icon-envelope"></i> Messages</a></li>
+      <li id=""><a href="#" name="tab2"><i class="icon-bullhorn"></i> Mes annonces</a></li>
+      <li id=""><a href="#" name="tab3"><i class="icon-star"></i> Mes stars</a></li>
+      <li id=""><a href="#" name="tab4"><i class="icon-heart"></i> Mes fovoris</a></li>
+      <li id=""><a href="#" name="tab5"><i class="icon-user"></i> Profil</a></li>
+
+      <!--<li id=""><a href="#" name="tab6"><i class="icon-lock"></i> Mot de passe</a></li>-->
+
     </ul>
   
     <div id="content-tab" > 
@@ -21,9 +25,9 @@
     
       <div id="tab1" style="display: block;">
         <ul id="sub-tabs">
-            <li id="current"><a href="#" name="sub-tab1">Messages Reçus</a></li>
-            <li id=""><a href="#" name="sub-tab2">Messages envoyés</a></li>
-            <li id=""><a href="#" name="sub-tab3">Corbeille</a></li>
+            <li id="current"><a href="#" name="sub-tab1"><i class="icon-inbox"></i> Messages Reçus</a></li>
+            <li id=""><a href="#" name="sub-tab2"><i class="icon-share"></i> Messages envoyés</a></li>
+            <li id=""><a href="#" name="sub-tab3"><i class="icon-trash"></i> Corbeille</a></li>
         </ul>
               
         <div id="sub-content-tab">
@@ -53,6 +57,13 @@
           <p>Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et. </p>
       </div>
       <div id="tab4" style="display: none;">
+          <h2>Mes Favoris</h2>
+          <p>Non erat laoreet ullamcorper. Pellentesque magna metus, feugiat eu elementum sit amet, cursus sed diam. Curabitur posuere porttitor lorem, eu malesuada tortor faucibus sed.</p>
+          <h3>Duis pulvinar nibh vel urna</h3>
+          <p>Donec purus leo, porttitor eu molestie quis, porttitor sit amet ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec accumsan ornare elit id imperdiet. </p>
+          <p>Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et. </p>
+      </div>
+      <div id="tab5" style="display: none;">
           {#% render url('fos_user_profile_edit') %#}
           <h2>Cum sociis natoque penatibus</h2>
           <p>Magnis dis parturient montes, nascetur ridiculus mus. Nullam ac massa quis nisi porta mollis venenatis sit amet urna. Ut in mauris velit, sed bibendum turpis.</p>
@@ -60,6 +71,13 @@
           <h3>Imperdiet sem interdum nec</h3>
           <p>Mauris rhoncus tincidunt libero quis fringilla.</p>    
       </div>
+      <!--<div id="tab5" style="display: none;">
+          <h2>Mot de passe</h2>
+          <p>Magnis dis parturient montes, nascetur ridiculus mus. Nullam ac massa quis nisi porta mollis venenatis sit amet urna. Ut in mauris velit, sed bibendum turpis.</p>
+          <p>Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent bibendum sagittis libero.</p>
+          <h3>Imperdiet sem interdum nec</h3>
+          <p>Mauris rhoncus tincidunt libero quis fringilla.</p>    
+      </div>-->
   </div>
   <div>
  <script>
