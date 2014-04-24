@@ -5,7 +5,7 @@
     width : 33.33333333333333% !important;
 }
 </style>
-<form action="{{ path('fos_user_profile_edit') }}"  {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit  form-horizontal">
+<form id="profile-edit" novalidate action="{{ path('fos_user_profile_edit') }}"  {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit  form-horizontal">
     {#{ form_widget(form) }#}
 
     <div class="form-group">
@@ -53,6 +53,7 @@
         <div class="col-sm-4">
         	{{ form_widget(form.current_password, {'attr': {'class': 'form-control','placeholder': 'Mot de passe'}}) }}
         </div>
+        {{ form_errors(form.current_password) }}
     </div>
 
 
@@ -82,9 +83,9 @@
     </div>
 
     <div class="form-group">
-        {{ form_label(form.sector, 'Secteur d activité', {'label_attr': {'class': 'control-label col-sm-4  '}}) }}
+        {{ form_label(form.sector, 'Secteur d activité' |raw, {'label_attr': {'class': 'control-label col-sm-4  '}}) }}
         <div class="col-sm-4">
-            {{ form_widget(form.sector, {'attr': {'class': 'form-control','placeholder': 'Secteur d activité'}}) }}
+            {{ form_widget(form.sector, {'attr': {'class': 'form-control','placeholder': 'Secteur d activité' |raw}}) }}
         </div>
     </div>
 
@@ -147,3 +148,31 @@
     
 
 </form>
+
+
+<script>
+    //callback handler for form submit
+    $("#profile-edit").submit(function(e)
+    {
+        var postData = $(this).serializeArray();
+        var formURL = $(this).attr("action");
+        $.ajax(
+        {
+            url : formURL,
+            type: "POST",
+            data : postData,
+            success:function(data, textStatus, jqXHR) 
+            {
+            
+                $('#profile-edit-content').html(data);
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) 
+            {
+                //if fails      
+            }
+        });
+        e.preventDefault(); //STOP default action
+        e.unbind(); //unbind. to stop multiple form submit.
+    });
+</script>

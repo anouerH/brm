@@ -17,6 +17,7 @@ class ProfileFormType extends BaseType
                 'choices' => array('MR' => 'Mr', 'MLLE' => 'Mlle', 'MME' => 'Mme'),
                 'multiple' => false,
                 'expanded' => true,
+               
             ));
 
 
@@ -35,7 +36,7 @@ class ProfileFormType extends BaseType
                 'choices' => array('PARTICULIER' => 'Particulier', 'PROFESSIONNEL' => 'Professionnel'),
                 'multiple' => false,
                 'expanded' => true,
-                'required'   => false
+                // 'required'   => false
             ));
 
         $builder->add('function');

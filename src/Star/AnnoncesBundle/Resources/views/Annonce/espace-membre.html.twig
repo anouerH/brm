@@ -65,9 +65,12 @@
       </div>
       <div id="tab5" style="display: none;">
           <h2>Gestion de profil</h2>
-          <p class="text-info">Complétez votre profil et gagnez plus de stars !</p>
-          {% render url('fos_user_profile_edit') %}
-
+          <p class="text-info">
+              Complétez votre profil et gagnez plus de stars !
+          </p>
+          <div id="profile-edit-content">
+            {% render url('fos_user_profile_edit') %}
+          </div>
       </div>
       
   </div>
