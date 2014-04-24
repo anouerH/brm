@@ -369,27 +369,4 @@ class User extends BaseUser implements ParticipantInterface
     {
         return $this->sector;
     }
-
-    /**
-     * Set country
-     *
-     * @param \Star\AnnoncesBundle\Entity\Country $country
-     * @return User
-     */
-    public function setCountry(\Star\AnnoncesBundle\Entity\Country $country = null)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return \Star\AnnoncesBundle\Entity\Country 
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
 }

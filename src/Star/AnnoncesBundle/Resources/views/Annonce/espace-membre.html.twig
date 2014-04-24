@@ -64,22 +64,14 @@
           <p>Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et. </p>
       </div>
       <div id="tab5" style="display: none;">
-          {#% render url('fos_user_profile_edit') %#}
-          <h2>Cum sociis natoque penatibus</h2>
-          <p>Magnis dis parturient montes, nascetur ridiculus mus. Nullam ac massa quis nisi porta mollis venenatis sit amet urna. Ut in mauris velit, sed bibendum turpis.</p>
-          <p>Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent bibendum sagittis libero.</p>
-          <h3>Imperdiet sem interdum nec</h3>
-          <p>Mauris rhoncus tincidunt libero quis fringilla.</p>    
+          <h2>Gestion de profil</h2>
+          <p class="text-info">Complétez votre profil et gagnez plus de stars !</p>
+          {% render url('fos_user_profile_edit') %}
+
       </div>
-      <!--<div id="tab5" style="display: none;">
-          <h2>Mot de passe</h2>
-          <p>Magnis dis parturient montes, nascetur ridiculus mus. Nullam ac massa quis nisi porta mollis venenatis sit amet urna. Ut in mauris velit, sed bibendum turpis.</p>
-          <p>Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent bibendum sagittis libero.</p>
-          <h3>Imperdiet sem interdum nec</h3>
-          <p>Mauris rhoncus tincidunt libero quis fringilla.</p>    
-      </div>-->
+      
   </div>
-  <div>
+  
  <script>
     $(document).ready(function() {
         $("#content-tab").find("[id^='tab']").hide(); // Hide all content

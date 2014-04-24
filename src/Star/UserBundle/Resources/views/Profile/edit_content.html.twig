@@ -1,0 +1,149 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<style>
+.col-sm-4{
+    width : 33.33333333333333% !important;
+}
+</style>
+<form action="{{ path('fos_user_profile_edit') }}"  {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit  form-horizontal">
+    {#{ form_widget(form) }#}
+
+    <div class="form-group">
+        {{ form_label(form.civility, 'Civilité'|raw, {'label_attr': {'class': 'control-label col-sm-4 '}}) }}
+        <div class="col-sm-5">
+            {% for child in form.civility %}
+                <label class="radio-inline">
+                   {{ form_widget(child) }}{{ form_label(child) }}
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    
+    <div class="form-group">
+		{{ form_label(form.lastname, 'Nom', {'label_attr': {'class': 'control-label col-sm-4  '}}) }}
+        <div class="col-sm-4">
+        	{{ form_widget(form.lastname, {'attr': {'class': 'form-control','placeholder': 'Nom'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+		{{ form_label(form.firstname, 'Prénom', {'label_attr': {'class': 'control-label col-sm-4'}}) }}
+        <div class="col-sm-4">
+        	{{ form_widget(form.firstname, {'attr': {'class': 'form-control','placeholder': 'Prénom'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+		{{ form_label(form.username, 'Pseudo', {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+        <div class="col-sm-4">
+        	{{ form_widget(form.username, {'attr': {'class': 'form-control','placeholder': 'Pseudo'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+		{{ form_label(form.email, 'E-mail', {'label_attr': {'class': 'control-label col-sm-4'}}) }}
+        <div class="col-sm-4">
+        	{{ form_widget(form.email, {'attr': {'class': 'form-control','placeholder': 'E-mail'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+		{{ form_label(form.current_password, 'Mot de passe actuel', {'label_attr': {'class': 'control-label col-sm-4'}}) }}
+        <div class="col-sm-4">
+        	{{ form_widget(form.current_password, {'attr': {'class': 'form-control','placeholder': 'Mot de passe'}}) }}
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        {{ form_label(form.birthdate, 'Date de naissance', {'label_attr': {'class': 'control-label col-sm-4'}}) }}
+        <div class="col-sm-3">
+            {{ form_widget(form.birthdate, {'attr': {'class': 'form-control','placeholder': 'Date de naissance'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+            {{ form_label(form.userType, 'Vous êtes un'|raw, {'label_attr': {'class': 'control-label col-sm-4 '}}) }}
+            <div class="col-sm-5">
+                {% for child in form.userType %}
+                    <label class="radio-inline">
+                       {{ form_widget(child) }}{{ form_label(child) }}
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+    
+     <div class="form-group">
+        {{ form_label(form.function, 'Fonction', {'label_attr': {'class': 'control-label col-sm-4  '}}) }}
+        <div class="col-sm-4">
+            {{ form_widget(form.function, {'attr': {'class': 'form-control','placeholder': 'Fonction'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.sector, 'Secteur d activité', {'label_attr': {'class': 'control-label col-sm-4  '}}) }}
+        <div class="col-sm-4">
+            {{ form_widget(form.sector, {'attr': {'class': 'form-control','placeholder': 'Secteur d activité'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.adress, 'Adresse', {'label_attr': {'class': 'control-label col-sm-4'}}) }}
+        <div class="col-sm-4">
+            {{ form_widget(form.adress, {'attr': {'class': 'form-control','placeholder': 'Adresse'}}) }}
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        {{ form_label(form.country, 'Pays', {'label_attr': {'class': 'control-label col-sm-4  '}}) }}
+        <div class="col-sm-4">
+            {{ form_widget(form.country, {'attr': {'class': 'form-control','placeholder': 'Pays'}}) }}
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        {{ form_label(form.mobile, 'Téléphone portable ', {'label_attr': {'class': 'control-label col-sm-4'}}) }}
+        <div class="col-sm-3">
+            {{ form_widget(form.mobile, {'attr': {'class': 'form-control','placeholder': 'Téléphone portable '}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.phone, 'Téléphone fixe', {'label_attr': {'class': 'control-label col-sm-4'}}) }}
+        <div class="col-sm-3">
+            {{ form_widget(form.phone, {'attr': {'class': 'form-control','placeholder': 'Téléphone fixe'}}) }}
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        {{ form_label(form.fax, 'Fax', {'label_attr': {'class': 'control-label col-sm-4'}}) }}
+        <div class="col-sm-3">
+            {{ form_widget(form.fax, {'attr': {'class': 'form-control','placeholder': 'Fax'}}) }}
+        </div>
+    </div>
+
+
+
+    {{ form_rest(form) }}
+
+    <!--<div>
+        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+    </div>-->
+
+
+
+    <div class="form-group">
+        <label class='col-sm-4'></label>
+        <div class="col-sm-3">
+            <button type="submit" id="_submit" name="_submit" class="btn btn btn-primary">{{ 'profile.edit.submit'|trans }}</button>
+        </div>
+    </div>
+
+    
+
+</form>

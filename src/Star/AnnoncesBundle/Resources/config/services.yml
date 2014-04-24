@@ -53,6 +53,20 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Les catégories, label: Liste des energies }
         arguments: [null, Star\AnnoncesBundle\Entity\Energy, StarAnnoncesBundle:EnergyAdmin]
 
+    star.annonces.admin.Sector:
+        class: Star\AnnoncesBundle\Admin\SectorAdmin
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: Les catégories, label: Les secteurs d'activité}
+        arguments: [null, Star\AnnoncesBundle\Entity\Sector, StarAnnoncesBundle:SectorAdmin]
+    
+
+    star.annonces.admin.Country:
+        class: Star\AnnoncesBundle\Admin\CountryAdmin
+        tags: 
+            - { name: sonata.admin, manager_type: orm, group: Les catégories, label: Les pays}
+        arguments: [null, Star\AnnoncesBundle\Entity\Country, StarAnnoncesBundle:CountryAdmin]
+
+
     star.annonces.admin.Seuil:
         class: Star\AnnoncesBundle\Admin\SeuilAdmin
         tags: 

@@ -5,3 +5,8 @@ services:
 #    star_user.example:
 #        class: %star_user.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+        star_user.profile.form.type:
+            class: Star\UserBundle\Form\Type\ProfileFormType
+            arguments: [%fos_user.model.user.class%]
+            tags:
+                - { name: form.type, alias: star_user_profile }

@@ -6,6 +6,7 @@
     
     {#{ form_widget(form) }#}
 
+    
 
     <div class="form-group">
 		{{ form_label(form.email, 'E-mail', {'label_attr': {'class': 'col-sm-2  control-label'}}) }}
@@ -38,6 +39,12 @@
         </div>
     </div>
 
+    {{ form_rest(form) }}
+    <!--<div>
+        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+    </div>-->
+
+
 
     <div class="control-group">
 		<div class="controls">
@@ -46,9 +53,6 @@
 	</div>
 
 
-    {{ form_rest(form) }}
-    <!--<div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
-    </div>-->
+    
 
 </form>
