@@ -85,6 +85,12 @@ fos_user:
     profile:
         form:
             type: star_user_profile
+    registration:
+        confirmation:
+            enabled:    true
+    from_email:
+        address:        noreply@starannonces.tn
+        sender_name:    starannonces.tn
 
 #Sonata Admin Bundle
 sonata_block:

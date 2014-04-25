@@ -64,13 +64,25 @@
           <p>Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et. </p>
       </div>
       <div id="tab5" style="display: none;">
-          <h2>Gestion de profil</h2>
-          <p class="text-info">
-              Complétez votre profil et gagnez plus de stars !
-          </p>
-          <div id="profile-edit-content">
-            {% render url('fos_user_profile_edit') %}
-          </div>
+        <ul id="sub-profil-tabs">
+            <li id="current"><a href="#" name="sub-profil-tab4"><i class="icon-user"></i> Gestion de profil</a></li>
+            <li id=""><a href="#" name="sub-profil-tab5"><i class="icon-lock"></i> Mot de passe</a></li>
+        </ul>
+
+        <div id="sub-content-profil-tab">
+            <div id="sub-profil-tab4" style="display: block;">
+                <h2>Gestion de profil</h2>
+                <p class="text-info">
+                    Complétez votre profil et gagnez plus de stars !
+                </p>
+                <div id="profile-edit-content">
+                  {% render url('fos_user_profile_edit') %}
+                </div>
+            </div>
+            <div id="sub-profil-tab5" style="display: none;">
+                changer le mot de passe  ..... 
+            </div>
+        </div>
       </div>
       
   </div>
@@ -109,6 +121,27 @@
               $('#' + $(this).attr('name')).fadeIn(); // Show content for the current tab
             }
         });
+
+        $("#sub-profil-content-tab").find("[id^='sub-profil-tab']").hide(); // Hide all content
+        $("#sub-profil-tabs li:first").attr("id","current"); // Activate the first tab
+        $("#sub-profil-content-tab #sub-tab4").fadeIn(); // Show first tab's content
+
+        $('#sub-profil-tabs a').click(function(e) {
+            e.preventDefault();
+            if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
+             return;       
+            }
+            else{
+              $("#sub-content-profil-tab").find("[id^='sub-profil-tab']").hide(); // Hide all content
+              $("#sub-profil-tabs li").attr("id",""); //Reset id's
+              $(this).parent().attr("id","current"); // Activate this
+              $('#' + $(this).attr('name')).fadeIn(); // Show content for the current tab
+            }
+        });
+
+
+
+
     });
     
     </script>

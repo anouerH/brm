@@ -33,6 +33,7 @@
     
 </script>
 <div id="dt_grid">
+{%if(entities | length)%}
 <table class="records_list" id = "my-adds">
         <thead>
             <tr>
@@ -88,4 +89,9 @@
         {% endfor %}
         </tbody>
     </table>
+    {% else %}
+        <div class="alert alert-info">
+            <strong>Aucune annonce.</strong>   
+        </div>
+    {% endif %}
     </div>

@@ -28,10 +28,14 @@
 		<div class="controls">
 			<label class="checkbox">
 				<input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
-			</label>
+
+			<a href="{{path('fos_user_resetting_request')}}"></label>Mot de passe oublié ?</a><br>
 			<button id="_submit" name="_submit" class="btn btn btn-primary">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
 		</div>
 	</div>
+
+	
+
 
 </form>
 {% endblock fos_user_content %}

@@ -5256,7 +5256,7 @@ div .engin-field, div .model-list, div .brand-list, div .immob-field{
 
 /* Espace Membre tabs */
 
-#tabs , #sub-tabs {
+#tabs , #sub-tabs, #sub-profil-tabs {
   overflow: hidden;
   width: 100%;
   margin: 0;
@@ -5264,12 +5264,12 @@ div .engin-field, div .model-list, div .brand-list, div .immob-field{
   list-style: none;
 }
 
-#tabs li, #sub-tabs li {
+#tabs li, #sub-tabs li, #sub-profil-tabs li {
   float: left;
 
 }
 
-#tabs a, #sub-tabs a {
+#tabs a, #sub-tabs a, #sub-profil-tabs a {
   position: relative;
   background: #ddd;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
@@ -5298,16 +5298,21 @@ div .engin-field, div .model-list, div .brand-list, div .immob-field{
 #sub-tabs a:hover,
 #sub-tabs a:hover::after,
 #sub-tabs a:focus,
-#sub-tabs a:focus::after
+#sub-tabs a:focus::after,
+
+#sub-profil-tabs a:hover,
+#sub-profil-tabs a:hover::after,
+#sub-profil-tabs a:focus,
+#sub-profil-tabs a:focus::after
 {
   background: #fff;
 }
 
-#tabs a:focus, #sub-tabs a:focus {
+#tabs a:focus, #sub-tabs a:focus, #sub-profil-tabs a:focus {
   outline: 0;
 }
 
-#tabs a::after, #sub-tabs a::after {
+#tabs a::after, #sub-tabs a::after,  #sub-profil-tabs a::after {
   content:'';
   position:absolute;
   z-index: 1;
@@ -5335,12 +5340,12 @@ div .engin-field, div .model-list, div .brand-list, div .immob-field{
   border-radius: 0 5px 0 0;  
 }
 
-#tabs #current a, #sub-tabs #current a {
+#tabs #current a, #sub-tabs #current a ,  #sub-profil-tabs #current a {
   background: #fff;
   z-index: 3;
 }
 
-#tabs #current a::after, #sub-tabs #current a::after {
+#tabs #current a::after, #sub-tabs #current a::after , #sub-profil-tabs #current a::after {
   background: #fff;
   z-index: 3;
 }
@@ -5361,7 +5366,7 @@ div .engin-field, div .model-list, div .brand-list, div .immob-field{
     -webkit-box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
     box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
 }
-#sub-content-tab {
+#sub-content-tab, #sub-content-profil-tab {
     background: #fff;
     padding: 2px;
     /*height: 220px;*/
