@@ -1,1 +1,25 @@
-menu...
+{% set sWidth = "14.285714286" %}
+
+{% if  is_granted('ROLE_USER') %}
+	{% set sWidth = "16.666666667" %}
+{%endif%}
+
+<ul>
+    <li class="active" style="width: {{sWidth}}%"><a href="/">Acceuil</a></li>
+    <li style="width: {{sWidth}}%">
+    	<a href="{{path('annonce_new')}}" style="padding:8px 0 12px">Déposer une annonce</a>
+    </li>
+    
+    <li style="width: {{sWidth}}%"><a href="{{path('annonce_search')}}">Recherche</a></li>
+    
+    {% if is_granted('ROLE_USER') %}
+        <li style="width: {{sWidth}}%"><a href="{{path('espace_membre')}}">Espace Memebre</a></li>
+    {% else %}
+        <li style="width: {{sWidth}}%"><a href="{{path('fos_user_security_login')}}">Connexion</a></li>
+    {% endif %}
+    <li style="width: {{sWidth}}%"><a href="#">Aide</a></li>
+    {% if not is_granted('ROLE_USER') %}
+    	<li style="width: {{sWidth}}%"><a href="{{path('fos_user_registration_register')}}">Inscription</a></li>
+    {%endif%}
+    <li style="width: {{sWidth}}%"><a href="#">Contact</a></li>
+</ul>
