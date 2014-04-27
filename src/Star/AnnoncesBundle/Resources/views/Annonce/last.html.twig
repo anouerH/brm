@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/list.css') }}" type="text/css" />
+<div id="alert-content"></div>
 <div class="annonce_bottom">
     <div class="last_ann_index">
         <div class="titre_annon">
@@ -30,7 +31,7 @@
                     <div class="titre_ann_home"><a href="{{ path('annonce_detail', { 'slug': entity.slug , 'gouv': entity.gouv, 'deleg': entity.deleg, 'locality': entity.locality}) }}" style="text-decoration:none;" class="titre_ann_home"><strong>{{ entity.title }}</strong></a></div>
                     <div class="prix">{{ entity.price }}<sup>dt</sup></div>
                     
-                    <div class="plus">
+                    <div class="add-to-wishes plus" rel="{{entity.id}}">
                         <img width="24" height="18" style="cursor:pointer" title="Ajouter à ma selection" alt="Ajouter à ma selection" src="{{ asset('img/plus.gif') }}">
                     </div>
                     
@@ -49,3 +50,41 @@
         </ul>
     </div>
 </div>
+
+
+<script>
+  
+  $(document).ready(function() {
+    // add to my wishes list
+
+    $(".add-to-wishes").click(function(){
+        
+            var addId = $(this).attr('rel');
+            alert(addId);
+            var urlTwig = "{{ url('add_to_wishes_list', {'id': 2}) }}";
+
+            // urlTwig = urlTwig.replace("ADDID", addId);
+            $.ajax({
+                url: urlTwig,
+                type: 'GET',
+                dataType: 'html',
+                cache: "false",
+                processData: false,
+                data: content,
+                success: function (data) {
+                    data = data[0];
+                    $("#alert-content").html("<div class='alert "+data.class+"'>"+data.msg+"</div>");
+                },
+                error: function (xhr, status) {
+                    alert("Sorry, there was a problem!");
+                },
+                complete: function (xhr, status) {
+                    //$('#showresults').slideDown('slow')
+                    
+                }
+            });
+
+    });
+    
+ });
+  </script>

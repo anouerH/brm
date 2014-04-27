@@ -106,6 +106,10 @@ class User extends BaseUser implements ParticipantInterface
     */
     private $country;
 
+    /**
+    * @ORM\ManyToMany(targetEntity="Star\AnnoncesBundle\Entity\Annonce", cascade={"persist"})
+    */
+    private $wishes;
 
     /**
      * Get id
@@ -368,5 +372,28 @@ class User extends BaseUser implements ParticipantInterface
     public function getSector()
     {
         return $this->sector;
+    }
+
+    /**
+     * Set country
+     *
+     * @param \Star\AnnoncesBundle\Entity\Country $country
+     * @return User
+     */
+    public function setCountry(\Star\AnnoncesBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \Star\AnnoncesBundle\Entity\Country 
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }

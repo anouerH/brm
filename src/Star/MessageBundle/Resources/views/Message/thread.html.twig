@@ -64,7 +64,7 @@
     
     // surchager les anciens messages
     function getMessage(){
-        var threadId = "{{thread.id}}";
+            var threadId = "{{thread.id}}";
             var urlTwig = "{{ url('fos_message_thread_view', {'threadId': 'threadIdVal'}) }}";
             urlTwig = urlTwig.replace("threadIdVal", threadId);
             $.ajax({

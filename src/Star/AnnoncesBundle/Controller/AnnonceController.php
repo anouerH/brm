@@ -387,7 +387,7 @@ class AnnonceController extends Controller
         
         // var_dump($request->request->get('subject'), $request->request->get('anonnceur'));
         
-        $usr= $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.context')->getToken()->getUser();
 
 
         $message = \Swift_Message::newInstance()
@@ -423,6 +423,45 @@ class AnnonceController extends Controller
         die();
     }
 
-    
-   
+
+    /**
+     * Add  add to wishe list
+     *
+     * @Route("/{id}/add-to-wishes", name="add_to_wishes_list")
+     * @Method("GET")
+     * @Template()
+     */
+
+    public function addToWishesListAction($id){
+
+        if ( $this->get('security.context')->isGranted('ROLE_USER')) { 
+            $em = $this->getDoctrine()->getEntityManager();
+            $user= $this->get('security.context')->getToken()->getUser();
+            $entity = $em->getRepository('StarUserBundle:User')->find($user->getId());
+
+            if (!$entity) {
+                $return=array("error"=>'Unable to find User entity.');
+                $return=array("class"=>"alert-error","msg"=>'Unable to find User entity.');
+                $return=json_encode($return);//jscon encode the array
+                return new Response($return,200,array('Content-Type'=>'application/json'));//make sure it has the correct content type
+
+            }
+            $addsObj = $em->getRepository('StarAnnoncesBundle:Annonce')->find($id);
+            $entity->addWish($addsObj);
+            $em->persist($entity);
+            $em->flush();
+
+            $return=array("class"=>"alert-success","msg"=>'Annonce ajoutée');
+            $return=json_encode($return);//jscon encode the array
+            return new Response($return,200,array('Content-Type'=>'application/json'));//make sure it has the correct content type        
+       
+        }else{
+            $return=array("class"=>"alert-error","msg"=>'Merci de vous connecter pour ajouter les annonces favorites');
+            $return=json_encode($return);//jscon encode the array
+            return new Response($return,200,array('Content-Type'=>'application/json'));//make sure it has the correct content type        
+        }
+
+        
+
+    }
 }

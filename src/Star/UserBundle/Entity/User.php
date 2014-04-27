@@ -106,6 +106,10 @@ class User extends BaseUser implements ParticipantInterface
     */
     private $country;
 
+    /**
+    * @ORM\ManyToMany(targetEntity="Star\AnnoncesBundle\Entity\Annonce", cascade={"persist"})
+    */
+    private $wishes;
 
     /**
      * Get id
@@ -391,5 +395,45 @@ class User extends BaseUser implements ParticipantInterface
     public function getCountry()
     {
         return $this->country;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->wishes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add wishes
+     *
+     * @param \Star\AnnoncesBundle\Entity\Annonce $wishes
+     * @return User
+     */
+    public function addWish(\Star\AnnoncesBundle\Entity\Annonce $wishes)
+    {
+        $this->wishes[] = $wishes;
+
+        return $this;
+    }
+
+    /**
+     * Remove wishes
+     *
+     * @param \Star\AnnoncesBundle\Entity\Annonce $wishes
+     */
+    public function removeWish(\Star\AnnoncesBundle\Entity\Annonce $wishes)
+    {
+        $this->wishes->removeElement($wishes);
+    }
+
+    /**
+     * Get wishes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getWishes()
+    {
+        return $this->wishes;
     }
 }
