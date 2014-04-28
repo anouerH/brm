@@ -61,6 +61,31 @@ class AnnonceController extends Controller
             'entities' => $entities,
         );
     }
+
+
+    /**
+    * Lists all Annonce entities per user.
+    *
+    * @Route("/list-fav-user", name="fav_list")
+    * @Method("GET")
+    * @Template()
+    */
+
+    public function favListAction(){
+        
+        
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        $entities = $user->getWishes();
+        
+        return array(
+            'entities' => $entities,
+        );
+
+
+    }
+
     /**
      * Creates a new Annonce entity.
      *
@@ -440,18 +465,33 @@ class AnnonceController extends Controller
             $entity = $em->getRepository('StarUserBundle:User')->find($user->getId());
 
             if (!$entity) {
-                $return=array("error"=>'Unable to find User entity.');
                 $return=array("class"=>"alert-error","msg"=>'Unable to find User entity.');
                 $return=json_encode($return);//jscon encode the array
                 return new Response($return,200,array('Content-Type'=>'application/json'));//make sure it has the correct content type
 
             }
+            // check if adds is already in wishe list
+            //if(){
+            //var_dump($entity->getWishes());
+            //}
+
+            $wishes = $entity->getWishes() ;
+            if(count($wishes)){
+                foreach ($wishes as $wishe) {
+                    if($wishe->getId() == $id){
+                        $return=array("class"=>"alert-error","msg"=>'Annonce déja au favoris.');
+                        $return=json_encode($return);//jscon encode the array
+                        return new Response($return,200,array('Content-Type'=>'application/json'));
+                    }
+                }
+            }
+            
             $addsObj = $em->getRepository('StarAnnoncesBundle:Annonce')->find($id);
             $entity->addWish($addsObj);
             $em->persist($entity);
             $em->flush();
 
-            $return=array("class"=>"alert-success","msg"=>'Annonce ajoutée');
+            $return=array("class"=>"alert-success","msg"=>'Annonce ajoutée au favoris');
             $return=json_encode($return);//jscon encode the array
             return new Response($return,200,array('Content-Type'=>'application/json'));//make sure it has the correct content type        
        

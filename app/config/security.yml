@@ -61,4 +61,6 @@ security:
         - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/deposer_annonce, role: ROLE_USER}
+        - { path: ^/list-fav-user$, role: ROLE_USER}
+        
         - { path: ^/admin/, role: ROLE_ADMIN }

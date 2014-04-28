@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/list.css') }}" type="text/css" />
-<div id="alert-content"></div>
+
 <div class="annonce_bottom">
     <div class="last_ann_index">
         <div class="titre_annon">
@@ -49,7 +49,24 @@
           {% endfor %}
         </ul>
     </div>
+
+
+
 </div>
+
+<!--
+     {#% if app.user.wishes.count > 0 %#}
+        <pre>
+            {#{ dump(app.user.wishes) }#}
+
+            {#% for annonce in app.user.wishes %#}
+              {#{ annonce.id }#}
+              {#% if not loop.last %#} - {#% endif %#}
+            {#% endfor %#}
+
+        </pre>
+    {#% endif %#}
+-->
 
 
 <script>
@@ -60,10 +77,9 @@
     $(".add-to-wishes").click(function(){
         
             var addId = $(this).attr('rel');
-            alert(addId);
-            var urlTwig = "{{ url('add_to_wishes_list', {'id': 2}) }}";
+            var urlTwig = "{{ url('add_to_wishes_list', {'id': "ADDID"}) }}";
 
-            // urlTwig = urlTwig.replace("ADDID", addId);
+            urlTwig = urlTwig.replace("ADDID", addId);
             $.ajax({
                 url: urlTwig,
                 type: 'GET',
@@ -72,8 +88,11 @@
                 processData: false,
                 data: content,
                 success: function (data) {
-                    data = data[0];
-                    $("#alert-content").html("<div class='alert "+data.class+"'>"+data.msg+"</div>");
+                   //data = data[0];
+                   //var json = '{"result":true,"count":1}',
+                    obj = JSON.parse(data);
+                    $("#alert-content").html("<div class='alert "+obj.class+"'>"+obj.msg+"</div>");
+                    $('html,body').animate({scrollTop: 0}, 'slow');
                 },
                 error: function (xhr, status) {
                     alert("Sorry, there was a problem!");
@@ -87,4 +106,6 @@
     });
     
  });
+
+
   </script>
