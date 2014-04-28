@@ -1,4 +1,4 @@
-<script>
+	<script>
 	jQuery(document).ready(function($){
 		$('.accordion-title').click(function() {
 			$('.accordionhidden').hide();
@@ -7,16 +7,26 @@
 		});
 	});			
 </script>
+<style>
+div .last-theme{
+	border-bottom : none ;
+}
+</style>
 <div class="ann_themes">
 	<h5>Annonces par thèmes</h5>
 	<div>
 		{% for entitie in entities %} 
-			<div class="accordion-title">{{entitie.title}}</div>
+			{% set strClass = '' %}
+			{% if loop.last %} 
+				{% set strClass = 'last-theme' %}
+			{% endif %}
+			<div class="accordion-title {{strClass}}">{{entitie.title}}</div>
 			<div class="accordion-content accordionhidden" style="display: none;">
 				<ul>
                                       
                                     {% for nature in entitie.natures %} 
                                         <li><a href="{{path('star_search_engine_search', {'theme': entitie.id, 'nature': nature.id})}}">{{nature.title}}</a></li>
+
                                     {% endfor %}
 				</ul>
 			</div>

@@ -2,6 +2,14 @@
     $(document).ready(function() {
         oTable = $('#my-adds').dataTable({
                 "bJQueryUI": true,
+                "bAutoWidth" : false, 
+                "aoColumns": [
+                    { "sWidth": "10%" },
+                    { "sWidth": "40%" },
+                    { "sWidth": "20%" },
+                    { "sWidth": "10%" },
+                    { "sWidth": "20%", "sClass": "center", "bSortable": false },
+                ],
                 "oLanguage": {
                     "sProcessing":     "Traitement en cours...",
                     "sSearch":         "Rechercher&nbsp;:",

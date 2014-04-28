@@ -2,6 +2,12 @@
     $(document).ready(function() {
         oTable = $('#my-fav-adds').dataTable({
                 "bJQueryUI": true,
+                "bAutoWidth" : false, 
+                "aoColumns": [
+                    { "sWidth": "15%" },
+                    { "sWidth": "70%" },
+                    { "sWidth": "15%", "sClass": "center", "bSortable": false },
+                ],
                 "oLanguage": {
                     "sProcessing":     "Traitement en cours...",
                     "sSearch":         "Rechercher&nbsp;:",

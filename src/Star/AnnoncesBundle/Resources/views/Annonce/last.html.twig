@@ -1,5 +1,9 @@
 <link rel="stylesheet" href="{{ asset('css/list.css') }}" type="text/css" />
-
+<style>
+div .last-item{
+    border-bottom : none ;
+}
+</style>
 <div class="annonce_bottom">
     <div class="last_ann_index">
         <div class="titre_annon">
@@ -8,7 +12,14 @@
         <ul class="liste_search_index">
             {% for entity in annonces %}
             {%set editId = entity.imgDirId %}
-            <li>
+
+
+            {% set strClass = '' %}
+            {% if loop.last %} 
+                {% set strClass = 'last-item' %}
+            {% endif %}
+
+            <li class='{{strClass}}'>
                 <div class="liste_gauche_index">
                     
                     <div class="img">
