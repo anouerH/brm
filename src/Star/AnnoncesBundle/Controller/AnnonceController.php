@@ -485,7 +485,7 @@ class AnnonceController extends Controller
                     }
                 }
             }
-            
+
             $addsObj = $em->getRepository('StarAnnoncesBundle:Annonce')->find($id);
             $entity->addWish($addsObj);
             $em->persist($entity);
@@ -502,6 +502,47 @@ class AnnonceController extends Controller
         }
 
         
+
+    }
+
+    /**
+     * Add  add to wishe list
+     *
+     * @Route("/{id}/delete-from-wishes", name="delete_from_wishes_list")
+     * @Method("GET")
+     * @Template()
+     */
+
+    public function deleteFromWishesListAction($id){
+        
+        if ( $this->get('security.context')->isGranted('ROLE_USER')) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $user= $this->get('security.context')->getToken()->getUser();
+            $entity = $em->getRepository('StarUserBundle:User')->find($user->getId());
+
+            if (!$entity) {
+                $return=array("class"=>"alert-error","msg"=>'Unable to find User entity.');
+                $return=json_encode($return);//jscon encode the array
+                return new Response($return,200,array('Content-Type'=>'application/json'));
+
+            }
+
+            $addsObj = $em->getRepository('StarAnnoncesBundle:Annonce')->find($id);
+            $entity->removeWish($addsObj);
+            $em->persist($entity);
+            $em->flush();
+
+            $return=array("class"=>"alert-success","msg"=>'Annonce supprimée des favoris');
+            $return=json_encode($return);//jscon encode the array
+            return new Response($return,200,array('Content-Type'=>'application/json'));
+       
+
+
+        }else{
+            $return=array("class"=>"alert-error","msg"=>'Merci de vous connecter');
+            $return=json_encode($return);//jscon encode the array
+            return new Response($return,200,array('Content-Type'=>'application/json'));
+        }
 
     }
 }

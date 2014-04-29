@@ -1,6 +1,6 @@
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-        oTable = $('#my-fav-adds').dataTable({
+        var oTableList = $('#my-fav-adds').dataTable({
                 "bJQueryUI": true,
                 "bAutoWidth" : false, 
                 "aoColumns": [
@@ -31,6 +31,37 @@
                     },
                     
                 }
+        });
+
+        // Delete Row 
+        $(".icon-trash").click(function(){
+
+            var target_row = $(this).closest("tr").get(0);
+            var aPos = oTableList.fnGetPosition(target_row);
+            
+            var addId = $(this).attr('rel');
+            var urlTwig = "{{ url('delete_from_wishes_list', {'id': "ADDID"}) }}";
+
+            urlTwig = urlTwig.replace("ADDID", addId);
+            $.ajax({
+                url: urlTwig,
+                type: 'GET',
+                dataType: 'html',
+                cache: "false",
+                processData: false,
+                data: content,
+                success: function (data) {
+                    oTableList.fnDeleteRow(aPos);
+                },
+                error: function (xhr, status) {
+                    alert("Sorry, there was a problem!");
+                },
+                complete: function (xhr, status) {
+                    //$('#showresults').slideDown('slow')
+                    
+                }
+            });
+
         });
         
         
@@ -64,7 +95,7 @@
                     </ul>-->
                     <div class="btn-toolbar_">
                       <div class="btn-group">
-                        <a class="btn" href="#"  title = "Supprimer l'annonce de mes favoris" alt="Supprimer l'annonce de mes fovoris"><i class="icon-trash"></i></a>
+                        <a class="btn" href="#"  title = "Supprimer l'annonce de mes favoris" alt="Supprimer l'annonce de mes fovoris"><i class="icon-trash" rel="{{ entity.id }}"></i></a>
                       </div>
                     </div>
 

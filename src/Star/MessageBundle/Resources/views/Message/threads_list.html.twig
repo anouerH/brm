@@ -1,0 +1,114 @@
+
+<div id="dt_grid">
+{% if threads %}
+<table  cellpadding="0" cellspacing="0" border="0" class="display" id="sentTable" width="100%">
+
+    <thead>
+        <tr>
+            <th>{% trans from 'FOSMessageBundle' %}subject{% endtrans %}</th>
+            <th>{% trans from 'FOSMessageBundle' %}starter{% endtrans %}</th>
+            <th>{% trans from 'FOSMessageBundle' %}startdate{% endtrans %}</th>
+            <!--<th>{% trans from 'FOSMessageBundle' %}messages{% endtrans %}</th>-->
+            <th>{% trans from 'FOSMessageBundle' %}last_message{% endtrans %}</th>
+            <th>{% trans from 'FOSMessageBundle' %}actions{% endtrans %}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    
+        {% for thread in threads %}
+            <tr>
+                <td>
+                    <a href="{{ url('fos_message_thread_view', {'threadId': thread.id}) }}">
+                        {{ thread.subject }}
+                    </a>
+
+                    {% if not fos_message_is_read(thread) %}
+                        ({% trans from 'FOSMessageBundle' %}new{% endtrans %})
+                    {% endif %}
+                </td>
+                <td>
+                    {{ thread.createdBy }}
+                </td>
+                <td>
+                    {{ thread.createdAt|date }}
+                </td>
+                <!--<td>
+                    {#{ thread.messages|length }#}
+                </td>-->
+                <td>
+                    {% if thread.lastMessage %}
+                        <a href="{{ url('fos_message_thread_view', {'threadId': thread.id}) }}#message_{{ thread.lastMessage.id }}" title="{% trans from 'FOSMessageBundle' %}goto_last{% endtrans %}">
+                            →
+                        </a>
+                        {% trans with {'%date%': thread.lastMessage.createdAt|date} from 'FOSMessageBundle' %}on{% endtrans %}
+                        <br />
+                        {% trans with {'%sender%': thread.lastMessage.sender|e } from 'FOSMessageBundle' %}by{% endtrans %}
+                    {% else %}
+                        ----
+                    {% endif %}
+                </td>
+                <td>
+                    {% if fos_message_can_delete_thread(thread) %}
+                        {% if fos_message_deleted_by_participant(thread) %}
+                            {% set formAction %}{{ url('fos_message_thread_undelete', {'threadId': thread.id}) }}{% endset %}
+                            {% set submitValue %}{% trans from 'FOSMessageBundle' %}undelete{% endtrans %}{% endset %}
+                        {% else %}
+                            {% set formAction %}{{ url('fos_message_thread_delete', {'threadId': thread.id}) }}{% endset %}
+                            {% set submitValue %}{% trans from 'FOSMessageBundle' %}delete{% endtrans %}{% endset %}
+                        {% endif %}
+                        <form action="{{ formAction }}" method="post">
+                                <input type="submit" value="{{ submitValue }}" />
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    
+   
+
+    </tbody>
+
+</table>
+
+{% else %}
+	<div class="alert alert-info">
+        <strong> {% trans from 'FOSMessageBundle' %}no_thread{% endtrans %}.</strong>   
+    </div>
+
+
+ {% endif %}
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        sentTable = $('#sentTable').dataTable({
+                "bJQueryUI": true,
+                "oLanguage": {
+                    "sProcessing":     "Traitement en cours...",
+                    "sSearch":         "Rechercher&nbsp;:",
+                    "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
+                    "sInfo":           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                    "sInfoEmpty":      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                    "sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                    "sInfoPostFix":    "",
+                    "sLoadingRecords": "Chargement en cours...",
+                    "sZeroRecords":    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                    "sEmptyTable":     "Aucune donnée disponible dans le tableau",
+                    "oPaginate": {
+                        "sFirst":      "Premier",
+                        "sPrevious":   "Pr&eacute;c&eacute;dent",
+                        "sNext":       "Suivant",
+                        "sLast":       "Dernier"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": activer pour trier la colonne par ordre croissant",
+                        "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+                    }
+                }
+        });
+    });
+    
+    
+</script>

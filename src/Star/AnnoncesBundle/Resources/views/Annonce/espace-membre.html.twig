@@ -58,7 +58,8 @@
       </div>
       <div id="tab4" style="display: none;">
           <h3>Mes Favoris</h3>
-         {% render url('fav_list') %}
+          
+          {% render url('fav_list') %}
       </div>
       <div id="tab5" style="display: none;">
         <ul id="sub-profil-tabs">
@@ -77,8 +78,9 @@
                 </div>
             </div>
             <div id="sub-profil-tab5" style="display: none;">
-              <h3>Réinitialiser le mot de passe</h3>
-                {% render url('fos_user_resetting_request') %} 
+              <h3>Modifier le mot de passe</h3>
+                {#% render url('fos_user_resetting_request') %#}
+                {% render controller("FOSUserBundle:ChangePassword:changePassword") %} 
             </div>
         </div>
       </div>

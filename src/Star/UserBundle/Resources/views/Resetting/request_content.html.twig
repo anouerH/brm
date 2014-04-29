@@ -29,30 +29,4 @@
 </div>
 
 
-<script>
-    //callback handler for form submit
-    $("#resetting-form").submit(function(e)
-    {
-        var postData = $(this).serializeArray();
-        var formURL = $(this).attr("action");
-        $.ajax(
-        {
-            url : formURL,
-            type: "POST",
-            data : postData,
-            success:function(data, textStatus, jqXHR) 
-            {
-            
-                $('#resetting-edit-content').html(data);
-
-            },
-            error: function(jqXHR, textStatus, errorThrown) 
-            {
-                //if fails      
-            }
-        });
-        e.preventDefault(); //STOP default action
-        e.unbind(); //unbind. to stop multiple form submit.
-    });
-</script>
 
