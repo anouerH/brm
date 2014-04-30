@@ -32,7 +32,7 @@
                     {{ thread.createdBy }}
                 </td>
                 <td>
-                    {{ thread.createdAt|date }}
+                    {{ thread.createdAt|date('d/m/Y  H:i') }}
                 </td>
                 <!--<td>
                     {#{ thread.messages|length }#}
@@ -42,7 +42,7 @@
                         <a href="{{ url('fos_message_thread_view', {'threadId': thread.id}) }}#message_{{ thread.lastMessage.id }}" title="{% trans from 'FOSMessageBundle' %}goto_last{% endtrans %}">
                             →
                         </a>
-                        {% trans with {'%date%': thread.lastMessage.createdAt|date} from 'FOSMessageBundle' %}on{% endtrans %}
+                        {% trans with {'%date%': thread.lastMessage.createdAt|date('d/m/Y  H:i')} from 'FOSMessageBundle' %}on{% endtrans %}
                         <br />
                         {% trans with {'%sender%': thread.lastMessage.sender|e } from 'FOSMessageBundle' %}by{% endtrans %}
                     {% else %}
@@ -59,7 +59,12 @@
                             {% set submitValue %}{% trans from 'FOSMessageBundle' %}delete{% endtrans %}{% endset %}
                         {% endif %}
                         <form action="{{ formAction }}" method="post">
-                                <input type="submit" value="{{ submitValue }}" />
+                                <!--<input type="submit" value="{{ submitValue }}" />-->
+                                <a class="btn" href="{{ formAction }}" data-toggle="tooltip" title="Supprimer"><i class="icon-trash"></i></a>
+
+
+                               
+
                         </form>
                     {% endif %}
                 </td>
@@ -85,6 +90,7 @@
     $(document).ready(function() {
         sentTable = $('#sentTable').dataTable({
                 "bJQueryUI": true,
+                "bDestroy": true,
                 "oLanguage": {
                     "sProcessing":     "Traitement en cours...",
                     "sSearch":         "Rechercher&nbsp;:",
@@ -105,7 +111,8 @@
                     "oAria": {
                         "sSortAscending":  ": activer pour trier la colonne par ordre croissant",
                         "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
-                    }
+                    },
+
                 }
         });
     });
