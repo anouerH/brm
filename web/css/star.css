@@ -135,7 +135,7 @@ a.cn_more:hover {
     border-radius: 2px 2px 2px 2px;
     color: #208BB1;
     cursor: pointer;
-    height: 49px;
+    height: 52px;
     margin: 6px 5px 0 0;
     overflow: hidden;
     padding: 5px;
@@ -209,4 +209,14 @@ a.cn_prev {
     font-weight: bold;
     margin-top: 1px;
     margin-bottom: 1px;
+}
+
+.star-desc {
+    color: #61767C;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    margin: 7px 0 7px 0;
+    text-align: left;
+    
 }

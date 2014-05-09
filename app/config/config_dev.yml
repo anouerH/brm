@@ -37,5 +37,5 @@ assetic:
 swiftmailer:
     transport: gmail
     username:  anouermail@gmail.com
-    password:  aaaa
+    password:  toldomail
                         

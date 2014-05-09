@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;  charset=iso-8859-1">
+		<style>
+			TD,BODY 
+			{
+				FONT-SIZE: 11px; 
+				FONT-FAMILY: Tahoma,verdana,Georgia;
+			}
+		</style>
+	</head>
+	<body>
+		<table border="0" width="700">
+			<tr>
+				<td height="91" colspan="2"  background="http://www.starannonces.tn/commun/img_mail/bg_haut.gif"><img  src="http://www.starannonces.tn/commun/img_mail/haut_mail.gif"></td>
+			</tr>
+			<tr>
+			<td height="91" colspan="2" valign="top"  align="left" ><br>
+						  Ch&egrave;re\cher membre,<br><br>
+						  
+						  Votre annonce a &eacute;t&eacute; valid&eacute;e par nos administrateurs, vous pouvez la consulter en cliquant sur ce lien :
+						  <a href="{{ app.request.host }}{{ path('annonce_detail', { 'slug': entity.slug , 'gouv': entity.gouv , 'deleg': entity.deleg, 'locality': entity.locality}) }}"><font color="#1485af"><b>{{ app.request.host }}{{ path('annonce_detail', { 'slug': entity.slug , 'gouv': entity.gouv , 'deleg': entity.deleg, 'locality': entity.locality}) }}</b></font></a>
+						 <br>
+						  Cordialement,<br>  
+						  l'équipe de starannonces.tn</td>
+			</tr>
+			<tr>
+				<td colspan="2"  align="right"  bgcolor="#FFFFFF">&nbsp; </td>
+			</tr>
+			<tr>
+				<td width="60%" align="right" ></td>
+				<td width="40%"></td>
+			</tr>
+			<tr>
+				<td align="left" colspan="2" height="10"><p><br>
+					<b>
+					<a href="http://www.starannonces.tn">
+						<font color="#808080">http://www.starannonces.tn</font>
+					</a>
+					</b><font color="#808080"><br>
+					<font color="#808080">( ceci est un message automatique )</font></p>
+				</td>
+			</tr>
+		</table>
+	</body>
+				
+</html>

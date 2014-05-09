@@ -149,6 +149,31 @@ class AnnonceRepository extends EntityRepository
         return $results ;
     }
 
+    /*
+    * Find annonces star
+    */
+
+    public function getStarAnnonces(){
+        $qb = $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC');
+        
+        // check validty : select created_at, DATE_ADD(created_at, INTERVAL 2 year) from Annonce ;
+        $qb->andWhere("DATE_ADD(a.validatedAt, a.validity, 'DAY') > CURRENT_DATE()");
+
+        // Is valid adds ?
+        $qb->andWhere("a.isEnabled = 1");
+    
+        //$maxAdds = $this->container->getParameter('max_adds_per_page');
+
+        $qb->orderBy('a.createdAt', 'DESC');
+                
+        $query = $qb->getQuery();
+        
+        return $query->getResult();
+
+
+    }
+
 
     
 

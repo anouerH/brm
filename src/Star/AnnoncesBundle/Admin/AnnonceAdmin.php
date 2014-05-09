@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Star\AnnoncesBundle\Entity\Annonce;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Symfony\Component\HttpFoundation\Response;
  
 class AnnonceAdmin extends Admin
 {
@@ -83,6 +84,29 @@ class AnnonceAdmin extends Admin
         return 'StarAnnoncesBundle:Sonata:base_edit.html.twig';
     }
 
+    public function update($object)
+    {
+        parent::update($object);
+
+        // send welcome email to new user
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Votre annonce est validée')
+            ->setFrom('no-reply@starannonces.tn')
+            ->setTo($object->getUser()->getEmail())
+            // ->setBody($this->renderView('StarAnnoncesBundle:EmailTemplates:annonce-validee.html.twig'))
+            //->setBody("ddddd")
+            ;
+            
+            $templating = $this->getConfigurationPool()->getContainer()->get('templating');
+            $content = $templating->render(
+                'StarAnnoncesBundle:EmailTemplates:annonce-validee.html.twig' ,
+                array('entity' => $object)
+            );
+        $message->setBody($content, 'text/html');
+        //$this->get('mailer')->send($message);
+        $this->getConfigurationPool()->getContainer()->get('mailer')->send($message);
+
+    }
     
 
     /*public function createQuery($context = 'list')

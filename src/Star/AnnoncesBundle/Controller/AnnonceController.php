@@ -369,7 +369,21 @@ class AnnonceController extends Controller
      */
     
     public function annoncesStarsAction(){
-        return $this->render('StarAnnoncesBundle:Annonce:star.html.twig');
+
+        $em = $this->getDoctrine()->getManager();
+        $annonces = $em->getRepository('StarAnnoncesBundle:Annonce')->getStarAnnonces();
+         
+        foreach ($annonces as $annonce){
+             
+             $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $annonce->getImgDirId()));
+             
+             $annonce->setImages($existingFiles);
+        }
+        return $this->render('StarAnnoncesBundle:Annonce:star.html.twig', array(
+            'annonces' => $annonces,
+        ));
+
+        
     }
     
     /**
