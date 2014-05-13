@@ -112,6 +112,13 @@ class User extends BaseUser implements ParticipantInterface
     private $wishes;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="stars", type="integer",  nullable=true)
+     */
+    private $stars;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -395,5 +402,46 @@ class User extends BaseUser implements ParticipantInterface
     public function getCountry()
     {
         return $this->country;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->wishes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add wishes
+     *
+     * @param \Star\AnnoncesBundle\Entity\Annonce $wishes
+     * @return User
+     */
+    public function addWish(\Star\AnnoncesBundle\Entity\Annonce $wishes)
+    {
+        $this->wishes[] = $wishes;
+
+        return $this;
+    }
+
+    /**
+     * Remove wishes
+     *
+     * @param \Star\AnnoncesBundle\Entity\Annonce $wishes
+     */
+    public function removeWish(\Star\AnnoncesBundle\Entity\Annonce $wishes)
+    {
+        $this->wishes->removeElement($wishes);
+    }
+
+    /**
+     * Get wishes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getWishes()
+    {
+        return $this->wishes;
     }
 }

@@ -112,6 +112,13 @@ class User extends BaseUser implements ParticipantInterface
     private $wishes;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="stars", type="integer",  nullable=true)
+     */
+    private $stars;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -401,6 +408,7 @@ class User extends BaseUser implements ParticipantInterface
      */
     public function __construct()
     {
+        parent::__construct();
         $this->wishes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -435,5 +443,28 @@ class User extends BaseUser implements ParticipantInterface
     public function getWishes()
     {
         return $this->wishes;
+    }
+
+    /**
+     * Set stars
+     *
+     * @param integer $stars
+     * @return User
+     */
+    public function setStars($stars)
+    {
+        $this->stars = $stars;
+
+        return $this;
+    }
+
+    /**
+     * Get stars
+     *
+     * @return integer 
+     */
+    public function getStars()
+    {
+        return $this->stars;
     }
 }

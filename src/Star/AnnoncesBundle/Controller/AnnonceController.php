@@ -449,7 +449,11 @@ class AnnonceController extends Controller
      * Espace Membre
      */
     public function espaceMembreAction(){
-        return $this->render('StarAnnoncesBundle:Annonce:espace-membre.html.twig');
+
+        $em = $this->getDoctrine()->getManager();
+        $seuil = $em->getRepository('StarAnnoncesBundle:Seuil')->find(1);
+
+        return $this->render('StarAnnoncesBundle:Annonce:espace-membre.html.twig', array('seuil'=>$seuil));
     }
     
     /**
