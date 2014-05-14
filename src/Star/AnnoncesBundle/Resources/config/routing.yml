@@ -73,3 +73,11 @@ annonce_search:
 import_cities:
     pattern: /import-cities
     defaults: { _controller:StarAnnoncesBundle:Annonce:importCities}
+
+annonce_confirm_create:
+    pattern: /deposer_annonce/{slug}/confirm-create
+    defaults: { _controller:StarAnnoncesBundle:Annonce:confirmCreate}
+
+annonce_confirm_edit:
+    pattern: /deposer_annonce/{slug}/confirm-edit
+    defaults: { _controller:StarAnnoncesBundle:Annonce:confirmEdit}

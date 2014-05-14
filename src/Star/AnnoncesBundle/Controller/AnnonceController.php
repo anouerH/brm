@@ -125,7 +125,8 @@ class AnnonceController extends Controller
                 $em->persist($entity);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('annonce_show', array('id' => $entity->getId())));
+                // return $this->redirect($this->generateUrl('annonce_show', array('id' => $entity->getId())));
+                return $this->redirect($this->generateUrl('annonce_confirm_create', array('slug' => $entity->getSlug())));
             }
             
         }
@@ -563,4 +564,38 @@ class AnnonceController extends Controller
         }
 
     }
+
+    /**
+     * Displays a form to edit an existing Annonce entity.
+     *
+     * @Route("/{slug}/confirm-create", name="annonce_confirm_create")
+     * @Method("GET")
+     * @Template()
+     */
+    public function confirmCreateAction($slug)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('StarAnnoncesBundle:Annonce')->findOneBy(array('slug' => $slug));
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Annonce entity.');
+        }
+
+        return $this->render('StarAnnoncesBundle:Annonce:confirm-create.html.twig', array('entity'=>$entity));
+    }
+
+    /**
+     * Displays a form to edit an existing Annonce entity.
+     *
+     * @Route("/{slug}/confirm-edit", name="annonce_confirm_edit")
+     * @Method("GET")
+     * @Template()
+     */
+    public function confirmEditAction($slug)
+    {
+
+    }
+
 }
