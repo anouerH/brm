@@ -459,6 +459,19 @@ class User extends BaseUser implements ParticipantInterface
     }
 
     /**
+     * increment stars
+     *
+     * @param integer $stars
+     * @return User
+     */
+    public function incrementStars($stars)
+    {
+        $this->stars = $this->stars + $stars;
+
+        return $this;
+    }
+
+    /**
      * Get stars
      *
      * @return integer 

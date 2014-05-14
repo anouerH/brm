@@ -10,10 +10,13 @@
 
 
 <div id="member-space" style="width:740px">
+
+{% if app.session.get("isFirstCnx") %}
 <div class="alert alert-block alert-success fade in">
   <button type="button" class="close" data-dismiss="alert" style="right: 0;">×</button>
   <strong>Bonjour <i>{{app.user.username}}</i></strong>, merci pour votre visite, nous vous offrons {{seuil.nbPointsPerConnexion}} stars de bienvenue.
 </div>
+{% endif %}
   <div class="titre_star">Espace membre </div>
   
     <ul id="tabs">

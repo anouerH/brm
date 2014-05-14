@@ -5,8 +5,17 @@ services:
 #    star_user.example:
 #        class: %star_user.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
-        star_user.profile.form.type:
-            class: Star\UserBundle\Form\Type\ProfileFormType
-            arguments: [%fos_user.model.user.class%]
-            tags:
-                - { name: form.type, alias: star_user_profile }
+    star_user.profile.form.type:
+        class: Star\UserBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: star_user_profile }
+    user_login_manager:
+        class: 'Star\UserBundle\Service\LoginManager'
+        arguments: ['@security.context', '@doctrine']
+        tags:
+            #- { name: 'kernel.event_subscriber'}
+            - { name: 'kernel.event_subscriber', event: 'fos_user.security.interactive_login'}
+            - { name: 'kernel.event_subscriber', event: 'fos_user.registration.completed'}
+
+
