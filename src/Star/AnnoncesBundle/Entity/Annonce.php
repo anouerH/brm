@@ -4,6 +4,7 @@ namespace Star\AnnoncesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * Annonce
  *
@@ -1130,10 +1131,11 @@ class Annonce
     */
     public function EnableAdds()
     {
-        /*$nbCommentaires = $this->getArticle()->getNbCommentaires();
-        $this->getArticle()->setNbCommentaires($nbCommentaires+1);*/
-        if($this->isEnabled)
+        $this->get('star.annonces.star')->decrementStars();
+
+        if($this->isEnabled){
             $this->validatedAt = new \Datetime();
+        }
     }
 
 

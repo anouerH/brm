@@ -124,3 +124,6 @@ services:
     #        - "@templating"
     #    tags:
     #        - {name: "sonata.block"}
+
+    star.annonces.star:
+        class: Star\AnnonceBundle\Services\Star

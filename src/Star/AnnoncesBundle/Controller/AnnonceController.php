@@ -95,6 +95,11 @@ class AnnonceController extends Controller
      */
     public function createAction(Request $request)
     {
+        
+        $em = $this->getDoctrine()->getManager();
+        $seuil = $em->getRepository('StarAnnoncesBundle:Seuil')->find(1);
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
         $entity = new Annonce();
         $entity->setImgDirId($request->query->get('editId'));
         
@@ -103,9 +108,20 @@ class AnnonceController extends Controller
         
         
         if ($request->isMethod('POST')) {
+            $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $request->query->get('editId') ));
             // if is star adds and no images uploded
             if($form->get('convertStars')->getData()){
-                $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $request->query->get('editId') ));
+
+                // if star number is  enough
+                $nbPointsForOneStar = $seuil->getNbPointsForOneStar();
+                $userStars = $user->getStars();
+
+
+                if($userStars < $nbPointsForOneStar){
+                    $error = new \Symfony\Component\Form\FormError('Nombre des points stars insuffisant pour pouvoir convertir  l\'annonce en star', null);
+                    $form->get('convertStars')->addError($error);
+                }
+
                 if(!count($existingFiles)){
                     // return error 
                     $error = new \Symfony\Component\Form\FormError('Veuillez télecharger des images pour pouvoir convertir l\'annonce en star', null);
@@ -113,20 +129,35 @@ class AnnonceController extends Controller
                 }
             }
 
+            if(count($existingFiles)){
+                // Update number of stars after for the current user upload images
+                $nbPoints = $seuil->getNbPointsPerImage() * count($existingFiles);
+                
+                if($nbPoints > 0 ){
+                    $user->incrementStars($nbPoints);
+                    $em->persist($user);
+                    $em->flush();
+                }
+            }
+
             if ($form->isValid()) {
-                $user = $this->container->get('security.context')->getToken()->getUser();
                 $entity->setUser($user);
-                $em = $this->getDoctrine()->getManager();
+               
                 $em->persist($entity);
                 $em->flush();
 
                 // update unique id annonce 
                 $entity->setIdAdds($entity->getId());
                 $em->persist($entity);
+
+                // update number of star for the current user
+                $user->incrementStars($seuil->getNbPointsPerAdds());
+                $em->persist($user);
+
                 $em->flush();
 
                 // return $this->redirect($this->generateUrl('annonce_show', array('id' => $entity->getId())));
-                return $this->redirect($this->generateUrl('annonce_confirm_create', array('slug' => $entity->getSlug())));
+                return $this->redirect($this->generateUrl('annonce_confirm_create', array('slug' => $entity->getSlug() )));
             }
             
         }
@@ -576,6 +607,7 @@ class AnnonceController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
+        $seuil = $em->getRepository('StarAnnoncesBundle:Seuil')->find(1);
 
         $entity = $em->getRepository('StarAnnoncesBundle:Annonce')->findOneBy(array('slug' => $slug));
 
@@ -583,7 +615,7 @@ class AnnonceController extends Controller
             throw $this->createNotFoundException('Unable to find Annonce entity.');
         }
 
-        return $this->render('StarAnnoncesBundle:Annonce:confirm-create.html.twig', array('entity'=>$entity));
+        return $this->render('StarAnnoncesBundle:Annonce:confirm-create.html.twig', array('entity'=>$entity, 'seuil'=>$seuil));
     }
 
     /**
