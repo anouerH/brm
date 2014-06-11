@@ -38,7 +38,7 @@ class Star
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="published_at", type="datetime", nullable=true)
+     * @ORM\Column(name="published_at", type="datetime")
      */
     private $publishedAt;
 
@@ -49,11 +49,6 @@ class Star
      */
     private $status;
 
-    public function __construct()
-    {
-        $this->createdAt = new \Datetime();
-        $this->status = 0;
-    }
 
     /**
      * Get id
@@ -132,28 +127,5 @@ class Star
     public function getStatus()
     {
         return $this->status;
-    }
-
-    /**
-     * Set publishedAt
-     *
-     * @param \DateTime $publishedAt
-     * @return Star
-     */
-    public function setPublishedAt($publishedAt)
-    {
-        $this->publishedAt = $publishedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get publishedAt
-     *
-     * @return \DateTime 
-     */
-    public function getPublishedAt()
-    {
-        return $this->publishedAt;
     }
 }

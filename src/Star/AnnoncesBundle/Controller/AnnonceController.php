@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Star\AnnoncesBundle\Entity\Annonce;
+use Star\AnnoncesBundle\Entity\Star;
 use Star\AnnoncesBundle\Entity\Gouv;
 use Star\AnnoncesBundle\Entity\Deleg;
 use Star\AnnoncesBundle\Entity\Locality;
@@ -109,9 +110,10 @@ class AnnonceController extends Controller
         
         if ($request->isMethod('POST')) {
             $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $request->query->get('editId') ));
+            $convertToStar = false ;
             // if is star adds and no images uploded
             if($form->get('convertStars')->getData()){
-
+                $convertToStar = true ;
                 // if star number is  enough
                 $nbPointsForOneStar = $seuil->getNbPointsForOneStar();
                 $userStars = $user->getStars();
@@ -154,8 +156,18 @@ class AnnonceController extends Controller
                 $user->incrementStars($seuil->getNbPointsPerAdds());
                 $em->persist($user);
 
+
+
                 $em->flush();
 
+                // if is star adds then insert row in stars table
+                if($convertToStar){
+                    $Obj_star =  new Star();
+                    $Obj_star->setAnnonce($entity->getId());
+                    
+                    $em->persist($Obj_star);
+                    $em->flush();
+                }
                 // return $this->redirect($this->generateUrl('annonce_show', array('id' => $entity->getId())));
                 return $this->redirect($this->generateUrl('annonce_confirm_create', array('slug' => $entity->getSlug() )));
             }

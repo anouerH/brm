@@ -1131,7 +1131,7 @@ class Annonce
     */
     public function EnableAdds()
     {
-        $this->get('star.annonces.star')->decrementStars();
+        //$this->get('star.annonces.star')->decrementStars();
 
         if($this->isEnabled){
             $this->validatedAt = new \Datetime();
