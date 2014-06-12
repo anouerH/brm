@@ -12,6 +12,8 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class AnnonceRepository extends EntityRepository
 {
+
+
     public function getlastAnnonces($maxAdds = 10){
         
         $qb = $this->createQueryBuilder('a')
@@ -154,6 +156,93 @@ class AnnonceRepository extends EntityRepository
     */
 
     public function getStarAnnonces(){
+
+        
+
+
+        $retour = array();
+        $seuilStarLimit = 10 ;
+          
+        // Par défaut on retourne toute la liste des annonces stars
+        $query = $this->getEntityManager()->createQuery(
+            'SELECT s.annonce FROM StarAnnoncesBundle:Star s WHERE s.status = 1');
+        $results = $query->getResult();
+        foreach ($results as $key => $value) {
+            array_push($retour, $value['annonce']);
+        }
+
+        // vérifier si la durée n'est pas ecoulé 
+        $arr_expired = array();
+        foreach ($retour as $key => $value) {
+            if($this->isExpiresStars($value))
+                array_push($arr_expired, $value);
+        }
+        
+        // si aucune annonce expirée, on retourne la liste actuellef
+        if (count($arr_expired) == 0 and count($retour) == $seuil_Star_limit){
+            return $this->execResults($retour);
+        }
+
+        // si non, on vérifier s'il y'on a des nouvelles annonces stars
+        $arr_new_star = $this->getNewAddedAnnStars();
+        
+        // si aucune nouvelle annonce star trouvée, on retourne la liste actuelle
+        if(count($arr_new_star) == 0){
+            return $this->execResults($retour);
+        }
+        
+        // si non 
+        foreach ($arr_expired as $key => $value) {
+
+             //$qB = $this->createQueryBuilder('p');
+            $qB = $this->getEntityManager()->createQueryBuilder();
+            $qB ->update('StarAnnoncesBundle:Star', 's')
+                ->set('s.status', '?1')
+                ->where('s.annonce = ?2')
+                ->setParameter(1, '2')
+                ->setParameter(2, $value);
+
+            $query = $qB->getQuery();
+            $query->execute();
+            array_shift(array)
+
+        }
+
+
+        
+        return $this->execResults($retour);
+        
+
+
+    }
+
+
+    function isExpiresStars ($id){
+
+        //Récuperer la seuil_Star_temp
+        $query = $this->getEntityManager()->createQuery(
+            'SELECT s.period FROM StarAnnoncesBundle:Seuil s');
+        $results = $query->getResult()['0'];
+        $seuilPeriod = $results['period'] ;
+
+        // AND DATE_ADD( s.publishedAt , INTERVAL 7  DAY) > CURRENT_DATE()  
+        $query = $this->getEntityManager()->createQuery(
+            "SELECT s FROM StarAnnoncesBundle:Star s WHERE s.annonce = $id  
+            AND s.status = 1
+            AND DATE_ADD(s.publishedAt, $seuilPeriod , 'DAY') > CURRENT_DATE()
+            ");
+        $results = $query->getResult();
+
+
+        if(count($results))
+            return false;
+        else
+            return true;
+
+        
+    }
+
+    function execResults($retour){
         $qb = $this->createQueryBuilder('a')
             ->orderBy('a.createdAt', 'DESC');
         
@@ -162,16 +251,25 @@ class AnnonceRepository extends EntityRepository
 
         // Is valid adds ?
         $qb->andWhere("a.isEnabled = 1");
-    
-        //$maxAdds = $this->container->getParameter('max_adds_per_page');
-
+        $qb->andWhere('a.id IN (:miarray)');
         $qb->orderBy('a.createdAt', 'DESC');
+
+        $qb->setParameter('miarray', $retour);
                 
         $query = $qb->getQuery();
         
         return $query->getResult();
+    }
 
-
+    function getNewAddedAnnStars(){
+        $retour = array();
+        $query = $this->getEntityManager()->createQuery(
+            'SELECT s.annonce FROM StarAnnoncesBundle:Star s WHERE s.status = 0 ORDER BY s.createdAt ASC');
+        $results = $query->getResult();
+        foreach ($results as $key => $value) {
+            array_push($retour, $value['annonce']);
+        }
+        return $retour;
     }
 
 
