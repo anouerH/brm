@@ -179,7 +179,7 @@ class AnnonceRepository extends EntityRepository
         }
         
         // si aucune annonce expirée, on retourne la liste actuellef
-        if (count($arr_expired) == 0 and count($retour) == $seuil_Star_limit){
+        if (count($arr_expired) == 0 and count($retour) == $seuilStarLimit){
             return $this->execResults($retour);
         }
 
@@ -193,8 +193,7 @@ class AnnonceRepository extends EntityRepository
         
         // si non 
         foreach ($arr_expired as $key => $value) {
-
-             //$qB = $this->createQueryBuilder('p');
+            //$qB = $this->createQueryBuilder('p');
             $qB = $this->getEntityManager()->createQueryBuilder();
             $qB ->update('StarAnnoncesBundle:Star', 's')
                 ->set('s.status', '?1')
@@ -204,15 +203,31 @@ class AnnonceRepository extends EntityRepository
 
             $query = $qB->getQuery();
             $query->execute();
-            array_shift(array)
+            
+            unset($retour[array_search($value,$retour)]);
 
         }
 
+        if(count($retour) < $seuilStarLimit){
 
-        
+            foreach ($arr_new_star as $kn => $vn) {
+               $qB = $this->getEntityManager()->createQueryBuilder();
+                $qB ->update('StarAnnoncesBundle:Star', 's')
+                    ->set('s.status', '?1')
+                    ->set('s.publishedAt', '?2')
+                    ->where('s.annonce = ?3')
+                    ->setParameter(1, '1')
+                    ->setParameter(2, date("Y-m-d H:i:s"))
+                    ->setParameter(3, $vn);
+
+                $query = $qB->getQuery();
+                $query->execute();
+                array_push($retour, $vn);
+
+            }
+        }
+      
         return $this->execResults($retour);
-        
-
 
     }
 
@@ -267,12 +282,18 @@ class AnnonceRepository extends EntityRepository
             'SELECT s.annonce FROM StarAnnoncesBundle:Star s WHERE s.status = 0 ORDER BY s.createdAt ASC');
         $results = $query->getResult();
         foreach ($results as $key => $value) {
-            array_push($retour, $value['annonce']);
+            // vérifier si l'annonce est validée
+            $qb = $this->createQueryBuilder('a')
+                    ->andWhere("a.isEnabled = 1")
+                    ->andWhere('a.id = :adds')
+                    ->setParameter('adds', $value['annonce']);
+            
+            $query = $qb->getQuery();
+            $res = $query->getResult();
+            if(count($res))
+                array_push($retour, $value['annonce']);
+
         }
         return $retour;
     }
-
-
-    
-
- }
+}
